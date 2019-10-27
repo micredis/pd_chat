@@ -1,0 +1,26 @@
+version: 1
+services:
+  postgres:
+    image: postgres:9.6
+    logging:
+      options:
+        tag: pd_chat
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB:       pd_chat
+      POSTGRES_PASSWORD: pd_chat
+      POSTGRES_USER:     pd_chat
+
+  pd_chat:
+    image: pd_chat:1
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - /data/pd_chat
+    ports:
+      - "8080:8080"
+
+volumes:
+  postgres-data:
