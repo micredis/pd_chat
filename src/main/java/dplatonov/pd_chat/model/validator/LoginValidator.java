@@ -1,41 +1,53 @@
 package dplatonov.pd_chat.model.validator;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import dplatonov.pd_chat.dao.UserDao;
+import dplatonov.pd_chat.entity.User;
+import dplatonov.pd_chat.exception.AuthorizationException;
+import dplatonov.pd_chat.model.LoginDto;
+import dplatonov.pd_chat.model.UserDto;
+import java.util.Objects;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import dplatonov.pd_chat.dao.AccountDao;
-import dplatonov.pd_chat.entity.User;
-import dplatonov.pd_chat.model.GenericModel;
-
 @Component
 public class LoginValidator {
-  private static final Logger log = LogManager.getLogger(LoginValidator.class);
-  private final AccountDao dao;
+  private static final Logger log = LoggerFactory.getLogger(LoginValidator.class);
+  private final UserDao userDao;
 
   @Autowired
-  public LoginValidator(AccountDao dao) {
-    this.dao = dao;
+  public LoginValidator(UserDao userDao) {
+    this.userDao = userDao;
   }
 
-  public User validateUser(GenericModel<String, String> model) {
-    validate(model);
-    String login = model.getL();
-    String password = model.getR();
+  public UserDto validate(LoginDto loginDto) throws AuthorizationException {
+    String login = loginDto.getLogin();
+    String password = loginDto.getPassword();
+    validateFields(login, password);
+    User user = retrieveUser(login, password);
 
-    return dao.findByNameAndPassword(login, password);
+    return new UserDto(user);
   }
 
-  private void validate(GenericModel login) {
-    if (StringUtils.isEmpty(login.getL())) {
-      log.error("LOGIN-VALIDATOR-001: login should be not empty!");
-      throw new IllegalArgumentException();
+  private User retrieveUser(String login, String password) throws AuthorizationException {
+    User user = userDao.findByNameAndPassword(login, password);
+    if (Objects.isNull(user)) {
+      String message = "User is not exist!";
+      log.info("LOGIN-VALIDATOR-OO3: " + message);
+      throw new AuthorizationException(message);
     }
 
-    if (StringUtils.isEmpty(login.getR())) {
-      log.error("LOGIN-VALIDATOR-002: password should be not empty!");
+    return user;
+  }
+
+  private void validateFields(String login, String password) {
+    if (StringUtils.isEmpty(login)) {
+      log.error("LOGIN-VALIDATOR-001: Login can't be empty!");
+      throw new IllegalArgumentException();
+    } else if (StringUtils.isEmpty(password)) {
+      log.error("LOGIN-VALIDATOR-002: Password can't be empty!");
       throw new IllegalArgumentException();
     }
   }
