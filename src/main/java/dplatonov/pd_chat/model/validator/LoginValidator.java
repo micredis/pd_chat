@@ -32,7 +32,7 @@ public class LoginValidator {
   }
 
   private User retrieveUser(String login, String password) throws AuthorizationException {
-    User user = userDao.findByNameAndPassword(login, password);
+    User user = userDao.findByEmailAndPassword(login, password);
     if (Objects.isNull(user)) {
       String message = "User is not exist!";
       log.info("LOGIN-VALIDATOR-OO3: " + message);
