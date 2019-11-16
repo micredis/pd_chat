@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+  <changeSet author="dplatonov" id="4">
+    <insert tableName="users">
+      <column name="email" value="test@test.com"/>
+      <column name="password"
+        value="$2a$10$qNIZHEGD8CBX6NyGJ4GSjuPO5.gKbgqa2/ShyOBJOLhA.apLjOFgm"/> <!--test123-->
+      <column name="active" value="true"/>
+      <column name="description" value="Default user with role ADMIN"/>
+    </insert>
+    <rollback>
+      <dropTable tableName="users"/>
+    </rollback>
+  </changeSet>
+</databaseChangeLog>
