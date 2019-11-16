@@ -1,14 +1,7 @@
 package dplatonov.pd_chat.contoroller;
 
-import dplatonov.pd_chat.entity.User;
-import dplatonov.pd_chat.entity.UserBuilder;
-import dplatonov.pd_chat.exception.AuthorizationException;
-import dplatonov.pd_chat.model.LoginDto;
-import dplatonov.pd_chat.model.ResponseMessageDto;
-import dplatonov.pd_chat.model.UserDto;
-import dplatonov.pd_chat.model.validator.LoginValidator;
-import dplatonov.pd_chat.service.UserService;
 import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +15,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import dplatonov.pd_chat.entity.User;
+import dplatonov.pd_chat.entity.UserBuilder;
+import dplatonov.pd_chat.exception.AuthorizationException;
+import dplatonov.pd_chat.model.LoginDto;
+import dplatonov.pd_chat.model.ResponseMessageDto;
+import dplatonov.pd_chat.model.UserDto;
+import dplatonov.pd_chat.model.validator.LoginValidator;
+import dplatonov.pd_chat.service.UserService;
 
 @RestController
 public class AuthorizationController {

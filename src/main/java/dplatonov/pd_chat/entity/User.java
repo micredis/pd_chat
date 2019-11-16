@@ -1,6 +1,5 @@
 package dplatonov.pd_chat.entity;
 
-import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import org.hibernate.annotations.DynamicUpdate;
@@ -28,7 +28,7 @@ public class User {
   private String password;
   private String description;
   private boolean active;
-  private Set<Role> roles;
+  private Role role;
 
   public User() {}
 
@@ -88,17 +88,17 @@ public class User {
     this.description = description;
   }
 
-  @ManyToMany(cascade = CascadeType.ALL)
+  @OneToOne
   @JoinTable(
     name = "user_role",
     joinColumns = @JoinColumn(name = "user_id"),
     inverseJoinColumns = @JoinColumn(name = "role_id")
   )
-  public Set<Role> getRoles() {
-    return roles;
+  public Role getRole() {
+    return role;
   }
 
-  public void setRoles(Set<Role> roles) {
-    this.roles = roles;
+  public void setRole(Role role) {
+    this.role = role;
   }
 }
