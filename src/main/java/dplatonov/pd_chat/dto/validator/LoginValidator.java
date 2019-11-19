@@ -1,10 +1,10 @@
-package dplatonov.pd_chat.model.validator;
+package dplatonov.pd_chat.dto.validator;
 
 import dplatonov.pd_chat.dao.UserDao;
-import dplatonov.pd_chat.entity.User;
+import dplatonov.pd_chat.model.User;
 import dplatonov.pd_chat.exception.AuthorizationException;
-import dplatonov.pd_chat.model.LoginDto;
-import dplatonov.pd_chat.model.UserDto;
+import dplatonov.pd_chat.dto.LoginDto;
+import dplatonov.pd_chat.dto.UserDto;
 import java.util.Objects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

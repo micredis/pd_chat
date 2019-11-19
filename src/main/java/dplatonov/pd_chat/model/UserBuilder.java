@@ -1,4 +1,4 @@
-package dplatonov.pd_chat.entity;
+package dplatonov.pd_chat.model;
 
 public class UserBuilder {
 

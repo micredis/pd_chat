@@ -1,6 +1,6 @@
-package dplatonov.pd_chat.model;
+package dplatonov.pd_chat.dto;
 
-import dplatonov.pd_chat.entity.User;
+import dplatonov.pd_chat.model.User;
 import java.io.Serializable;
 
 public class UserDto implements Serializable {

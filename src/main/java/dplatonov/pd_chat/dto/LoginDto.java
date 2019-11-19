@@ -1,4 +1,4 @@
-package dplatonov.pd_chat.model;
+package dplatonov.pd_chat.dto;
 
 import java.io.Serializable;
 

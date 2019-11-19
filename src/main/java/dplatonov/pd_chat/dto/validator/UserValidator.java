@@ -1,8 +1,8 @@
-package dplatonov.pd_chat.model.validator;
+package dplatonov.pd_chat.dto.validator;
 
 import dplatonov.pd_chat.dao.UserDao;
-import dplatonov.pd_chat.entity.User;
-import dplatonov.pd_chat.model.UserDto;
+import dplatonov.pd_chat.model.User;
+import dplatonov.pd_chat.dto.UserDto;
 import java.util.Objects;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

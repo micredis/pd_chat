@@ -1,7 +1,7 @@
 package dplatonov.pd_chat.contoroller;
 
-import dplatonov.pd_chat.model.UserDto;
-import dplatonov.pd_chat.model.validator.UserValidator;
+import dplatonov.pd_chat.dto.UserDto;
+import dplatonov.pd_chat.dto.validator.UserValidator;
 import dplatonov.pd_chat.service.UserService;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;

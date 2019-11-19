@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 
 import dplatonov.pd_chat.dao.RoleDao;
 import dplatonov.pd_chat.dao.UserDao;
-import dplatonov.pd_chat.entity.Role;
-import dplatonov.pd_chat.entity.User;
+import dplatonov.pd_chat.model.Role;
+import dplatonov.pd_chat.model.User;
 import dplatonov.pd_chat.enums.RoleEnum;
-import dplatonov.pd_chat.model.UserDto;
+import dplatonov.pd_chat.dto.UserDto;
 
 @Service
 public class UserServiceImpl implements UserService {
