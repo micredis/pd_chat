@@ -141,3 +141,5 @@ fabric.properties
 /mvnw
 /mvnw.cmd
 /# File to which rollback SQL is written when an update is performed
+src/app/model/
+src/app/service/
