@@ -1,1 +1,14 @@
-<p>about works!</p>
+<div fxLayoutGap="20px">
+  <div class="modal-header" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="10px" fxFill>
+    <div fxFlex>{{'about.aboutApplication'}}</div>
+  </div>
+  <div class="modal-content" fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+    <div>{{'about.version'}}: {{version}}</div>
+    <div>{{'about.build_date'}}: {{buildDate}}</div>
+  </div>
+  <div class="modal-footer" fxLayout="row" fxLayoutAlign="end stretch" fxLayoutGap="10px">
+    <button md-raised-button type="button" color="primary" class="stretch-50-xs" (click)="onCancel()">
+      <mat-icon (click)="onCancel()">cancel</mat-icon>
+    </button>
+  </div>
+</div>
