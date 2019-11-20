@@ -1,10 +1,24 @@
 package dplatonov.pd_chat.enums;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum RoleEnum {
   ADMIN("ADMIN"),
   PARTICIPANTS("PARTICIPANTS");
 
   private String role;
+  private static final Map<String, RoleEnum> map = new HashMap<>();
+
+  static {
+    for (RoleEnum values : RoleEnum.values()) {
+      map.put(values.toString(), values);
+    }
+  }
+
+  public static RoleEnum forValue(String role) {
+    return map.get(role);
+  }
 
   RoleEnum(String role) {
     this.role = role;

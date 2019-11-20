@@ -143,3 +143,4 @@ fabric.properties
 /# File to which rollback SQL is written when an update is performed
 src/app/model/
 src/app/service/
+/src/main/resources/client/node/

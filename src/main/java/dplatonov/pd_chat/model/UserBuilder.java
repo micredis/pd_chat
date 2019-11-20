@@ -6,6 +6,7 @@ public class UserBuilder {
   private String email;
   private String password;
   private String description;
+  private Role role;
 
   public UserBuilder setId(Long id) {
     this.id = id;
@@ -27,7 +28,12 @@ public class UserBuilder {
     return this;
   }
 
+  public UserBuilder setRole(Role role){
+    this.role = role;
+    return this;
+  }
+
   public User createUser() {
-    return new User(id, email, password, description);
+    return new User(id, email, password, description, role);
   }
 }

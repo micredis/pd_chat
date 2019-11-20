@@ -9,25 +9,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import dplatonov.pd_chat.dao.RoleDao;
 import dplatonov.pd_chat.dao.UserDao;
+import dplatonov.pd_chat.dto.UserDto;
 import dplatonov.pd_chat.model.Role;
 import dplatonov.pd_chat.model.User;
-import dplatonov.pd_chat.enums.RoleEnum;
-import dplatonov.pd_chat.dto.UserDto;
+import dplatonov.pd_chat.model.UserBuilder;
 
 @Service
 public class UserServiceImpl implements UserService {
   private static final Logger log = LogManager.getLogger(UserServiceImpl.class);
   private final UserDao userDao;
-  private final RoleDao roleDao;
   private final BCryptPasswordEncoder encoder;
+  private final RoleService roleService;
 
   @Autowired
-  public UserServiceImpl(UserDao userDao, RoleDao roleDao, BCryptPasswordEncoder encoder) {
+  public UserServiceImpl(UserDao userDao, BCryptPasswordEncoder encoder, RoleService roleService) {
     this.userDao = userDao;
-    this.roleDao = roleDao;
     this.encoder = encoder;
+    this.roleService = roleService;
   }
 
   @Override
@@ -50,29 +49,53 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public void createUser(UserDto userDto) {
+  public UserDto createUser(UserDto userDto) {
+    Role role = roleService.getRole(userDto.getRole());
+    log.info(
+        "USER-SERVICE-004: Start create user with email "
+            + userDto.getEmail()
+            + " and role "
+            + role.getRole());
     User user =
         new User(
             userDto.getId(),
             userDto.getEmail(),
             encoder.encode(userDto.getPassword()),
-            userDto.getDescription());
+            userDto.getDescription(),
+            role);
     userDao.save(user);
     log.info("USER-SERVICE-001: Create user is complete");
+    return new UserDto(user);
   }
 
   @Override
-  public User findUserByEmail(String email) {
-    return userDao.findByEmail(email);
+  public UserDto getUserByEmail(String name) {
+    User user = userDao.findByEmailAndActive(name);
+    log.info("USER-SERVICE-003: Retrieve user with id " + user.getId() + " from Postgres");
+    return new UserDto(user);
   }
 
   @Override
-  public void saveUser(User user) {
-    user.setPassword(encoder.encode(user.getPassword()));
-    Role role = roleDao.findByRole(RoleEnum.getRoleEnum(RoleEnum.ADMIN));
-    user.setRole(role);
-    user.setActive(true);
+  public void delete(User user) {
+    log.info("USER-SERVICE-004: Start delete user with id " + user.getId());
+    user.setActive(false);
     userDao.save(user);
-    log.info("USER-SERVICE-003: Create user is complete");
+    log.info("USER-SERVICE-005: Delete user with id " + user.getId() + " is complete");
+  }
+
+  @Override
+  public UserDto updateUser(UserDto userDto, User existingUser) {
+    log.info("USER-SERVICE-006: Start update user with id " + userDto.getId());
+    User user =
+        new UserBuilder()
+            .setId(userDto.getId())
+            .setEmail(userDto.getEmail())
+            .setPassword(userDto.getPassword())
+            .setDescription(userDto.getDescription())
+            .setRole(existingUser.getRole())
+            .createUser();
+    userDao.save(user);
+    log.info("USER-SERVICE-007: Update user with id " + userDto.getId() + " is complete");
+    return new UserDto(user);
   }
 }

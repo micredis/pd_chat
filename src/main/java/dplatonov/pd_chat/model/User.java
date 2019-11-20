@@ -30,11 +30,13 @@ public class User {
 
   public User() {}
 
-  public User(Long id, String email, String password, String description) {
+  public User(Long id, String email, String password, String description,
+      Role role) {
     this.id = id;
     this.email = email;
     this.password = password;
     this.description = description;
+    this.role = role;
   }
 
   @Id

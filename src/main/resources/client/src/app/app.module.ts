@@ -7,7 +7,9 @@ import {LoginModule} from "./component/login/login.module";
 import {AboutModule} from "./component/about/about.module";
 import {NavigationModule} from "./component/navigation/navigation.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {FlexLayoutModule, FlexModule} from "@angular/flex-layout";
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatCardModule} from "@angular/material/card";
+import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -17,14 +19,16 @@ import {FlexLayoutModule, FlexModule} from "@angular/flex-layout";
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    FlexLayoutModule,
-    FlexModule,
     NavigationModule,
     LoginModule,
     AboutModule,
+    MatSidenavModule,
+    MatCardModule,
+    MatSnackBarModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [MatSnackBar],
+  bootstrap: [AppComponent],
+  entryComponents: [],
 })
 export class AppModule {
 }

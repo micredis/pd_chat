@@ -1,21 +1,26 @@
 package dplatonov.pd_chat.dto;
 
-import dplatonov.pd_chat.model.User;
 import java.io.Serializable;
+
+import dplatonov.pd_chat.model.User;
 
 public class UserDto implements Serializable {
 
-  private static final long serialVersionUID = 2335818420300707819L;
-  private final Long id;
-  private final String email;
-  private final String password;
-  private final String description;
+  private static final long serialVersionUID = -5197703861894984879L;
+  private Long id;
+  private String email;
+  private String password;
+  private String description;
+  private String role;
+
+  public UserDto() {}
 
   public UserDto(User user) {
     this.id = user.getId();
     this.email = user.getEmail();
     this.password = user.getPassword();
     this.description = user.getDescription();
+    this.role = user.getRole().getRole();
   }
 
   public Long getId() {
@@ -32,5 +37,13 @@ public class UserDto implements Serializable {
 
   public String getDescription() {
     return description;
+  }
+
+  public String getRole() {
+    return role;
+  }
+
+  public void setRole(String role) {
+    this.role = role;
   }
 }

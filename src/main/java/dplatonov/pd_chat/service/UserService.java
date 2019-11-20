@@ -1,8 +1,9 @@
 package dplatonov.pd_chat.service;
 
-import dplatonov.pd_chat.model.User;
-import dplatonov.pd_chat.dto.UserDto;
 import java.util.List;
+
+import dplatonov.pd_chat.dto.UserDto;
+import dplatonov.pd_chat.model.User;
 
 public interface UserService {
 
@@ -10,9 +11,11 @@ public interface UserService {
 
   UserDto getUserById(Long id);
 
-  void createUser(UserDto userDto);
+  UserDto createUser(UserDto userDto);
 
-  User findUserByEmail(String email);
+  UserDto getUserByEmail(String email);
 
-  void saveUser(User user);
+  void delete(User user);
+
+  UserDto updateUser(UserDto userDto, User existingUser);
 }
