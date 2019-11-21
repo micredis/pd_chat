@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+  <changeSet author="dplatonov" id="7">
+    <createTable tableName="message">
+      <column autoIncrement="true" name="id" type="BIGINT"
+        defaultValueSequenceNext="message_id_seq">
+        <constraints primaryKey="true" nullable="false" unique="true"/>
+      </column>
+      <column name="create_date" type="timestamp">
+        <constraints nullable="false"/>
+      </column>
+      <column name="title" type="varchar">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="message"/>
+    </rollback>
+  </changeSet>
+</databaseChangeLog>

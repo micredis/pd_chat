@@ -1,4 +1,4 @@
-package dplatonov.pd_chat.dto.validator;
+package dplatonov.pd_chat.validator;
 
 import java.util.Objects;
 

@@ -13,9 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import dplatonov.pd_chat.dto.UserDto;
-import dplatonov.pd_chat.dto.validator.UserValidator;
-import dplatonov.pd_chat.model.User;
 import dplatonov.pd_chat.service.UserService;
+import dplatonov.pd_chat.validator.UserValidator;
 
 @RestController
 @CrossOrigin

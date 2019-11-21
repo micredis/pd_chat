@@ -69,8 +69,8 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public UserDto getUserByEmail(String name) {
-    User user = userDao.findByEmailAndActive(name);
+  public UserDto getUserByEmail(String email) {
+    User user = userDao.findByEmailAndActive(email, true);
     log.info("USER-SERVICE-003: Retrieve user with id " + user.getId() + " from Postgres");
     return new UserDto(user);
   }

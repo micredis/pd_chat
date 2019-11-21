@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+  <changeSet author="dplatonov" id="8">
+    <createTable tableName="user_message">
+      <column name="user_owner_id" type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="user_sender_id" type="bigint">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="user_message"/>
+    </rollback>
+  </changeSet>
+  <changeSet id="8.1" author="dplatonov">
+    <addForeignKeyConstraint baseTableName="user_message" baseColumnNames="user_owner_id"
+      constraintName="user_message_owner_fk"
+      referencedTableName="users" referencedColumnNames="id"/>
+    <addForeignKeyConstraint baseTableName="user_message" baseColumnNames="user_sender_id"
+      constraintName="user_message_sender_fk"
+      referencedTableName="users" referencedColumnNames="id"/>
+  </changeSet>
+</databaseChangeLog>
