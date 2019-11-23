@@ -1,23 +1,20 @@
 package dplatonov.pd_chat.service;
 
+import dplatonov.pd_chat.dao.MessageDao;
+import dplatonov.pd_chat.dto.MessageDto;
+import dplatonov.pd_chat.model.Message;
+import dplatonov.pd_chat.model.MessageBuilder;
+import dplatonov.pd_chat.model.User;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import javax.transaction.Transactional;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
-
-import dplatonov.pd_chat.dao.MessageDao;
-import dplatonov.pd_chat.dto.MessageDto;
-import dplatonov.pd_chat.model.Message;
-import dplatonov.pd_chat.model.MessageBuilder;
-import dplatonov.pd_chat.model.User;
 
 @Service
 public class MessageServiceImpl implements MessageService {

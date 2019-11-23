@@ -6,11 +6,15 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import dplatonov.pd_chat.dao.UserDao;
+import dplatonov.pd_chat.dto.UserDto;
+import dplatonov.pd_chat.model.Role;
+import dplatonov.pd_chat.model.User;
+import dplatonov.pd_chat.model.UserBuilder;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,12 +23,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import dplatonov.pd_chat.dao.UserDao;
-import dplatonov.pd_chat.dto.UserDto;
-import dplatonov.pd_chat.model.Role;
-import dplatonov.pd_chat.model.User;
-import dplatonov.pd_chat.model.UserBuilder;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceImplTest {

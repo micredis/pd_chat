@@ -1,13 +1,11 @@
 package dplatonov.pd_chat.dto;
 
+import dplatonov.pd_chat.model.User;
 import java.io.Serializable;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
-
-import dplatonov.pd_chat.model.User;
 
 public class UserDto implements Serializable {
 

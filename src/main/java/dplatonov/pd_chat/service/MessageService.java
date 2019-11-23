@@ -1,9 +1,8 @@
 package dplatonov.pd_chat.service;
 
-import java.util.List;
-
 import dplatonov.pd_chat.dto.MessageDto;
 import dplatonov.pd_chat.model.Message;
+import java.util.List;
 
 public interface MessageService {
 

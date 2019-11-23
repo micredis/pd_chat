@@ -28,7 +28,7 @@ public class UserBuilder {
     return this;
   }
 
-  public UserBuilder setRole(Role role){
+  public UserBuilder setRole(Role role) {
     this.role = role;
     return this;
   }

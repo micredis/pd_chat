@@ -5,7 +5,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -30,7 +29,9 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
 
     // Get all errors
     List<String> errors =
-        ex.getBindingResult().getFieldErrors().stream()
+        ex.getBindingResult()
+            .getFieldErrors()
+            .stream()
             .map(DefaultMessageSourceResolvable::getDefaultMessage)
             .collect(Collectors.toList());
 

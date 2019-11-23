@@ -1,9 +1,8 @@
 package dplatonov.pd_chat.service;
 
-import java.util.List;
-
 import dplatonov.pd_chat.dto.UserDto;
 import dplatonov.pd_chat.model.User;
+import java.util.List;
 
 public interface UserService {
 

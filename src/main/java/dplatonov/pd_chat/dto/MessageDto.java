@@ -1,14 +1,11 @@
 package dplatonov.pd_chat.dto;
 
+import dplatonov.pd_chat.model.Message;
 import java.util.Date;
-
 import javax.validation.constraints.Null;
 
-import dplatonov.pd_chat.model.Message;
-
 public class MessageDto {
-  @Null
-  private Long id;
+  @Null private Long id;
   private String destinationEmail;
   private String ownerEmail;
   private Date createDate;

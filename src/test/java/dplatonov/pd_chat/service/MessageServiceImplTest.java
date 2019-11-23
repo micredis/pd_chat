@@ -7,11 +7,15 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import dplatonov.pd_chat.dao.MessageDao;
+import dplatonov.pd_chat.dto.MessageDto;
+import dplatonov.pd_chat.model.Message;
+import dplatonov.pd_chat.model.MessageBuilder;
+import dplatonov.pd_chat.model.User;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,12 +24,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.util.CollectionUtils;
-
-import dplatonov.pd_chat.dao.MessageDao;
-import dplatonov.pd_chat.dto.MessageDto;
-import dplatonov.pd_chat.model.Message;
-import dplatonov.pd_chat.model.MessageBuilder;
-import dplatonov.pd_chat.model.User;
 
 @ExtendWith(MockitoExtension.class)
 class MessageServiceImplTest {

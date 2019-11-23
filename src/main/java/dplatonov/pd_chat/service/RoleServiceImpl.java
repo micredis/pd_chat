@@ -1,12 +1,11 @@
 package dplatonov.pd_chat.service;
 
+import dplatonov.pd_chat.dao.RoleDao;
+import dplatonov.pd_chat.model.Role;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import dplatonov.pd_chat.dao.RoleDao;
-import dplatonov.pd_chat.model.Role;
 
 @Service
 public class RoleServiceImpl implements RoleService {

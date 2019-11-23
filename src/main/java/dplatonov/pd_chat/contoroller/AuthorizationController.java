@@ -1,7 +1,8 @@
 package dplatonov.pd_chat.contoroller;
 
+import dplatonov.pd_chat.dto.UserDto;
+import dplatonov.pd_chat.service.UserService;
 import javax.validation.Valid;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
-import dplatonov.pd_chat.dto.UserDto;
-import dplatonov.pd_chat.service.UserService;
 
 @RestController
 @CrossOrigin

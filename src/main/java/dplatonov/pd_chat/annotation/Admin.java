@@ -1,5 +1,3 @@
 package dplatonov.pd_chat.annotation;
 
-public @interface Admin {
-
-}
+public @interface Admin {}
