@@ -36,16 +36,14 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public UserDto getUserById(Long id) {
-    User user =
-        userDao
-            .findById(id)
-            .orElseGet(
-                () -> {
-                  log.error("USER-SERVICE-002: User with id = " + id + " doesn't exist!");
-                  return new User();
-                });
-    return new UserDto(user);
+  public User getUserById(Long id) {
+    return userDao
+        .findById(id)
+        .orElseGet(
+            () -> {
+              log.error("USER-SERVICE-002: User with id = " + id + " doesn't exist!");
+              return new User();
+            });
   }
 
   @Override
@@ -69,14 +67,15 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public UserDto getUserByEmail(String email) {
+  public User getUserByEmail(String email) {
     User user = userDao.findByEmailAndActive(email, true);
     log.info("USER-SERVICE-003: Retrieve user with id " + user.getId() + " from Postgres");
-    return new UserDto(user);
+    return user;
   }
 
   @Override
-  public void delete(User user) {
+  public void delete(UserDto userDto) {
+    User user = getUserById(userDto.getId());
     log.info("USER-SERVICE-004: Start delete user with id " + user.getId());
     user.setActive(false);
     userDao.save(user);
@@ -84,7 +83,8 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public UserDto updateUser(UserDto userDto, User existingUser) {
+  public UserDto updateUser(UserDto userDto) {
+    User existingUser = getUserById(userDto.getId());
     log.info("USER-SERVICE-006: Start update user with id " + userDto.getId());
     User user =
         new UserBuilder()

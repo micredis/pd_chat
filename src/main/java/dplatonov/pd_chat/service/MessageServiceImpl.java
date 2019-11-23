@@ -1,24 +1,85 @@
 package dplatonov.pd_chat.service;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.client.HttpClientErrorException.BadRequest;
+
+import dplatonov.pd_chat.dao.MessageDao;
 import dplatonov.pd_chat.dto.MessageDto;
+import dplatonov.pd_chat.model.Message;
+import dplatonov.pd_chat.model.MessageBuilder;
+import dplatonov.pd_chat.model.User;
 
 @Service
 public class MessageServiceImpl implements MessageService {
+  private static final Logger log = LogManager.getLogger(MessageServiceImpl.class);
+  private final MessageDao dao;
+  private final UserService userService;
 
+  @Autowired
+  public MessageServiceImpl(MessageDao dao, UserService userService) {
+    this.dao = dao;
+    this.userService = userService;
+  }
+
+  @Transactional
   @Override
-  public MessageDto getMessagesEmail(String email) {
-    return null;
+  public MessageDto createNew(MessageDto messageDto) {
+    if (StringUtils.isEmpty(messageDto.getTitle())) {
+      messageDto.setTitle("Untitled");
+    }
+    User destinationUser = userService.getUserByEmail(messageDto.getDestinationEmail());
+    User owner = userService.getUserByEmail(messageDto.getOwnerEmail());
+    Message message =
+        new MessageBuilder()
+            .setId(messageDto.getId())
+            .setDestination(destinationUser)
+            .setOwner(owner)
+            .setTitle(messageDto.getTitle())
+            .setMessage(messageDto.getMessage())
+            .createMessage();
+    log.info("MESSAGE-SERVICE-001: Start save new message");
+    Message result = dao.save(message);
+    log.info("MESSAGE-SERVICE-002: Save new message is complete");
+    return new MessageDto(result);
   }
 
   @Override
-  public MessageDto getMessageById(Long id) {
-    return null;
+  public List<MessageDto> getMessages(String email) {
+    List<MessageDto> messages =
+        dao.findAll().stream().map(MessageDto::new).collect(Collectors.toList());
+    log.info("MESSAGE-SERVICE-003: Retrieve list of messages from Postgres");
+    return messages;
+  }
+
+  @Override
+  public Message getMessageById(Long id) {
+    Message message =
+        dao.findById(id)
+            .orElseGet(
+                () -> {
+                  String errorMessage = "Message with id " + id + " does not exist";
+                  log.error("MESSAGE-SERVICE-004: " + errorMessage);
+                  throw new IllegalArgumentException(errorMessage);
+                });
+    log.info("MESSAGE-SERVICE-003: Retrieve message with id " + id + " from Postgres");
+    return message;
   }
 
   @Override
   public void delete(Long id) {
-
+    log.info("MESSAGE-SERVICE-005: Start delete message");
+    Message message = getMessageById(id);
+    message.setDeleted(true);
+    dao.save(message);
+    log.info("MESSAGE-SERVICE-006: Delete message is complete");
   }
 }

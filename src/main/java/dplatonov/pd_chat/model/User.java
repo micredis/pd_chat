@@ -11,6 +11,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -30,8 +31,7 @@ public class User {
 
   public User() {}
 
-  public User(Long id, String email, String password, String description,
-      Role role) {
+  public User(Long id, String email, String password, String description, Role role) {
     this.id = id;
     this.email = email;
     this.password = password;
@@ -75,7 +75,7 @@ public class User {
     return description;
   }
 
-  @Column(name = "active", nullable = false)
+  @Column(name = "active", nullable = false, columnDefinition = "boolean default true")
   public boolean isActive() {
     return active;
   }
@@ -90,10 +90,9 @@ public class User {
 
   @OneToOne
   @JoinTable(
-    name = "user_role",
-    joinColumns = @JoinColumn(name = "user_id"),
-    inverseJoinColumns = @JoinColumn(name = "role_id")
-  )
+      name = "user_role",
+      joinColumns = @JoinColumn(name = "user_id"),
+      inverseJoinColumns = @JoinColumn(name = "role_id"))
   public Role getRole() {
     return role;
   }

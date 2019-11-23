@@ -9,13 +9,13 @@ public interface UserService {
 
   List<UserDto> getUsers();
 
-  UserDto getUserById(Long id);
+  User getUserById(Long id);
 
   UserDto createUser(UserDto userDto);
 
-  UserDto getUserByEmail(String email);
+  User getUserByEmail(String email);
 
-  void delete(User user);
+  void delete(UserDto userDto);
 
-  UserDto updateUser(UserDto userDto, User existingUser);
+  UserDto updateUser(UserDto userDto);
 }

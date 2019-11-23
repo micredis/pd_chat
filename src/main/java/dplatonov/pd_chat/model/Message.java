@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -26,13 +25,24 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @DynamicUpdate
 public class Message {
   private Long id;
-  private User sender;
+  private User destination;
   private User owner;
   private Date createDate;
   private String title;
   private String message;
+  private Boolean deleted;
 
   public Message() {}
+
+  public Message(
+      Long id, User destination, User owner, Date createDate, String title, String message) {
+    this.id = id;
+    this.destination = destination;
+    this.owner = owner;
+    this.createDate = createDate;
+    this.title = title;
+    this.message = message;
+  }
 
   @Id
   @GeneratedValue(generator = "message_id_seq", strategy = GenerationType.AUTO)
@@ -46,24 +56,16 @@ public class Message {
   }
 
   @OneToOne(fetch = FetchType.LAZY)
-//  @JoinTable(
-//      name = "user_message",
-//      schema = "pd_chat",
-//      joinColumns = @JoinColumn(name = "user_sender_id"))
   @JoinColumn(name = "user_sender_id")
-  public User getSender() {
-    return sender;
+  public User getDestination() {
+    return destination;
   }
 
-  public void setSender(User sender) {
-    this.sender = sender;
+  public void setDestination(User destination) {
+    this.destination = destination;
   }
 
   @OneToOne(fetch = FetchType.LAZY)
-//  @JoinTable(
-//      name = "user_message",
-//      schema = "pd_chat",
-//      joinColumns = @JoinColumn(name = "user_owner_id"))
   @JoinColumn(name = "user_owner_id")
   @CreatedBy
   public User getOwner() {
@@ -100,5 +102,14 @@ public class Message {
 
   public void setMessage(String message) {
     this.message = message;
+  }
+
+  @Column(name = "deleted", nullable = false, columnDefinition = "boolean default false")
+  public Boolean isDeleted() {
+    return deleted;
+  }
+
+  public void setDeleted(Boolean deleted) {
+    this.deleted = deleted;
   }
 }

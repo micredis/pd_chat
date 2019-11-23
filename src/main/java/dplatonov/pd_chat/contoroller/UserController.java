@@ -2,8 +2,11 @@ package dplatonov.pd_chat.contoroller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,20 +18,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dplatonov.pd_chat.annotation.Admin;
 import dplatonov.pd_chat.dto.UserDto;
-import dplatonov.pd_chat.model.User;
 import dplatonov.pd_chat.service.UserService;
-import dplatonov.pd_chat.validator.UserValidator;
 
 @RestController
 @RequestMapping("user")
+@Validated
 public class UserController {
   private final UserService userService;
-  private final UserValidator validator;
 
   @Autowired
-  public UserController(UserService userService, UserValidator validator) {
+  public UserController(UserService userService) {
     this.userService = userService;
-    this.validator = validator;
   }
 
   @Admin
@@ -42,31 +42,27 @@ public class UserController {
   @ResponseStatus(HttpStatus.OK)
   @GetMapping("/{id}")
   public UserDto getUser(@PathVariable("id") Long id) {
-    return validator.validate(id);
+    return new UserDto(userService.getUserById(id));
   }
 
   @Admin
   @ResponseStatus(HttpStatus.CREATED)
   @PutMapping
-  public UserDto createUser(@RequestBody UserDto userDto) {
-    validator.validate(userDto);
-    userService.createUser(userDto);
+  public UserDto createUser(@Valid @RequestBody UserDto userDto) {
     return userDto;
   }
 
   @Admin
   @ResponseStatus(HttpStatus.OK)
   @DeleteMapping
-  public void deleteUser(@RequestBody UserDto userDto) {
-    User user = validator.validate(userDto);
-    userService.delete(user);
+  public void deleteUser(@Valid @RequestBody UserDto userDto) {
+    userService.delete(userDto);
   }
 
   @Admin
   @ResponseStatus(HttpStatus.OK)
   @PutMapping("/update")
-  public UserDto updateUser(@RequestBody UserDto userDto) {
-    User existingUser = validator.validate(userDto);
-    return userService.updateUser(userDto, existingUser);
+  public UserDto updateUser(@Valid @RequestBody UserDto userDto) {
+    return userService.updateUser(userDto);
   }
 }

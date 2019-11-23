@@ -2,12 +2,15 @@ package dplatonov.pd_chat.dto;
 
 import java.util.Date;
 
+import javax.validation.constraints.Null;
+
 import dplatonov.pd_chat.model.Message;
 
 public class MessageDto {
+  @Null
   private Long id;
-  private Long sender;
-  private Long owner;
+  private String destinationEmail;
+  private String ownerEmail;
   private Date createDate;
   private String title;
   private String message;
@@ -16,8 +19,8 @@ public class MessageDto {
 
   public MessageDto(Message message) {
     this.id = message.getId();
-    this.sender = message.getSender().getId();
-    this.owner = message.getOwner().getId();
+    this.destinationEmail = message.getDestination().getEmail();
+    this.ownerEmail = message.getOwner().getEmail();
     this.createDate = message.getCreateDate();
     this.title = message.getTitle();
     this.message = message.getMessage();
@@ -31,20 +34,20 @@ public class MessageDto {
     this.id = id;
   }
 
-  public Long getSender() {
-    return sender;
+  public String getDestinationEmail() {
+    return destinationEmail;
   }
 
-  public void setSender(Long sender) {
-    this.sender = sender;
+  public void setDestinationEmail(String destinationEmail) {
+    this.destinationEmail = destinationEmail;
   }
 
-  public Long getOwner() {
-    return owner;
+  public String getOwnerEmail() {
+    return ownerEmail;
   }
 
-  public void setOwner(Long owner) {
-    this.owner = owner;
+  public void setOwnerEmail(String ownerEmail) {
+    this.ownerEmail = ownerEmail;
   }
 
   public Date getCreateDate() {
