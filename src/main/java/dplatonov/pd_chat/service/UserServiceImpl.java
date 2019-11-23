@@ -41,8 +41,9 @@ public class UserServiceImpl implements UserService {
         .findById(id)
         .orElseGet(
             () -> {
-              log.error("USER-SERVICE-002: User with id = " + id + " doesn't exist!");
-              return new User();
+              String errorMessage = "User with id = " + id + " doesn't exist!";
+              log.error("USER-SERVICE-002: " + errorMessage);
+              throw new IllegalArgumentException(errorMessage);
             });
   }
 
@@ -55,12 +56,13 @@ public class UserServiceImpl implements UserService {
             + " and role "
             + role.getRole());
     User user =
-        new User(
-            userDto.getId(),
-            userDto.getEmail(),
-            encoder.encode(userDto.getPassword()),
-            userDto.getDescription(),
-            role);
+        new UserBuilder()
+            .setId(userDto.getId())
+            .setEmail(userDto.getEmail())
+            .setPassword(encoder.encode(userDto.getPassword()))
+            .setDescription(userDto.getDescription())
+            .setRole(role)
+            .createUser();
     userDao.save(user);
     log.info("USER-SERVICE-001: Create user is complete");
     return new UserDto(user);
@@ -74,8 +76,8 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public void delete(UserDto userDto) {
-    User user = getUserById(userDto.getId());
+  public void delete(Long id) {
+    User user = getUserById(id);
     log.info("USER-SERVICE-004: Start delete user with id " + user.getId());
     user.setActive(false);
     userDao.save(user);
@@ -94,8 +96,8 @@ public class UserServiceImpl implements UserService {
             .setDescription(userDto.getDescription())
             .setRole(existingUser.getRole())
             .createUser();
-    userDao.save(user);
+    User result = userDao.save(user);
     log.info("USER-SERVICE-007: Update user with id " + userDto.getId() + " is complete");
-    return new UserDto(user);
+    return new UserDto(result);
   }
 }

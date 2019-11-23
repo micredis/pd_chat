@@ -56,8 +56,4 @@ public class UserDto implements Serializable {
   public String getRole() {
     return role;
   }
-
-  public void setRole(String role) {
-    this.role = role;
-  }
 }

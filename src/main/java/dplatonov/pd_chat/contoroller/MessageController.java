@@ -57,7 +57,7 @@ public class MessageController {
   @Admin
   @ResponseStatus(HttpStatus.OK)
   @DeleteMapping("/{id}")
-  public void deleteMessage(@PathVariable("id") Long id) {
+  public void deleteMessage(@PathVariable("id") @Min(1) Long id) {
     messageService.delete(id);
   }
 }

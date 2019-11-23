@@ -3,6 +3,7 @@ package dplatonov.pd_chat.contoroller;
 import java.util.List;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,7 +42,7 @@ public class UserController {
   @Admin
   @ResponseStatus(HttpStatus.OK)
   @GetMapping("/{id}")
-  public UserDto getUser(@PathVariable("id") Long id) {
+  public UserDto getUser(@PathVariable("id") @Min(1) Long id) {
     return new UserDto(userService.getUserById(id));
   }
 
@@ -54,9 +55,9 @@ public class UserController {
 
   @Admin
   @ResponseStatus(HttpStatus.OK)
-  @DeleteMapping
-  public void deleteUser(@Valid @RequestBody UserDto userDto) {
-    userService.delete(userDto);
+  @DeleteMapping("/{id}")
+  public void deleteUser(@PathVariable("id") @Min(1) Long id) {
+    userService.delete(id);
   }
 
   @Admin
