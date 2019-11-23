@@ -70,8 +70,18 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public User getUserByEmail(String email) {
-    User user = userDao.findByEmailAndActive(email, true);
-    log.info("USER-SERVICE-003: Retrieve user with id " + user.getId() + " from Postgres");
+    User user =
+        userDao
+            .findByEmailAndActive(email, true)
+            .orElseGet(
+                () -> {
+                  String errorMessage =
+                      "User with email " + email + " does not exist or not active";
+                  log.error("USER-SERVICE-008: " + errorMessage);
+                  throw new IllegalArgumentException(errorMessage);
+                });
+
+    log.info("USER-SERVICE-003: Retrieve user with email " + email + " from Postgres");
     return user;
   }
 

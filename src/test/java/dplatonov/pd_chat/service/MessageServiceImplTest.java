@@ -2,6 +2,7 @@ package dplatonov.pd_chat.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -18,6 +19,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.util.CollectionUtils;
 
 import dplatonov.pd_chat.dao.MessageDao;
 import dplatonov.pd_chat.dto.MessageDto;
@@ -47,7 +49,7 @@ class MessageServiceImplTest {
     assertEquals(message.getId(), result.getId());
   }
 
-  @DisplayName("Given email Then return MessageDto")
+  @DisplayName("Given email Then return MessageDto When messages an exist")
   @Test
   void getMessages(@Mock User mockUser) {
     Message message =
@@ -90,5 +92,14 @@ class MessageServiceImplTest {
     Long id = 1L;
     when(mockMessageDao.findById(id)).thenReturn(Optional.empty());
     assertThrows(IllegalArgumentException.class, () -> spy.getMessageById(id));
+  }
+
+  @DisplayName("Given email Then return MessageDto When messages is not exist")
+  @Test
+  void testGetMessages() {
+    when(mockMessageDao.findAll()).thenReturn(Collections.emptyList());
+    String email = "test@test.com";
+    List<MessageDto> result = spy.getMessages(email);
+    assertTrue(CollectionUtils.isEmpty(result));
   }
 }

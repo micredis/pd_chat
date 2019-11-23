@@ -78,12 +78,12 @@ class UserServiceImplTest {
     assertEquals(mockUserDto.getId(), result.getId());
   }
 
-  @DisplayName("Given email Then return User")
+  @DisplayName("Given email Then return User When positive scenario")
   @Test
   void getUserByEmail(@Mock Role mockRole) {
     User user = new UserBuilder().setRole(mockRole).createUser();
     String email = "test@test.com";
-    when(mockUserDao.findByEmailAndActive(email, true)).thenReturn(user);
+    when(mockUserDao.findByEmailAndActive(email, true)).thenReturn(Optional.of(user));
     User result = spy.getUserByEmail(email);
     assertEquals(user.getId(), result.getId());
   }
@@ -124,5 +124,13 @@ class UserServiceImplTest {
     Long id = 1L;
     when(mockUserDao.findById(id)).thenReturn(Optional.empty());
     assertThrows(IllegalArgumentException.class, () -> spy.delete(id));
+  }
+
+  @DisplayName("Given email Then return User When negative scenario")
+  @Test
+  void testGetUserByEmail() {
+    String email = "test@test.com";
+    when(mockUserDao.findByEmailAndActive(email, true)).thenReturn(Optional.empty());
+    assertThrows(IllegalArgumentException.class, () -> spy.getUserByEmail(email));
   }
 }

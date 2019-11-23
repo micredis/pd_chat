@@ -1,5 +1,6 @@
 package dplatonov.pd_chat.service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,8 +10,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
-import org.springframework.web.client.HttpClientErrorException.BadRequest;
 
 import dplatonov.pd_chat.dao.MessageDao;
 import dplatonov.pd_chat.dto.MessageDto;
@@ -54,8 +55,12 @@ public class MessageServiceImpl implements MessageService {
 
   @Override
   public List<MessageDto> getMessages(String email) {
-    List<MessageDto> messages =
-        dao.findAll().stream().map(MessageDto::new).collect(Collectors.toList());
+    List<Message> all = dao.findAll();
+    if (CollectionUtils.isEmpty(all)) {
+      log.info("MESSAGE-SERVICE-007: User with email " + email + " does not have any messages");
+      return Collections.emptyList();
+    }
+    List<MessageDto> messages = all.stream().map(MessageDto::new).collect(Collectors.toList());
     log.info("MESSAGE-SERVICE-003: Retrieve list of messages from Postgres");
     return messages;
   }
