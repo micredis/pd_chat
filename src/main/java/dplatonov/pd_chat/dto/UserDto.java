@@ -30,7 +30,6 @@ public class UserDto implements Serializable {
   public UserDto(User user) {
     this.id = user.getId();
     this.email = user.getEmail();
-    this.password = user.getPassword();
     this.description = user.getDescription();
     this.role = user.getRole().getRole();
   }

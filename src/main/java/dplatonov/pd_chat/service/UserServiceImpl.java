@@ -78,7 +78,6 @@ public class UserServiceImpl implements UserService {
                   log.error("USER-SERVICE-008: " + errorMessage);
                   throw new IllegalArgumentException(errorMessage);
                 });
-
     log.info("USER-SERVICE-003: Retrieve user with email " + email + " from Postgres");
     return user;
   }
