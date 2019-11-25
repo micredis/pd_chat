@@ -45,7 +45,9 @@ export class NavigationComponent {
 
   isAuthenticated() {
     const currentUser = this.authService.currentUserValue;
-    return !!(currentUser && currentUser.authData);
+    if (currentUser){
+      return true;
+    }
   }
 
   logout() {
@@ -53,7 +55,7 @@ export class NavigationComponent {
     this.router.navigate(['/login']);
   }
 
-  toggleOverlay(): void {
+  toggleOverlay(event: any): void {
     this.visible = !this.visible;
     this.toggle.emit(this.visible);
   }

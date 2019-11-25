@@ -4,7 +4,7 @@
       <div fxLayout="row" fxLayoutAlign="start center">
         <div *ngIf="isAuthenticated()">
           <button mat-mini-fab color="primary" matTooltip="Menu"
-                  (click)="toggleOverlay()">
+                  (click)="toggleOverlay(drawer.toggle())">
             <mat-icon>apps</mat-icon>
           </button>
           <span style="margin-left: 10px">pd_chat</span>
@@ -27,11 +27,11 @@
   </div>
 </mat-toolbar>
 <mat-sidenav-container class="sidenav">
-  <mat-sidenav class="sidenav" fixedInViewport
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
                [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
                [mode]="(isHandset$ | async) ? 'over' : 'side'"
                [opened]="(isHandset$ | async) === true">
-    <mat-toolbar>Menu</mat-toolbar>
+    <mat-toolbar (click)="toggleOverlay(drawer.toggle())">Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item (click)="createUser()">Create new User</a>
       <a mat-list-item (click)="getUsers()">Users</a>
@@ -43,4 +43,4 @@
     </mat-nav-list>
   </mat-sidenav>
 </mat-sidenav-container>
-<div class="overlay" *ngIf="visible" (click)="toggleOverlay()"></div>
+<div class="overlay" *ngIf="visible" (click)="toggleOverlay(drawer.toggle())"></div>
