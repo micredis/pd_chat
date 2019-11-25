@@ -2,7 +2,7 @@ import {Observable} from "rxjs";
 import {map, shareReplay} from "rxjs/operators";
 import {AboutComponent} from "../about/about.component";
 import {AuthService} from "../../service/auth.service";
-import {Component, EventEmitter, Input, Output} from "@angular/core";
+import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {MatDialog} from "@angular/material/dialog";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {Router} from "@angular/router";
@@ -12,20 +12,24 @@ import {Router} from "@angular/router";
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.css']
 })
-export class NavigationComponent {
-
+export class NavigationComponent implements OnInit{
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
       shareReplay()
     );
+
   @Input() visible: boolean = false;
   @Output() toggle: EventEmitter<boolean> = new EventEmitter<boolean>();
-
+  username: string;
   constructor(private breakpointObserver: BreakpointObserver,
               public dialog:MatDialog,
               private authService: AuthService,
               private router: Router) {}
+
+  ngOnInit(): void {
+    this.username = this.authService.currentUserValue.email;
+  }
 
   createUser(){
     console.log("create new user");
