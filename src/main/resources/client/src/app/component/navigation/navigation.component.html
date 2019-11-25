@@ -1,8 +1,36 @@
-<mat-sidenav-container class="sidenav-container">
+<mat-toolbar color="primary">
+  <div class="flex-container" fxLayout="row" fxFlexFill fxLayoutAlign="center center">
+    <div fxFlex>
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <div *ngIf="isAuthenticated()">
+          <button mat-mini-fab color="primary" matTooltip="Menu"
+                  (click)="toggleOverlay()">
+            <mat-icon>apps</mat-icon>
+          </button>
+          <span style="margin-left: 10px">pd_chat</span>
+        </div>
+        <div class="app-title"></div>
+      </div>
+    </div>
+    <div fxFlex>
+      <div fxLayout="row" fxLayoutAlign="end center">
+        <div *ngIf="isAuthenticated()" class="hide">
+          <mat-icon class="userIcon">perm_identity</mat-icon>
+          <span class="userText">username</span>
+        </div>
+        <button *ngIf="isAuthenticated()" class="nav_button" mat-button="" (click)="logout()"
+                matTooltip="logout">
+          <mat-icon>power_settings_new</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</mat-toolbar>
+<mat-sidenav-container class="sidenav">
   <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+               [opened]="(isHandset$ | async) === true">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item (click)="createUser()">Create new User</a>
@@ -14,18 +42,34 @@
       <a mat-list-item href="https://material.angular.io/">Angular Material</a>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <span>pd_chat</span>
-    </mat-toolbar>
-    <!-- Add Content Here -->
-  </mat-sidenav-content>
 </mat-sidenav-container>
+<div class="overlay" *ngIf="visible" (click)="toggleOverlay()"></div>
+<!--<mat-sidenav #sidenav class="sidenav">
+  <mat-toolbar color="primary">Menu</mat-toolbar>
+  <button mat-button (click)="toggleOverlay(sidenav.toggle())" [routerLink]="'/workgroups'"
+          [routerLinkActive]="['router-link-active']">
+    <mat-icon>group</mat-icon>
+    workgroup.workgroups
+  </button>
+  <button mat-button (click)="toggleOverlay(sidenav.toggle())" [routerLink]="'/templates'"
+          [routerLinkActive]="['router-link-active']">
+    <mat-icon>insert_drive_file</mat-icon>
+    template.templates
+  </button>
+  <button mat-button (click)="toggleOverlay(sidenav.toggle())" [routerLink]="'/adminLogs'"
+          *ngIf="canShowAdminLogMenuItem()" [routerLinkActive]="['router-link-active']">
+    <mat-icon>domain</mat-icon>
+    adminLog.adminLogs
+  </button>
+  <button mat-button (click)="toggleOverlay(sidenav.toggle()); openAboutAppDialog()">
+    <mat-icon>info</mat-icon>
+    about.aboutApplication
+  </button>
+  <button mat-button (click)="toggleOverlay(sidenav.toggle())" [routerLink]="'/log'"
+          *ngIf="canShowLogMenuItem()" [routerLinkActive]="['router-link-active']">
+    <mat-icon>assignment</mat-icon>
+    Log properties
+  </button>
+</mat-sidenav>
+<div class="overlay" *ngIf="visible" (click)="toggleOverlay(sidenav.toggle())"></div>-->
+<!--<app-loading> </app-loading>-->

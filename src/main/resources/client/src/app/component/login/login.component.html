@@ -11,13 +11,14 @@
         <label>
           <input matInput placeholder="Enter your email" [formControl]="email" required>
         </label>
-        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-error *ngIf="email.invalid">{{getLoginErrorMessage()}}</mat-error>
       </mat-form-field>
       <mat-form-field>
         <label>
           <input matInput placeholder="Enter your password" [formControl]="password"
                  [type]="'password'" required>
         </label>
+        <mat-error *ngIf="email.invalid">{{getPasswordErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
     <div fxLayout="row" fxLayoutAlign="start center" fxLayoutAlign.xs="start stretch"

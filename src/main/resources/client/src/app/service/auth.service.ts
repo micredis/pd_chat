@@ -21,7 +21,8 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    return this.http.post<any>(this.url, {username: email, password})
+    const headers = new Headers().set('Authorization', `Basic ${window.btoa(email + ':' + password)}`);
+    return this.http.post<any>(this.url, {headers})
     .pipe(map(user => {
       user.authdata = window.btoa(email + ':' + password);
       localStorage.setItem('currentUser', JSON.stringify(user));

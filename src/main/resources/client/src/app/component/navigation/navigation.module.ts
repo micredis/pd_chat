@@ -7,6 +7,9 @@ import {MatListModule} from "@angular/material/list";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {MatDialogModule} from "@angular/material/dialog";
+import {FlexModule} from "@angular/flex-layout";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   imports: [
@@ -16,7 +19,10 @@ import {MatDialogModule} from "@angular/material/dialog";
     MatListModule,
     MatIconModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    FlexModule,
+    MatTooltipModule,
+    RouterModule
   ],
   exports: [
     NavigationComponent
