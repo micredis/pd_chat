@@ -14,6 +14,8 @@ import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {BasicAuthInterceptor} from "./helper/basic-auth-interceptor";
 import {ErrorInterceptor} from "./helper/error-interceptor";
 import { HomeComponent } from './component/home/home.component';
+import {MatTableModule} from "@angular/material/table";
+import {FlexModule} from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { HomeComponent } from './component/home/home.component';
     MatSidenavModule,
     MatCardModule,
     MatSnackBarModule,
+    MatTableModule,
+    FlexModule,
   ],
   providers: [MatSnackBar,
     {provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true},
