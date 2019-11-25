@@ -10,10 +10,15 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatCardModule} from "@angular/material/card";
 import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {BasicAuthInterceptor} from "./helper/basic-auth-interceptor";
+import {ErrorInterceptor} from "./helper/error-interceptor";
+import { HomeComponent } from './component/home/home.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +31,10 @@ import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
     MatCardModule,
     MatSnackBarModule,
   ],
-  providers: [MatSnackBar],
+  providers: [MatSnackBar,
+    {provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+  ],
   bootstrap: [AppComponent],
   entryComponents: [],
 })

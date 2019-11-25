@@ -16,6 +16,10 @@ export class AuthService {
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
+  public get currentUserValue(){
+    return this.currentUserSubject.value;
+  }
+
   login(email: string, password: string) {
     return this.http.post<any>(this.url, {username: email, password})
     .pipe(map(user => {
@@ -26,4 +30,8 @@ export class AuthService {
     }));
   }
 
+  logout() {
+    localStorage.removeItem('currentUser');
+    this.currentUserSubject.next(null);
+  }
 }
