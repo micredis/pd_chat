@@ -18,6 +18,7 @@ import {MatTableModule} from "@angular/material/table";
 import {FlexModule} from "@angular/flex-layout";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from "@angular/material/sort";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import {MatSortModule} from "@angular/material/sort";
     FlexModule,
     MatPaginatorModule,
     MatSortModule,
+    MatInputModule,
   ],
   providers: [MatSnackBar,
     {provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true},

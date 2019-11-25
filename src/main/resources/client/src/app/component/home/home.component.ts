@@ -12,7 +12,7 @@ export interface PeriodicElement {
 
 const ELEMENT_DATA: PeriodicElement[] = [
   {position: 1, author: 'test@test.com', date: '11/25/2019', title: 'Test message title'},
-  {position: 2, author: 'test@test.com', date: '11/25/2019', title: 'Test message title'},
+  {position: 2, author: 'test2@test.com', date: '11/24/2019', title: 'Test message title'},
   {position: 3, author: 'test@test.com', date: '11/25/2019', title: 'Test message title'},
   {position: 4, author: 'test@test.com', date: '11/25/2019', title: 'Test message title'},
   {position: 5, author: 'test@test.com', date: '11/25/2019', title: 'Test message title'},
@@ -47,4 +47,7 @@ export class HomeComponent implements OnInit {
 
   }
 
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 }
