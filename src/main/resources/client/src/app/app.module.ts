@@ -16,6 +16,7 @@ import {ErrorInterceptor} from "./helper/error-interceptor";
 import { HomeComponent } from './component/home/home.component';
 import {MatTableModule} from "@angular/material/table";
 import {FlexModule} from "@angular/flex-layout";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {FlexModule} from "@angular/flex-layout";
     MatSnackBarModule,
     MatTableModule,
     FlexModule,
+    MatPaginatorModule,
   ],
   providers: [MatSnackBar,
     {provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true},
