@@ -1,6 +1,7 @@
 package dplatonov.pd_chat.model;
 
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -9,22 +10,24 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
-@Table(name = "pd_chat", schema = "pd_chat")
+@Table(name = "message", schema = "pd_chat")
 @EntityListeners(AuditingEntityListener.class)
 @DynamicUpdate
 public class Message {
   private Long id;
-  private User destination;
-  private User owner;
+  private User from;
+  private User to;
   private Date createDate;
   private String title;
   private String message;
@@ -32,11 +35,10 @@ public class Message {
 
   public Message() {}
 
-  public Message(
-      Long id, User destination, User owner, Date createDate, String title, String message) {
+  public Message(Long id, User to, User from, Date createDate, String title, String message) {
     this.id = id;
-    this.destination = destination;
-    this.owner = owner;
+    this.to = to;
+    this.from = from;
     this.createDate = createDate;
     this.title = title;
     this.message = message;
@@ -54,24 +56,27 @@ public class Message {
   }
 
   @OneToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "user_sender_id")
-  public User getDestination() {
-    return destination;
+  @JoinTable(
+      name = "message_address",
+      joinColumns = @JoinColumn(name = "message_id"),
+      inverseJoinColumns = @JoinColumn(name = "from_user_id"))
+  @CreatedBy
+  public User getFrom() {
+    return from;
   }
 
-  public void setDestination(User destination) {
-    this.destination = destination;
+  public void setFrom(User from) {
+    this.from = from;
   }
 
   @OneToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "user_owner_id")
-  @CreatedBy
-  public User getOwner() {
-    return owner;
+  @JoinColumn(name = "to_user_id", referencedColumnName = "id", table = "message_address")
+  public User getTo() {
+    return to;
   }
 
-  public void setOwner(User owner) {
-    this.owner = owner;
+  public void setTo(User to) {
+    this.to = to;
   }
 
   @Column(name = "create_date", nullable = false)

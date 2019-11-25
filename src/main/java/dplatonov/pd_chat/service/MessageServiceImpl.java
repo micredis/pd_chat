@@ -34,8 +34,8 @@ public class MessageServiceImpl implements MessageService {
     if (StringUtils.isEmpty(messageDto.getTitle())) {
       messageDto.setTitle("Untitled");
     }
-    User destinationUser = userService.getUserByEmail(messageDto.getDestinationEmail());
-    User owner = userService.getUserByEmail(messageDto.getOwnerEmail());
+    User destinationUser = userService.getUserByEmail(messageDto.getTo());
+    User owner = userService.getUserByEmail(messageDto.getFrom());
     Message message =
         new MessageBuilder()
             .setId(messageDto.getId())
@@ -52,7 +52,7 @@ public class MessageServiceImpl implements MessageService {
 
   @Override
   public List<MessageDto> getMessages(String email) {
-    List<Message> all = dao.findAll();
+    List<Message> all = dao.findByFromEmail(email);
     if (CollectionUtils.isEmpty(all)) {
       log.info("MESSAGE-SERVICE-007: User with email " + email + " does not have any messages");
       return Collections.emptyList();

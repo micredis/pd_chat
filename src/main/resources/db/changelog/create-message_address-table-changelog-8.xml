@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+  <changeSet author="dplatonov" id="7">
+    <createTable tableName="message_address">
+      <column name="message_id" type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="user_id" type="bigint">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="message_address"/>
+    </rollback>
+  </changeSet>
+  <changeSet id="7.1" author="dplatonov">
+    <addForeignKeyConstraint baseTableName="message_address" baseColumnNames="from_user_id"
+      constraintName="message_address_from_fk"
+      referencedTableName="users" referencedColumnNames="id"/>
+    <addForeignKeyConstraint baseTableName="message_address" baseColumnNames="to_user_id"
+      constraintName="message_address_to_fk"
+      referencedTableName="users" referencedColumnNames="id"/>
+    <addForeignKeyConstraint baseTableName="message_address" baseColumnNames="message_id"
+      constraintName="message_address_fk"
+      referencedTableName="message" referencedColumnNames="id"/>
+  </changeSet>
+</databaseChangeLog>

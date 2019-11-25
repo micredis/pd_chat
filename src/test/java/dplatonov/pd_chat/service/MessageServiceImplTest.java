@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -41,7 +42,7 @@ class MessageServiceImplTest {
   void createNew(@Mock User mockUser, @Mock MessageDto mockMessageDto) {
     Message message =
         new MessageBuilder().setDestination(mockUser).setOwner(mockUser).createMessage();
-    when(mockUserService.getUserByEmail(mockMessageDto.getOwnerEmail())).thenReturn(mockUser);
+    when(mockUserService.getUserByEmail(mockMessageDto.getFrom())).thenReturn(mockUser);
     when(mockMessageDao.save(any())).thenReturn(message);
     MessageDto result = spy.createNew(mockMessageDto);
     assertEquals(message.getId(), result.getId());
@@ -53,7 +54,7 @@ class MessageServiceImplTest {
     Message message =
         new MessageBuilder().setDestination(mockUser).setOwner(mockUser).createMessage();
     List<Message> messages = Collections.singletonList(message);
-    when(mockMessageDao.findAll()).thenReturn(messages);
+    when(mockMessageDao.findByFromEmail(anyString())).thenReturn(messages);
     String email = "test@test.com";
     List<MessageDto> result = spy.getMessages(email);
     int size = messages.size();
@@ -95,7 +96,7 @@ class MessageServiceImplTest {
   @DisplayName("Given email Then return MessageDto When messages is not exist")
   @Test
   void testGetMessages() {
-    when(mockMessageDao.findAll()).thenReturn(Collections.emptyList());
+    when(mockMessageDao.findByFromEmail(anyString())).thenReturn(Collections.emptyList());
     String email = "test@test.com";
     List<MessageDto> result = spy.getMessages(email);
     assertTrue(CollectionUtils.isEmpty(result));

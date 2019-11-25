@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
+import {HttpClient} from "@angular/common/http";
 
 export interface PeriodicElement {
   position: number;
@@ -35,6 +36,9 @@ export class HomeComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
+  private url: string = "/message/list";
+
+  constructor(private http: HttpClient){}
 
   ngOnInit() {
     this.paginator._changePageSize(this.pageSize);
@@ -44,7 +48,9 @@ export class HomeComponent implements OnInit {
   }
 
   getMessages(){
-
+    this.http.get(this.url).toPromise().then(data => {
+      console.log(data);
+    });
   }
 
   applyFilter(filterValue: string) {
