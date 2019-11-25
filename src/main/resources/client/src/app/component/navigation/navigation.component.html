@@ -27,7 +27,7 @@
   </div>
 </mat-toolbar>
 <mat-sidenav-container class="sidenav">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
+  <mat-sidenav class="sidenav" fixedInViewport
                [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
                [mode]="(isHandset$ | async) ? 'over' : 'side'"
                [opened]="(isHandset$ | async) === true">
@@ -44,32 +44,3 @@
   </mat-sidenav>
 </mat-sidenav-container>
 <div class="overlay" *ngIf="visible" (click)="toggleOverlay()"></div>
-<!--<mat-sidenav #sidenav class="sidenav">
-  <mat-toolbar color="primary">Menu</mat-toolbar>
-  <button mat-button (click)="toggleOverlay(sidenav.toggle())" [routerLink]="'/workgroups'"
-          [routerLinkActive]="['router-link-active']">
-    <mat-icon>group</mat-icon>
-    workgroup.workgroups
-  </button>
-  <button mat-button (click)="toggleOverlay(sidenav.toggle())" [routerLink]="'/templates'"
-          [routerLinkActive]="['router-link-active']">
-    <mat-icon>insert_drive_file</mat-icon>
-    template.templates
-  </button>
-  <button mat-button (click)="toggleOverlay(sidenav.toggle())" [routerLink]="'/adminLogs'"
-          *ngIf="canShowAdminLogMenuItem()" [routerLinkActive]="['router-link-active']">
-    <mat-icon>domain</mat-icon>
-    adminLog.adminLogs
-  </button>
-  <button mat-button (click)="toggleOverlay(sidenav.toggle()); openAboutAppDialog()">
-    <mat-icon>info</mat-icon>
-    about.aboutApplication
-  </button>
-  <button mat-button (click)="toggleOverlay(sidenav.toggle())" [routerLink]="'/log'"
-          *ngIf="canShowLogMenuItem()" [routerLinkActive]="['router-link-active']">
-    <mat-icon>assignment</mat-icon>
-    Log properties
-  </button>
-</mat-sidenav>
-<div class="overlay" *ngIf="visible" (click)="toggleOverlay(sidenav.toggle())"></div>-->
-<!--<app-loading> </app-loading>-->

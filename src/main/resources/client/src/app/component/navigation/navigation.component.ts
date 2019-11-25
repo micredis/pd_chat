@@ -5,6 +5,7 @@ import {AuthService} from "../../service/auth.service";
 import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {MatDialog} from "@angular/material/dialog";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-navigation',
@@ -23,7 +24,8 @@ export class NavigationComponent {
 
   constructor(private breakpointObserver: BreakpointObserver,
               public dialog:MatDialog,
-              private authService: AuthService) {}
+              private authService: AuthService,
+              private router: Router) {}
 
   createUser(){
     console.log("create new user");
@@ -48,6 +50,7 @@ export class NavigationComponent {
 
   logout() {
     this.authService.logout();
+    this.router.navigate(['/login']);
   }
 
   toggleOverlay(): void {
