@@ -9,6 +9,12 @@
       <column autoIncrement="true" name="id" type="BIGINT" defaultValueSequenceNext="users_id_seq">
         <constraints primaryKey="true" nullable="false" unique="true"/>
       </column>
+      <column name="full_name" type="VARCHAR">
+        <constraints nullable="false" unique="true"/>
+      </column>
+      <column name="login" type="VARCHAR">
+        <constraints nullable="false" unique="true"/>
+      </column>
       <column name="email" type="VARCHAR">
         <constraints nullable="false" unique="true"/>
       </column>
@@ -18,7 +24,6 @@
       <column name="active" type="boolean">
         <constraints nullable="false"/>
       </column>
-      <column name="description" type="VARCHAR"/>
     </createTable>
     <rollback>
       <dropTable tableName="users"/>

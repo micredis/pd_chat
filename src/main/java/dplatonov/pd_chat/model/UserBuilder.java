@@ -3,13 +3,24 @@ package dplatonov.pd_chat.model;
 public class UserBuilder {
 
   private Long id;
+  private String fullName;
+  private String login;
   private String email;
   private String password;
-  private String description;
   private Role role;
 
   public UserBuilder setId(Long id) {
     this.id = id;
+    return this;
+  }
+
+  public UserBuilder setFullName(String fullName) {
+    this.fullName = fullName;
+    return this;
+  }
+
+  public UserBuilder setLogin(String login) {
+    this.login = login;
     return this;
   }
 
@@ -23,17 +34,12 @@ public class UserBuilder {
     return this;
   }
 
-  public UserBuilder setDescription(String description) {
-    this.description = description;
-    return this;
-  }
-
   public UserBuilder setRole(Role role) {
     this.role = role;
     return this;
   }
 
   public User createUser() {
-    return new User(id, email, password, description, role);
+    return new User(id, fullName, login, email, password, role);
   }
 }

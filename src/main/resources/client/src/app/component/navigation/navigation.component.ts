@@ -32,15 +32,15 @@ export class NavigationComponent implements OnInit{
   }
 
   createUser(){
-    console.log("create new user");
+    this.router.navigate(['/create_user']).then();
   }
 
   getUsers() {
-    console.log("users");
+    this.router.navigate(['/users']).then();
   }
 
-  openChat() {
-    console.log("chat");
+  openMessages() {
+    this.router.navigate(['/home']).then();
   }
 
   about() {

@@ -3,12 +3,15 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
-  <changeSet author="dplatonov" id="7">
+  <changeSet author="dplatonov" id="8">
     <createTable tableName="message_address">
       <column name="message_id" type="bigint">
         <constraints nullable="false"/>
       </column>
-      <column name="user_id" type="bigint">
+      <column name="from_user_id" type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="to_user_id" type="bigint">
         <constraints nullable="false"/>
       </column>
     </createTable>
@@ -16,7 +19,7 @@
       <dropTable tableName="message_address"/>
     </rollback>
   </changeSet>
-  <changeSet id="7.1" author="dplatonov">
+  <changeSet id="8.1" author="dplatonov">
     <addForeignKeyConstraint baseTableName="message_address" baseColumnNames="from_user_id"
       constraintName="message_address_from_fk"
       referencedTableName="users" referencedColumnNames="id"/>

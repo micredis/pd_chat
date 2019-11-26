@@ -58,9 +58,10 @@ public class UserServiceImpl implements UserService {
     User user =
         new UserBuilder()
             .setId(userDto.getId())
+            .setFullName(userDto.getFullName())
+            .setLogin(userDto.getLogin())
             .setEmail(userDto.getEmail())
             .setPassword(encoder.encode(userDto.getPassword()))
-            .setDescription(userDto.getDescription())
             .setRole(role)
             .createUser();
     userDao.save(user);
@@ -100,9 +101,10 @@ public class UserServiceImpl implements UserService {
     User user =
         new UserBuilder()
             .setId(userDto.getId())
+            .setFullName(userDto.getFullName())
+            .setLogin(userDto.getLogin())
             .setEmail(userDto.getEmail())
             .setPassword(userDto.getPassword())
-            .setDescription(userDto.getDescription())
             .setRole(existingUser.getRole())
             .createUser();
     User result = userDao.save(user);

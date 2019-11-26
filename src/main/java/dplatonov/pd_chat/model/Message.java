@@ -55,7 +55,7 @@ public class Message {
     this.id = id;
   }
 
-  @OneToOne(fetch = FetchType.LAZY)
+  @OneToOne(fetch = FetchType.EAGER)
   @JoinTable(
       name = "message_address",
       joinColumns = @JoinColumn(name = "message_id"),
@@ -69,7 +69,7 @@ public class Message {
     this.from = from;
   }
 
-  @OneToOne(fetch = FetchType.LAZY)
+  @OneToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "to_user_id", referencedColumnName = "id", table = "message_address")
   public User getTo() {
     return to;

@@ -60,7 +60,7 @@ class UserServiceImplTest {
 
   @DisplayName("Given id Then return user When negative scenario")
   @Test
-  void getUserById1(@Mock Role mockRole) {
+  void getUserById1() {
     Long id = 1L;
     when(mockUserDao.findById(id)).thenReturn(Optional.empty());
     assertThrows(IllegalArgumentException.class, () -> spy.getUserById(id));

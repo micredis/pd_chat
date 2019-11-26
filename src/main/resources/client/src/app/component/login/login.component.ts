@@ -14,7 +14,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class LoginComponent implements OnInit {
   loading: boolean;
   submitted: boolean;
-  user: User = new User();
+  user: User;
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl();
   error = '';

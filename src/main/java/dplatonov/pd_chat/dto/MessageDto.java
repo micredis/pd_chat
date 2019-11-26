@@ -21,7 +21,7 @@ public class MessageDto {
 
   public MessageDto(Message message) {
     this.id = message.getId();
-    this.to = Objects.isNull(message.getTo()) ? null : message.getTo().getEmail();
+    this.to = message.getTo().getEmail();
     this.from = message.getFrom().getEmail();
     this.createDate = message.getCreateDate();
     this.title = message.getTitle();

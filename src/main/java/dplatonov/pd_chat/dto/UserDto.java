@@ -9,19 +9,18 @@ import javax.validation.constraints.Null;
 
 public class UserDto implements Serializable {
 
-  private static final long serialVersionUID = -5197703861894984879L;
+  private static final long serialVersionUID = 3988029737951948646L;
 
   private Long id;
-
+  @NotEmpty(message = "Full name cannot be empty")
+  private String fullName;
   @NotEmpty(message = "Email cannot be empty")
   @Email(message = "Email must be in correct format")
   private String email;
-
+  @NotEmpty(message = "Login cannot be empty")
+  private String login;
   @NotEmpty(message = "Password cannot be empty")
   private String password;
-
-  @Null private String description;
-
   @NotNull(message = "Role cannot be empty")
   private String role;
 
@@ -29,8 +28,9 @@ public class UserDto implements Serializable {
 
   public UserDto(User user) {
     this.id = user.getId();
+    this.fullName = user.getFullName();
+    this.login = user.getLogin();
     this.email = user.getEmail();
-    this.description = user.getDescription();
     this.role = user.getRole().getRole();
   }
 
@@ -38,19 +38,47 @@ public class UserDto implements Serializable {
     return id;
   }
 
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public String getFullName() {
+    return fullName;
+  }
+
+  public void setFullName(String fullName) {
+    this.fullName = fullName;
+  }
+
   public String getEmail() {
     return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public String getLogin() {
+    return login;
+  }
+
+  public void setLogin(String login) {
+    this.login = login;
   }
 
   public String getPassword() {
     return password;
   }
 
-  public String getDescription() {
-    return description;
+  public void setPassword(String password) {
+    this.password = password;
   }
 
   public String getRole() {
     return role;
+  }
+
+  public void setRole(String role) {
+    this.role = role;
   }
 }

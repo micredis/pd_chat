@@ -6,11 +6,84 @@
 
   <changeSet author="dplatonov" id="4">
     <insert tableName="users">
-      <column name="email" value="test@test.com"/>
+      <column name="full_name" value="Admin Admin Admin"/>
+      <column name="login" value="admin"/>
+      <column name="email" value="admin@test.com"/>
       <column name="password"
         value="$2a$10$qNIZHEGD8CBX6NyGJ4GSjuPO5.gKbgqa2/ShyOBJOLhA.apLjOFgm"/> <!--test123-->
       <column name="active" value="true"/>
-      <column name="description" value="Default user with role ADMIN"/>
+    </insert>
+    <insert tableName="users">
+      <column name="full_name" value="Part Part Part"/>
+      <column name="login" value="part"/>
+      <column name="email" value="part@test.com"/>
+      <column name="password"
+        value="$2a$10$qNIZHEGD8CBX6NyGJ4GSjuPO5.gKbgqa2/ShyOBJOLhA.apLjOFgm"/> <!--test123-->
+      <column name="active" value="true"/>
+    </insert>
+    <insert tableName="users">
+      <column name="full_name" value="Part2 Part2 Part2"/>
+      <column name="login" value="Part2"/>
+      <column name="email" value="part2@test.com"/>
+      <column name="password"
+        value="$2a$10$qNIZHEGD8CBX6NyGJ4GSjuPO5.gKbgqa2/ShyOBJOLhA.apLjOFgm"/> <!--test123-->
+      <column name="active" value="true"/>
+    </insert>
+    <insert tableName="users">
+      <column name="full_name" value="Part3 Part3 Part3"/>
+      <column name="login" value="Part3"/>
+      <column name="email" value="part3@test.com"/>
+      <column name="password"
+        value="$2a$10$qNIZHEGD8CBX6NyGJ4GSjuPO5.gKbgqa2/ShyOBJOLhA.apLjOFgm"/> <!--test123-->
+      <column name="active" value="true"/>
+    </insert>
+    <insert tableName="users">
+      <column name="full_name" value="Part4 Part4 Part4"/>
+      <column name="login" value="Part4"/>
+      <column name="email" value="part4@test.com"/>
+      <column name="password"
+        value="$2a$10$qNIZHEGD8CBX6NyGJ4GSjuPO5.gKbgqa2/ShyOBJOLhA.apLjOFgm"/> <!--test123-->
+      <column name="active" value="true"/>
+    </insert>
+    <insert tableName="users">
+      <column name="full_name" value="Part5 Part5 Part5"/>
+      <column name="login" value="Part5"/>
+      <column name="email" value="part5@test.com"/>
+      <column name="password"
+        value="$2a$10$qNIZHEGD8CBX6NyGJ4GSjuPO5.gKbgqa2/ShyOBJOLhA.apLjOFgm"/> <!--test123-->
+      <column name="active" value="true"/>
+    </insert>
+    <insert tableName="users">
+      <column name="full_name" value="Part6 Part6 Part6"/>
+      <column name="login" value="Part6"/>
+      <column name="email" value="part6@test.com"/>
+      <column name="password"
+        value="$2a$10$qNIZHEGD8CBX6NyGJ4GSjuPO5.gKbgqa2/ShyOBJOLhA.apLjOFgm"/> <!--test123-->
+      <column name="active" value="true"/>
+    </insert>
+    <insert tableName="users">
+      <column name="full_name" value="Part7 Part7 Part7"/>
+      <column name="login" value="Part7"/>
+      <column name="email" value="part7@test.com"/>
+      <column name="password"
+        value="$2a$10$qNIZHEGD8CBX6NyGJ4GSjuPO5.gKbgqa2/ShyOBJOLhA.apLjOFgm"/> <!--test123-->
+      <column name="active" value="true"/>
+    </insert>
+    <insert tableName="users">
+      <column name="full_name" value="Part8 Part8 Part8"/>
+      <column name="login" value="Part8"/>
+      <column name="email" value="part8@test.com"/>
+      <column name="password"
+        value="$2a$10$qNIZHEGD8CBX6NyGJ4GSjuPO5.gKbgqa2/ShyOBJOLhA.apLjOFgm"/> <!--test123-->
+      <column name="active" value="true"/>
+    </insert>
+    <insert tableName="users">
+      <column name="full_name" value="Part9 Part9 Part9"/>
+      <column name="login" value="Part9"/>
+      <column name="email" value="part9@test.com"/>
+      <column name="password"
+        value="$2a$10$qNIZHEGD8CBX6NyGJ4GSjuPO5.gKbgqa2/ShyOBJOLhA.apLjOFgm"/> <!--test123-->
+      <column name="active" value="true"/>
     </insert>
     <rollback>
       <dropTable tableName="users"/>
