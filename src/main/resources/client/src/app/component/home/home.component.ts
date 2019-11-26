@@ -55,6 +55,9 @@ export class HomeComponent implements OnInit {
   }
 
   getMessages() {
+    if (this.isAdmin()){
+      this.url = "/message/all";
+    }
     return this.http.get<Message[]>(this.url);
   }
 
@@ -63,6 +66,6 @@ export class HomeComponent implements OnInit {
   }
 
   isAdmin() {
-    return true;
+    return this.authService.currentUserValue.role === "ADMIN";
   }
 }

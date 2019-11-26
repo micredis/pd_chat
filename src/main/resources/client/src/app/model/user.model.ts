@@ -3,5 +3,6 @@ export class User {
   email: string;
   password: string;
   description: string;
-  authData?: string;
+  role: string;
+  authdata?: string;
 }
