@@ -64,4 +64,7 @@ export class NavigationComponent implements OnInit{
     this.toggle.emit(this.visible);
   }
 
+  isAdmin() {
+    return this.authService.currentUserValue.role === "ADMIN";
+  }
 }
