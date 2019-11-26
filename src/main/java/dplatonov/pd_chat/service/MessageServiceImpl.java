@@ -1,20 +1,23 @@
 package dplatonov.pd_chat.service;
 
-import dplatonov.pd_chat.dao.MessageDao;
-import dplatonov.pd_chat.dto.MessageDto;
-import dplatonov.pd_chat.model.Message;
-import dplatonov.pd_chat.model.MessageBuilder;
-import dplatonov.pd_chat.model.User;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import javax.transaction.Transactional;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
+
+import dplatonov.pd_chat.dao.MessageDao;
+import dplatonov.pd_chat.dto.MessageDto;
+import dplatonov.pd_chat.model.Message;
+import dplatonov.pd_chat.model.MessageBuilder;
+import dplatonov.pd_chat.model.User;
 
 @Service
 public class MessageServiceImpl implements MessageService {
@@ -39,8 +42,8 @@ public class MessageServiceImpl implements MessageService {
     Message message =
         new MessageBuilder()
             .setId(messageDto.getId())
-            .setDestination(destinationUser)
-            .setOwner(owner)
+            .setTo(destinationUser)
+            .setFrom(owner)
             .setTitle(messageDto.getTitle())
             .setMessage(messageDto.getMessage())
             .createMessage();
@@ -58,6 +61,7 @@ public class MessageServiceImpl implements MessageService {
       return Collections.emptyList();
     }
     List<MessageDto> messages = all.stream().map(MessageDto::new).collect(Collectors.toList());
+    messages.forEach(dto -> dto.setTo(null));
     log.info("MESSAGE-SERVICE-003: Retrieve list of messages from Postgres");
     return messages;
   }
@@ -83,5 +87,11 @@ public class MessageServiceImpl implements MessageService {
     message.setDeleted(true);
     dao.save(message);
     log.info("MESSAGE-SERVICE-006: Delete message is complete");
+  }
+
+  @Override
+  public List<MessageDto> getMessages() {
+    List<Message> messages = dao.findAll();
+    return messages.stream().map(MessageDto::new).collect(Collectors.toList());
   }
 }

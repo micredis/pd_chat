@@ -1,6 +1,7 @@
 package dplatonov.pd_chat.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
@@ -10,9 +11,13 @@ import static org.mockito.Mockito.when;
 
 import dplatonov.pd_chat.dao.MessageDao;
 import dplatonov.pd_chat.dto.MessageDto;
+import dplatonov.pd_chat.enums.RoleEnum;
 import dplatonov.pd_chat.model.Message;
 import dplatonov.pd_chat.model.MessageBuilder;
+import dplatonov.pd_chat.model.Role;
 import dplatonov.pd_chat.model.User;
+import dplatonov.pd_chat.model.UserBuilder;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -41,7 +46,7 @@ class MessageServiceImplTest {
   @Test
   void createNew(@Mock User mockUser, @Mock MessageDto mockMessageDto) {
     Message message =
-        new MessageBuilder().setDestination(mockUser).setOwner(mockUser).createMessage();
+        new MessageBuilder().setTo(mockUser).setFrom(mockUser).createMessage();
     when(mockUserService.getUserByEmail(mockMessageDto.getFrom())).thenReturn(mockUser);
     when(mockMessageDao.save(any())).thenReturn(message);
     MessageDto result = spy.createNew(mockMessageDto);
@@ -50,17 +55,23 @@ class MessageServiceImplTest {
 
   @DisplayName("Given email Then return MessageDto When messages an exist")
   @Test
-  void getMessages(@Mock User mockUser) {
+  void getMessages() {
+    String email = "test@test.com";
+    Role role = new Role();
+    role.setRole(RoleEnum.getRoleEnum(RoleEnum.PARTICIPANTS));
+    User user = new UserBuilder().setRole(role).setEmail(email).createUser();
     Message message =
-        new MessageBuilder().setDestination(mockUser).setOwner(mockUser).createMessage();
+        new MessageBuilder().setTo(user).setFrom(user).createMessage();
     List<Message> messages = Collections.singletonList(message);
     when(mockMessageDao.findByFromEmail(anyString())).thenReturn(messages);
-    String email = "test@test.com";
     List<MessageDto> result = spy.getMessages(email);
     int size = messages.size();
     assertEquals(size, result.size());
     IntStream.range(0, size)
-        .forEach(i -> assertEquals(messages.get(i).getId(), result.get(i).getId()));
+        .forEach(i -> {
+          assertEquals(messages.get(i).getId(), result.get(i).getId());
+          assertNull(result.get(i).getTo());
+        });
   }
 
   @DisplayName("Given id Then return Message")
@@ -68,7 +79,7 @@ class MessageServiceImplTest {
   void getMessageById(@Mock User mockUser) {
     Long id = 1L;
     Message message =
-        new MessageBuilder().setDestination(mockUser).setOwner(mockUser).createMessage();
+        new MessageBuilder().setTo(mockUser).setFrom(mockUser).createMessage();
     when(mockMessageDao.findById(id)).thenReturn(Optional.of(message));
     Message result = spy.getMessageById(id);
     assertEquals(message.getId(), result.getId());
@@ -79,7 +90,7 @@ class MessageServiceImplTest {
   void delete(@Mock User mockUser) {
     Long id = 1L;
     Message message =
-        new MessageBuilder().setDestination(mockUser).setOwner(mockUser).createMessage();
+        new MessageBuilder().setTo(mockUser).setFrom(mockUser).createMessage();
     when(mockMessageDao.findById(id)).thenReturn(Optional.of(message));
     spy.delete(id);
     verify(mockMessageDao).save(message);

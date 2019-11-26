@@ -1,17 +1,19 @@
 package dplatonov.pd_chat.service;
 
-import dplatonov.pd_chat.dao.UserDao;
-import dplatonov.pd_chat.dto.UserDto;
-import dplatonov.pd_chat.model.Role;
-import dplatonov.pd_chat.model.User;
-import dplatonov.pd_chat.model.UserBuilder;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import dplatonov.pd_chat.dao.UserDao;
+import dplatonov.pd_chat.dto.UserDto;
+import dplatonov.pd_chat.model.Role;
+import dplatonov.pd_chat.model.User;
+import dplatonov.pd_chat.model.UserBuilder;
 
 @Service
 public class UserServiceImpl implements UserService {

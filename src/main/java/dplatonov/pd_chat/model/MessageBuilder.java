@@ -5,8 +5,8 @@ import java.util.Date;
 public class MessageBuilder {
 
   private Long id;
-  private User destination;
-  private User owner;
+  private User to;
+  private User from;
   private Date createDate;
   private String title;
   private String message;
@@ -16,13 +16,13 @@ public class MessageBuilder {
     return this;
   }
 
-  public MessageBuilder setDestination(User destination) {
-    this.destination = destination;
+  public MessageBuilder setTo(User to) {
+    this.to = to;
     return this;
   }
 
-  public MessageBuilder setOwner(User owner) {
-    this.owner = owner;
+  public MessageBuilder setFrom(User from) {
+    this.from = from;
     return this;
   }
 
@@ -42,6 +42,6 @@ public class MessageBuilder {
   }
 
   public Message createMessage() {
-    return new Message(id, destination, owner, createDate, title, message);
+    return new Message(id, to, from, createDate, title, message);
   }
 }

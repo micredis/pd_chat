@@ -2,6 +2,7 @@ package dplatonov.pd_chat.dto;
 
 import dplatonov.pd_chat.model.Message;
 import java.util.Date;
+import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
@@ -16,11 +17,11 @@ public class MessageDto {
   private String title;
   private String message;
 
-  public MessageDto() {}
+//  public MessageDto() {}
 
   public MessageDto(Message message) {
     this.id = message.getId();
-    this.to = message.getTo().getEmail();
+    this.to = Objects.isNull(message.getTo()) ? null : message.getTo().getEmail();
     this.from = message.getFrom().getEmail();
     this.createDate = message.getCreateDate();
     this.title = message.getTitle();

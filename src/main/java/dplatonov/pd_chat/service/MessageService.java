@@ -13,4 +13,6 @@ public interface MessageService {
   Message getMessageById(Long id);
 
   void delete(Long id);
+
+  List<MessageDto> getMessages();
 }
