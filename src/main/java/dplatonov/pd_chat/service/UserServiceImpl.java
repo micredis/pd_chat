@@ -54,7 +54,12 @@ public class UserServiceImpl implements UserService {
     String email = userDto.getEmail();
     isExist(email);
     log.info("USER-SERVICE-004: Start create user with email " + email + " and role PARTICIPANT");
-    Role role = roleService.getRole("PARTICIPANT");
+    Role role = roleService.getRole(userDto.getRole());
+    if (Objects.isNull(role)){
+      String errorMessage = "Role isn't correct";
+      log.error("USER-SERVICE-010: " + errorMessage);
+      throw new IllegalArgumentException(errorMessage);
+    }
     User user =
         new UserBuilder()
             .setFullName(userDto.getFullName())

@@ -1,6 +1,7 @@
 package dplatonov.pd_chat.contoroller;
 
 import dplatonov.pd_chat.dto.UserDto;
+import dplatonov.pd_chat.service.AuthService;
 import dplatonov.pd_chat.service.UserService;
 import javax.validation.Valid;
 import org.slf4j.Logger;
@@ -20,13 +21,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin
 @Validated
-public class AuthorizationController {
-  private static final Logger log = LoggerFactory.getLogger(AuthorizationController.class);
+public class AuthController {
+  private static final Logger log = LoggerFactory.getLogger(AuthController.class);
   private final UserService userService;
+  private final AuthService authService;
 
   @Autowired
-  public AuthorizationController(UserService userService) {
+  public AuthController(UserService userService, AuthService authService) {
     this.userService = userService;
+    this.authService = authService;
   }
 
   @ResponseStatus(HttpStatus.OK)
@@ -42,7 +45,8 @@ public class AuthorizationController {
   @ResponseStatus(HttpStatus.CREATED)
   @PutMapping("/registration")
   public UserDto registration(@Valid @RequestBody UserDto userDto) {
-    UserDto newUserDto = userService.createUser(userDto);
+    UserDto modifiedUserDto = authService.createUser(userDto);
+    UserDto newUserDto = userService.createUser(modifiedUserDto);
     log.info("AUTHORIZATION-CONTROLLER-OO2: Registration is successful..");
     return newUserDto;
   }

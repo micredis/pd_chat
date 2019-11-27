@@ -6,6 +6,8 @@ import {HttpClient} from "@angular/common/http";
 import {AuthService} from "../../service/auth.service";
 import {map} from "rxjs/operators";
 import {User} from "../../model/user.model";
+import {NewUserDialogComponent} from "../new-user-dialog/new-user-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
 
 export interface PeriodicElement {
   position: number;
@@ -30,7 +32,7 @@ export class UsersComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   private url: string = "/user/list";
 
-  constructor(private http: HttpClient, private authService: AuthService) {
+  constructor(private http: HttpClient, public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -60,6 +62,10 @@ export class UsersComponent implements OnInit {
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  createUser() {
+    this.dialog.open(NewUserDialogComponent, {disableClose: false});
   }
 
 }

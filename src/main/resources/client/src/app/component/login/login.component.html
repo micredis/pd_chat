@@ -23,14 +23,11 @@
     </div>
     <div fxLayout="row" fxLayoutAlign="start center" fxLayoutAlign.xs="start stretch"
          fxLayoutGap="10px">
-      <button fxFlex md-raised-button color="primary" type="submit"
+      <button mat-button fxFlex md-raised-button color="primary" type="submit"
               [disabled]="!loginForm.form.valid">
         <mat-icon>lock_open</mat-icon>
       </button>
-    </div>
-    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutAlign.xs="start stretch"
-         fxLayoutGap="10px">
-      <button fxFlex md-raised-button color="primary" (click)="toRegistration()">
+      <button mat-button fxFlex md-raised-button color="primary" (click)="toRegistration()">
         <mat-icon>account_circle</mat-icon>
       </button>
     </div>

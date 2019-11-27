@@ -6,33 +6,32 @@ import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {MatDialog} from "@angular/material/dialog";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {Router} from "@angular/router";
+import {NewUserDialogComponent} from "../new-user-dialog/new-user-dialog.component";
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.css']
 })
-export class NavigationComponent implements OnInit{
+export class NavigationComponent implements OnInit {
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-    .pipe(
-      map(result => result.matches),
-      shareReplay()
-    );
+  .pipe(
+    map(result => result.matches),
+    shareReplay()
+  );
 
   @Input() visible: boolean = false;
   @Output() toggle: EventEmitter<boolean> = new EventEmitter<boolean>();
   username: string;
+
   constructor(private breakpointObserver: BreakpointObserver,
-              public dialog:MatDialog,
+              public dialog: MatDialog,
               private authService: AuthService,
-              private router: Router) {}
+              private router: Router) {
+  }
 
   ngOnInit(): void {
     this.username = this.authService.currentUserValue.email;
-  }
-
-  createUser(){
-    this.router.navigate(['/create_user']).then();
   }
 
   getUsers() {
@@ -44,12 +43,12 @@ export class NavigationComponent implements OnInit{
   }
 
   about() {
-    this.dialog.open(AboutComponent, {disableClose:false});
+    this.dialog.open(AboutComponent, {disableClose: false});
   }
 
   isAuthenticated() {
     const currentUser = this.authService.currentUserValue;
-    if (currentUser){
+    if (currentUser) {
       return true;
     }
   }

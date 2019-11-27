@@ -47,7 +47,7 @@ public class UserController {
   @ResponseStatus(HttpStatus.CREATED)
   @PutMapping
   public UserDto createUser(@Valid @RequestBody UserDto userDto) {
-    return userDto;
+    return userService.createUser(userDto);
   }
 
   @Admin

@@ -1,27 +1,30 @@
-import {Component, OnInit} from '@angular/core';
-import {User} from "../../model/user.model";
+import { Component, OnInit } from '@angular/core';
+import {MatDialogRef} from "@angular/material/dialog";
+import {HttpClient} from "@angular/common/http";
 import {FormControl, Validators} from "@angular/forms";
+import {User} from "../../model/user.model";
 import {first} from "rxjs/operators";
 import {AuthService} from "../../service/auth.service";
-import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-registration',
-  templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.css']
+  selector: 'app-new-user-dialog',
+  templateUrl: './new-user-dialog.component.html',
+  styleUrls: ['./new-user-dialog.component.css']
 })
-export class RegistrationComponent implements OnInit {
+export class NewUserDialogComponent implements OnInit {
   private loading: boolean;
   private submitted: boolean;
   private fullName = new FormControl();
   private email = new FormControl('', [Validators.required, Validators.email]);
   private login = new FormControl();
   private password = new FormControl();
+  private role = new FormControl();
   private error = '';
-  private loginUrl: string = '/login';
+  private url: string = '/user';
 
-  constructor(private authService: AuthService, private router: Router) {
-  }
+  constructor(private http: HttpClient,
+              private dialogRef: MatDialogRef<NewUserDialogComponent>,
+              private authService: AuthService) { }
 
   ngOnInit() {
   }
@@ -51,13 +54,14 @@ export class RegistrationComponent implements OnInit {
       email: this.email.value,
       login: this.login.value,
       password: this.password.value,
-      role: "PARTICIPANT"
+      role: this.role.value
     };
+    this.authService.registrationUrl = this.url;
     this.authService.registration(user)
     .pipe(first())
     .subscribe(
       data => {
-        this.router.navigate([this.loginUrl]).then();
+        this.dialogRef.close();
       }, error => {
         this.error = error;
         this.loading = false;
@@ -87,5 +91,9 @@ export class RegistrationComponent implements OnInit {
     return this.email.hasError('required') ? 'You must enter a value' :
       this.email.hasError('password') ? 'Not a valid password' :
         '';
+  }
+
+  onCancel(): void {
+    this.dialogRef.close();
   }
 }

@@ -23,13 +23,17 @@ import { UsersComponent } from './component/users/users.component';
 import { RegistrationComponent } from './component/registration/registration.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatIconModule} from "@angular/material/icon";
+import { NewUserDialogComponent } from './component/new-user-dialog/new-user-dialog.component';
+import {NewUserDialogModule} from "./component/new-user-dialog/new-user-dialog.module";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     UsersComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    // NewUserDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -49,13 +53,15 @@ import {MatIconModule} from "@angular/material/icon";
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
+    NewUserDialogModule,
+    MatButtonModule
   ],
   providers: [MatSnackBar,
     {provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
   ],
   bootstrap: [AppComponent],
-  entryComponents: [],
+  entryComponents: [NewUserDialogComponent],
 })
 export class AppModule {
 }

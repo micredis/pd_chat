@@ -8,7 +8,7 @@ import {map} from "rxjs/operators";
 export class AuthService {
 
   private loginUrl: string = "/login";
-  private registrationUrl: string = "/registration";
+  public registrationUrl: string = "/registration";
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
