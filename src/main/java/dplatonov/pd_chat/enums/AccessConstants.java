@@ -9,12 +9,12 @@ public enum AccessConstants {
     this.name = name;
   }
 
-  public static String getAccessEnum(AccessConstants type){
+  public static String getAccessEnum(AccessConstants type) {
     return type.toString();
   }
 
   @Override
-  public String toString(){
+  public String toString() {
     return this.name;
   }
 }

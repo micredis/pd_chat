@@ -2,22 +2,23 @@ package dplatonov.pd_chat.dto;
 
 import dplatonov.pd_chat.model.Message;
 import java.util.Date;
-import java.util.Objects;
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 
 public class MessageDto {
   @Null private Long id;
+
   @NotNull(message = "Email address To cannot be empty")
   private String to;
+
   @NotNull(message = "Email address From cannot be empty")
   private String from;
+
   private Date createDate;
   private String title;
   private String message;
 
-//  public MessageDto() {}
+  //  public MessageDto() {}
 
   public MessageDto(Message message) {
     this.id = message.getId();

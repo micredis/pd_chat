@@ -11,8 +11,6 @@ import dplatonov.pd_chat.dto.UserDto;
 import dplatonov.pd_chat.model.Role;
 import dplatonov.pd_chat.model.User;
 import dplatonov.pd_chat.model.UserBuilder;
-
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;

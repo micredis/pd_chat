@@ -5,24 +5,29 @@ import java.io.Serializable;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 
 public class UserDto implements Serializable {
 
   private static final long serialVersionUID = -4939671381969280325L;
 
   private Long id;
+
   @NotEmpty(message = "Full name cannot be empty")
   private String fullName;
+
   @NotEmpty(message = "Email cannot be empty")
   @Email(message = "Email must be in correct format")
   private String email;
+
   @NotEmpty(message = "Login cannot be empty")
   private String login;
+
   @NotEmpty(message = "Password cannot be empty")
   private String password;
+
   @NotNull(message = "Role cannot be empty")
   private String role;
+
   private boolean isActive;
 
   public UserDto() {}

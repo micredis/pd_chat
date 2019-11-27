@@ -1,8 +1,7 @@
 package dplatonov.pd_chat.dao;
 
-import java.util.List;
-
 import dplatonov.pd_chat.model.Message;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

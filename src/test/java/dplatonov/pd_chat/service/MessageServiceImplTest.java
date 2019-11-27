@@ -17,7 +17,6 @@ import dplatonov.pd_chat.model.MessageBuilder;
 import dplatonov.pd_chat.model.Role;
 import dplatonov.pd_chat.model.User;
 import dplatonov.pd_chat.model.UserBuilder;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -45,8 +44,7 @@ class MessageServiceImplTest {
   @DisplayName("Given MessageDto Then save message And return MessageDTO")
   @Test
   void createNew(@Mock User mockUser, @Mock MessageDto mockMessageDto) {
-    Message message =
-        new MessageBuilder().setTo(mockUser).setFrom(mockUser).createMessage();
+    Message message = new MessageBuilder().setTo(mockUser).setFrom(mockUser).createMessage();
     when(mockUserService.getUserByEmail(mockMessageDto.getFrom())).thenReturn(mockUser);
     when(mockMessageDao.save(any())).thenReturn(message);
     MessageDto result = spy.createNew(mockMessageDto);
@@ -60,26 +58,25 @@ class MessageServiceImplTest {
     Role role = new Role();
     role.setRole(RoleEnum.getRoleEnum(RoleEnum.PARTICIPANTS));
     User user = new UserBuilder().setRole(role).setEmail(email).createUser();
-    Message message =
-        new MessageBuilder().setTo(user).setFrom(user).createMessage();
+    Message message = new MessageBuilder().setTo(user).setFrom(user).createMessage();
     List<Message> messages = Collections.singletonList(message);
     when(mockMessageDao.findByFromEmail(anyString())).thenReturn(messages);
     List<MessageDto> result = spy.getMessages(email);
     int size = messages.size();
     assertEquals(size, result.size());
     IntStream.range(0, size)
-        .forEach(i -> {
-          assertEquals(messages.get(i).getId(), result.get(i).getId());
-          assertNull(result.get(i).getTo());
-        });
+        .forEach(
+            i -> {
+              assertEquals(messages.get(i).getId(), result.get(i).getId());
+              assertNull(result.get(i).getTo());
+            });
   }
 
   @DisplayName("Given id Then return Message")
   @Test
   void getMessageById(@Mock User mockUser) {
     Long id = 1L;
-    Message message =
-        new MessageBuilder().setTo(mockUser).setFrom(mockUser).createMessage();
+    Message message = new MessageBuilder().setTo(mockUser).setFrom(mockUser).createMessage();
     when(mockMessageDao.findById(id)).thenReturn(Optional.of(message));
     Message result = spy.getMessageById(id);
     assertEquals(message.getId(), result.getId());
@@ -89,8 +86,7 @@ class MessageServiceImplTest {
   @Test
   void delete(@Mock User mockUser) {
     Long id = 1L;
-    Message message =
-        new MessageBuilder().setTo(mockUser).setFrom(mockUser).createMessage();
+    Message message = new MessageBuilder().setTo(mockUser).setFrom(mockUser).createMessage();
     when(mockMessageDao.findById(id)).thenReturn(Optional.of(message));
     spy.delete(id);
     verify(mockMessageDao).save(message);

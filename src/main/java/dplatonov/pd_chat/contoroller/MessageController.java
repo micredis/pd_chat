@@ -9,7 +9,6 @@ import javax.validation.constraints.Min;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -51,7 +50,7 @@ public class MessageController {
   @Admin
   @ResponseStatus(HttpStatus.OK)
   @GetMapping("/all")
-  public List<MessageDto> getAllMessages(){
+  public List<MessageDto> getAllMessages() {
     return messageService.getMessages();
   }
 
