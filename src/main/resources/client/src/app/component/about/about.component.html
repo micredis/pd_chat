@@ -1,14 +1,10 @@
-<div fxLayoutGap="20px">
-  <div class="modal-header" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutGap="10px" fxFill>
-    <div fxFlex>{{'about.aboutApplication'}}</div>
+<div fxLayoutGap="20px" (click)="onCancel()">
+  <div class="modal-header" fxLayout="column" fxLayoutAlign="center center" >
+    <div>About Application</div>
   </div>
   <div class="modal-content" fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
-    <div>{{'about.version'}}: {{version}}</div>
-    <div>{{'about.build_date'}}: {{buildDate}}</div>
-  </div>
-  <div class="modal-footer" fxLayout="row" fxLayoutAlign="end stretch" fxLayoutGap="10px">
-    <button md-raised-button type="button" color="primary" class="stretch-50-xs" (click)="onCancel()">
-      <mat-icon (click)="onCancel()">cancel</mat-icon>
-    </button>
+    <div>Name: {{this.name}}</div>
+    <div>Version: {{this.version}}</div>
+    <div>Build date: {{this.buildDate | date: 'medium'}}</div>
   </div>
 </div>
