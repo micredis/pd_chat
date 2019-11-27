@@ -12,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,7 +40,7 @@ public class AuthorizationController {
   }
 
   @ResponseStatus(HttpStatus.CREATED)
-  @PostMapping("/registration")
+  @PutMapping("/registration")
   public UserDto registration(@Valid @RequestBody UserDto userDto) {
     UserDto newUserDto = userService.createUser(userDto);
     log.info("AUTHORIZATION-CONTROLLER-OO2: Registration is successful..");

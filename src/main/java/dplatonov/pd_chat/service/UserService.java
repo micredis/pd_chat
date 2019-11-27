@@ -12,7 +12,7 @@ public interface UserService {
 
   UserDto createUser(UserDto userDto);
 
-  User getUserByEmail(String email);
+  User getUserByEmail(String email) throws IllegalArgumentException;
 
   void delete(Long id);
 

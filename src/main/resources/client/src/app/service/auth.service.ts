@@ -7,7 +7,8 @@ import {map} from "rxjs/operators";
 @Injectable()
 export class AuthService {
 
-  private url: string = "/login";
+  private loginUrl: string = "/login";
+  private registrationUrl: string = "/registration";
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
@@ -16,14 +17,14 @@ export class AuthService {
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  public get currentUserValue(){
+  public get currentUserValue() {
     return this.currentUserSubject.value;
   }
 
   login(email: string, password: string) {
     const headers = new HttpHeaders().set('Authorization', `Basic ${window.btoa(email + ':' +
       password)}`);
-    return this.http.post<any>(this.url, null, {headers})
+    return this.http.post<any>(this.loginUrl, null, {headers})
     .pipe(map(user => {
       user.authdata = window.btoa(email + ':' + password);
       localStorage.setItem('currentUser', JSON.stringify(user));
@@ -35,5 +36,9 @@ export class AuthService {
   logout() {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
+  }
+
+  registration(user) {
+    return this.http.put<User>(this.registrationUrl, user);
   }
 }

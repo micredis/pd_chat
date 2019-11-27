@@ -8,6 +8,7 @@ public class UserBuilder {
   private String email;
   private String password;
   private Role role;
+  private boolean active;
 
   public UserBuilder setId(Long id) {
     this.id = id;
@@ -39,7 +40,12 @@ public class UserBuilder {
     return this;
   }
 
+  public UserBuilder setIsActive(boolean active) {
+    this.active = active;
+    return this;
+  }
+
   public User createUser() {
-    return new User(id, fullName, login, email, password, role);
+    return new User(id, fullName, login, email, password, role, active);
   }
 }

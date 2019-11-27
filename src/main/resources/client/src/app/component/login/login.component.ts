@@ -12,15 +12,16 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loading: boolean;
-  submitted: boolean;
-  user: User;
-  email = new FormControl('', [Validators.required, Validators.email]);
-  password = new FormControl();
-  error = '';
-  returnUrl: string;
+  private loading: boolean;
+  private submitted: boolean;
+  private user: User;
+  private email = new FormControl('', [Validators.required, Validators.email]);
+  private password = new FormControl();
+  private error = '';
+  private returnUrl: string;
+  private registrationPage: string = '/registration';
 
-  getLoginErrorMessage() {
+  getEmailErrorMessage() {
     return this.email.hasError('required') ? 'You must enter a value' :
       this.email.hasError('email') ? 'Not a valid email' :
         '';
@@ -38,7 +39,7 @@ export class LoginComponent implements OnInit {
               private formBuilder: FormBuilder,
               private route: ActivatedRoute) {
     if (this.authService.currentUser) {
-      this.router.navigate(['/']);
+      this.router.navigate(['/']).then();
     }
   }
 
@@ -63,11 +64,15 @@ export class LoginComponent implements OnInit {
     .pipe(first())
     .subscribe(
       data => {
-        this.router.navigate([this.returnUrl]);
+        this.router.navigate([this.returnUrl]).then();
       },
       error => {
         this.error = error;
         this.loading = false;
       });
+  }
+
+  toRegistration() {
+    this.router.navigate([this.registrationPage]).then();
   }
 }

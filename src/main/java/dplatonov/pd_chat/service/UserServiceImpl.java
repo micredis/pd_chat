@@ -1,6 +1,7 @@
 package dplatonov.pd_chat.service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.LogManager;
@@ -32,11 +33,12 @@ public class UserServiceImpl implements UserService {
   @Override
   public List<UserDto> getUsers() {
     List<User> users = userDao.findAll();
-    return users.stream().map(UserDto::new).collect(Collectors.toList());
+    return users.stream().skip(1).map(UserDto::new).collect(Collectors.toList());
   }
 
   @Override
   public User getUserById(Long id) {
+    isAdmin(id);
     return userDao
         .findById(id)
         .orElseGet(
@@ -49,20 +51,18 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public UserDto createUser(UserDto userDto) {
-    Role role = roleService.getRole(userDto.getRole());
-    log.info(
-        "USER-SERVICE-004: Start create user with email "
-            + userDto.getEmail()
-            + " and role "
-            + role.getRole());
+    String email = userDto.getEmail();
+    isExist(email);
+    log.info("USER-SERVICE-004: Start create user with email " + email + " and role PARTICIPANT");
+    Role role = roleService.getRole("PARTICIPANT");
     User user =
         new UserBuilder()
-            .setId(userDto.getId())
             .setFullName(userDto.getFullName())
             .setLogin(userDto.getLogin())
-            .setEmail(userDto.getEmail())
+            .setEmail(email)
             .setPassword(encoder.encode(userDto.getPassword()))
             .setRole(role)
+            .setIsActive(true)
             .createUser();
     userDao.save(user);
     log.info("USER-SERVICE-001: Create user is complete");
@@ -87,6 +87,7 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public void delete(Long id) {
+    isAdmin(id);
     User user = getUserById(id);
     log.info("USER-SERVICE-004: Start delete user with id " + user.getId());
     user.setActive(false);
@@ -96,11 +97,13 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public UserDto updateUser(UserDto userDto) {
-    User existingUser = getUserById(userDto.getId());
-    log.info("USER-SERVICE-006: Start update user with id " + userDto.getId());
+    Long id = userDto.getId();
+    isAdmin(id);
+    User existingUser = getUserById(id);
+    log.info("USER-SERVICE-006: Start update user with id " + id);
     User user =
         new UserBuilder()
-            .setId(userDto.getId())
+            .setId(id)
             .setFullName(userDto.getFullName())
             .setLogin(userDto.getLogin())
             .setEmail(userDto.getEmail())
@@ -108,7 +111,24 @@ public class UserServiceImpl implements UserService {
             .setRole(existingUser.getRole())
             .createUser();
     User result = userDao.save(user);
-    log.info("USER-SERVICE-007: Update user with id " + userDto.getId() + " is complete");
+    log.info("USER-SERVICE-007: Update user with id " + id + " is complete");
     return new UserDto(result);
+  }
+
+  private void isAdmin(Long id) {
+    if (Objects.isNull(id) || Objects.equals(id, 1L)) {
+      String errorMessage = "Incorrect id";
+      log.error("USER-SERVICE-OO8: " + errorMessage);
+      throw new IllegalArgumentException(errorMessage);
+    }
+  }
+
+  private void isExist(String email) {
+    boolean present = userDao.findByEmail(email).isPresent();
+    if (present){
+      String errorMessage = "User with email " + email + " is exist";
+      log.error("USER-SERVICE-009: " + errorMessage);
+      throw new IllegalArgumentException(errorMessage);
+    }
   }
 }

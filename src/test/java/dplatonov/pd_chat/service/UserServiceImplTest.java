@@ -44,14 +44,14 @@ class UserServiceImplTest {
     when(mockUserDao.findAll()).thenReturn(users);
     List<UserDto> result = spy.getUsers();
     int size = users.size();
-    IntStream.range(0, size)
+    IntStream.range(1, size)
         .forEach(i -> assertEquals(users.get(i).getId(), result.get(i).getId()));
   }
 
   @DisplayName("Given id Then return user When positive scenario")
   @Test
   void getUserById(@Mock Role mockRole) {
-    Long id = 1L;
+    Long id = 2L;
     User user = new UserBuilder().setRole(mockRole).createUser();
     when(mockUserDao.findById(id)).thenReturn(Optional.of(user));
     User result = spy.getUserById(id);
@@ -61,7 +61,7 @@ class UserServiceImplTest {
   @DisplayName("Given id Then return user When negative scenario")
   @Test
   void getUserById1() {
-    Long id = 1L;
+    Long id = 2L;
     when(mockUserDao.findById(id)).thenReturn(Optional.empty());
     assertThrows(IllegalArgumentException.class, () -> spy.getUserById(id));
   }
@@ -73,7 +73,7 @@ class UserServiceImplTest {
     when(mockRoleService.getRole(any())).thenReturn(mockRole);
     when(mockUserDao.save(any())).thenReturn(user);
     UserDto result = spy.createUser(mockUserDto);
-    assertEquals(mockUserDto.getId(), result.getId());
+    assertEquals(mockUserDto.getEmail(), result.getEmail());
   }
 
   @DisplayName("Given email Then return User When positive scenario")
@@ -89,7 +89,7 @@ class UserServiceImplTest {
   @DisplayName("Given id Then delete message When positive scenario")
   @Test
   void delete(@Mock Role mockRole) {
-    Long id = 1L;
+    Long id = 2L;
     User user = new UserBuilder().setRole(mockRole).createUser();
     when(mockUserDao.findById(id)).thenReturn(Optional.of(user));
     spy.delete(id);
@@ -99,7 +99,7 @@ class UserServiceImplTest {
   @DisplayName("Given id Then delete message When negative scenario")
   @Test
   void delete1() {
-    Long id = 1L;
+    Long id = 2L;
     when(mockUserDao.findById(id)).thenReturn(Optional.empty());
     assertThrows(IllegalArgumentException.class, () -> spy.delete(id));
   }
@@ -107,7 +107,7 @@ class UserServiceImplTest {
   @DisplayName("Given UserDto Then return new UserDto When positive scenario")
   @Test
   void updateUser(@Mock Role mockRole) {
-    Long id = 1L;
+    Long id = 2L;
     User user = new UserBuilder().setId(id).setRole(mockRole).createUser();
     when(mockUserDao.findById(any())).thenReturn(Optional.of(user));
     when(mockUserDao.save(any())).thenReturn(user);
@@ -119,7 +119,7 @@ class UserServiceImplTest {
   @DisplayName("Given UserDto Then return new UserDto When negative scenario")
   @Test
   void updateUser1() {
-    Long id = 1L;
+    Long id = 2L;
     when(mockUserDao.findById(id)).thenReturn(Optional.empty());
     assertThrows(IllegalArgumentException.class, () -> spy.delete(id));
   }

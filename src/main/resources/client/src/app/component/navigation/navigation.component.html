@@ -15,9 +15,9 @@
     <div fxFlex>
       <div fxLayout="row" fxLayoutAlign="end center">
         <div *ngIf="isAuthenticated()" class="hide">
-          <mat-icon class="userIcon">perm_identity</mat-icon>
-          <span class="userText">{{username}}</span>
+          <mat-icon class="userIcon" style="margin-top: 5px">perm_identity</mat-icon>
         </div>
+        <span class="userText">{{username}}</span>
         <button *ngIf="isAuthenticated()" class="nav_button" mat-button="" (click)="logout()"
                 matTooltip="logout">
           <mat-icon>power_settings_new</mat-icon>

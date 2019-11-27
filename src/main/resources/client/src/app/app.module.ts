@@ -20,12 +20,16 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from "@angular/material/sort";
 import {MatInputModule} from "@angular/material/input";
 import { UsersComponent } from './component/users/users.component';
+import { RegistrationComponent } from './component/registration/registration.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    UsersComponent
+    UsersComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +46,9 @@ import { UsersComponent } from './component/users/users.component';
     MatPaginatorModule,
     MatSortModule,
     MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatIconModule,
   ],
   providers: [MatSnackBar,
     {provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true},

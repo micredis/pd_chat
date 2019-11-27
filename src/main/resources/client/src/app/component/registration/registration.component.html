@@ -1,17 +1,29 @@
 <div fxLayout="column" fxLayoutAlign="center center" fxLayoutAlign.xs="center stretch"
      fxLayoutGap="20px">
   <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="10px">
-    <div fxFlex [ngStyle]="{'font-size.px': 28, color: 'grey'}">Authentication</div>
+    <div fxFlex [ngStyle]="{'font-size.px': 28, color: 'grey'}">Registration</div>
   </div>
-  <form #loginForm="ngForm" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutAlign="start stretch"
+  <form #regForm="ngForm" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutAlign="start stretch"
         fxLayoutGap="10px">
     <div fxLayout="column" fxLayoutAlign="start center" fxLayoutAlign.xs="start stretch"
          fxLayoutGap="10px">
       <mat-form-field>
         <label>
+          <input matInput placeholder="Enter you Full Name" [formControl]="fullName" required>
+        </label>
+        <mat-error *ngIf="fullName.invalid">{{getFullNameErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <label>
           <input matInput placeholder="Enter your email" [formControl]="email" required>
         </label>
         <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <label>
+          <input matInput placeholder="Enter your login name" [formControl]="login" required>
+        </label>
+        <mat-error *ngIf="login.invalid">{{getLoginErrorMessage()}}</mat-error>
       </mat-form-field>
       <mat-form-field>
         <label>
@@ -24,14 +36,8 @@
     <div fxLayout="row" fxLayoutAlign="start center" fxLayoutAlign.xs="start stretch"
          fxLayoutGap="10px">
       <button fxFlex md-raised-button color="primary" type="submit"
-              [disabled]="!loginForm.form.valid">
-        <mat-icon>lock_open</mat-icon>
-      </button>
-    </div>
-    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutAlign.xs="start stretch"
-         fxLayoutGap="10px">
-      <button fxFlex md-raised-button color="primary" (click)="toRegistration()">
-        <mat-icon>account_circle</mat-icon>
+              [disabled]="!regForm.form.valid">
+        <mat-icon>done</mat-icon>
       </button>
     </div>
   </form>

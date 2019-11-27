@@ -14,7 +14,7 @@ services:
       - POSTGRES_PASSWORD=pd_chat
       - POSTGRES_USER=pd_chat
       - POSTGRES_DB=pd_chat
-    restart: unless-stopped
+#    restart: unless-stopped
   pd_chat:
     image: pd_chat:latest
     network_mode: bridge
@@ -23,10 +23,10 @@ services:
       - 8080
     ports:
       - 8080:8080
-    restart: unless-stopped
     depends_on:
       - postgres
     links:
       - postgres
+#    restart: unless-stopped
 volumes:
   postgres-data:
