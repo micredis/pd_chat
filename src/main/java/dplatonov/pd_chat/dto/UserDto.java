@@ -9,7 +9,7 @@ import javax.validation.constraints.Null;
 
 public class UserDto implements Serializable {
 
-  private static final long serialVersionUID = 3988029737951948646L;
+  private static final long serialVersionUID = -4939671381969280325L;
 
   private Long id;
   @NotEmpty(message = "Full name cannot be empty")
@@ -23,6 +23,7 @@ public class UserDto implements Serializable {
   private String password;
   @NotNull(message = "Role cannot be empty")
   private String role;
+  private boolean isActive;
 
   public UserDto() {}
 
@@ -32,6 +33,7 @@ public class UserDto implements Serializable {
     this.login = user.getLogin();
     this.email = user.getEmail();
     this.role = user.getRole().getRole();
+    this.isActive = user.isActive();
   }
 
   public Long getId() {
@@ -80,5 +82,13 @@ public class UserDto implements Serializable {
 
   public void setRole(String role) {
     this.role = role;
+  }
+
+  public boolean isActive() {
+    return isActive;
+  }
+
+  public void setActive(boolean active) {
+    isActive = active;
   }
 }

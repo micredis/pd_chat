@@ -52,9 +52,9 @@ public class UserController {
 
   @Admin
   @ResponseStatus(HttpStatus.OK)
-  @DeleteMapping("/{id}")
-  public void deleteUser(@PathVariable("id") @Min(1) Long id) {
-    userService.delete(id);
+  @PutMapping("/delete")
+  public void deleteUser(@Valid @RequestBody List<UserDto> userDtos) {
+    userService.delete(userDtos);
   }
 
   @Admin

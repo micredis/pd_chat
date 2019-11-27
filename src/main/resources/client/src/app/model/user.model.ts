@@ -3,7 +3,8 @@ export interface User {
   fullName: string;
   email: string;
   login: string;
-  password: string;
+  password?: string;
   role: string;
   authdata?: string;
+  active?: boolean;
 }

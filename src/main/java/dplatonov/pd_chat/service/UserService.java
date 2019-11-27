@@ -14,7 +14,7 @@ public interface UserService {
 
   User getUserByEmail(String email) throws IllegalArgumentException;
 
-  void delete(Long id);
+  void delete(List<UserDto> userDtos);
 
   UserDto updateUser(UserDto userDto);
 }

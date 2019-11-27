@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import dplatonov.pd_chat.dao.UserDao;
 import dplatonov.pd_chat.dto.UserDto;
@@ -33,7 +34,7 @@ public class UserServiceImpl implements UserService {
   @Override
   public List<UserDto> getUsers() {
     List<User> users = userDao.findAll();
-    return users.stream().skip(1).map(UserDto::new).collect(Collectors.toList());
+    return users.stream().map(UserDto::new).collect(Collectors.toList());
   }
 
   @Override
@@ -55,7 +56,7 @@ public class UserServiceImpl implements UserService {
     isExist(email);
     log.info("USER-SERVICE-004: Start create user with email " + email + " and role PARTICIPANT");
     Role role = roleService.getRole(userDto.getRole());
-    if (Objects.isNull(role)){
+    if (Objects.isNull(role)) {
       String errorMessage = "Role isn't correct";
       log.error("USER-SERVICE-010: " + errorMessage);
       throw new IllegalArgumentException(errorMessage);
@@ -91,13 +92,29 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public void delete(Long id) {
-    isAdmin(id);
-    User user = getUserById(id);
-    log.info("USER-SERVICE-004: Start delete user with id " + user.getId());
-    user.setActive(false);
-    userDao.save(user);
-    log.info("USER-SERVICE-005: Delete user with id " + user.getId() + " is complete");
+  public void delete(List<UserDto> userDtos) {
+    List<Long> ids = userDtos.stream().map(UserDto::getId).collect(Collectors.toList());
+    List<User> allById = userDao.findAllById(ids);
+    if (CollectionUtils.isEmpty(allById) || !Objects.equals(userDtos.size(), allById.size())) {
+      String errorMessage = "Som of selected users does not exist";
+      log.error("USER-SERVICE-011: " + errorMessage);
+      throw new IllegalArgumentException(errorMessage);
+    }
+    allById.forEach(
+        user -> {
+          Long id = user.getId();
+          isAdmin(id);
+          user.setActive(false);
+        });
+    String message =
+        allById.stream()
+            .map(User::getId)
+            .map(String::valueOf)
+            .map(s -> ", ")
+            .collect(Collectors.joining());
+    log.info("USER-SERVICE-004: Start delete user with id's " + message);
+    userDao.saveAll(allById);
+    log.info("USER-SERVICE-005: Delete user with id's " + message + " is complete");
   }
 
   @Override
@@ -122,7 +139,7 @@ public class UserServiceImpl implements UserService {
 
   private void isAdmin(Long id) {
     if (Objects.isNull(id) || Objects.equals(id, 1L)) {
-      String errorMessage = "Incorrect id";
+      String errorMessage = "User can't be modified";
       log.error("USER-SERVICE-OO8: " + errorMessage);
       throw new IllegalArgumentException(errorMessage);
     }
@@ -130,7 +147,7 @@ public class UserServiceImpl implements UserService {
 
   private void isExist(String email) {
     boolean present = userDao.findByEmail(email).isPresent();
-    if (present){
+    if (present) {
       String errorMessage = "User with email " + email + " is exist";
       log.error("USER-SERVICE-009: " + errorMessage);
       throw new IllegalArgumentException(errorMessage);

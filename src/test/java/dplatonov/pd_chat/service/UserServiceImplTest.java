@@ -11,6 +11,8 @@ import dplatonov.pd_chat.dto.UserDto;
 import dplatonov.pd_chat.model.Role;
 import dplatonov.pd_chat.model.User;
 import dplatonov.pd_chat.model.UserBuilder;
+
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -86,22 +88,31 @@ class UserServiceImplTest {
     assertEquals(user.getId(), result.getId());
   }
 
-  @DisplayName("Given id Then delete message When positive scenario")
+  @DisplayName("Given list of UserDto Then delete user When positive scenario")
   @Test
   void delete(@Mock Role mockRole) {
     Long id = 2L;
-    User user = new UserBuilder().setRole(mockRole).createUser();
-    when(mockUserDao.findById(id)).thenReturn(Optional.of(user));
-    spy.delete(id);
-    verify(mockUserDao).save(user);
+    UserDto userDto = new UserDto();
+    userDto.setId(id);
+    List<UserDto> userDtos = Collections.singletonList(userDto);
+    User user = new UserBuilder().setId(id).setRole(mockRole).createUser();
+    List<User> users = Collections.singletonList(user);
+    when(mockUserDao.findAllById(any())).thenReturn(users);
+    spy.delete(userDtos);
+    verify(mockUserDao).saveAll(users);
   }
 
-  @DisplayName("Given id Then delete message When negative scenario")
+  @DisplayName("Given list of UserDto Then delete user When negative scenario")
   @Test
-  void delete1() {
+  void delete1(@Mock Role mockRole) {
     Long id = 2L;
-    when(mockUserDao.findById(id)).thenReturn(Optional.empty());
-    assertThrows(IllegalArgumentException.class, () -> spy.delete(id));
+    UserDto userDto = new UserDto();
+    userDto.setId(id);
+    List<UserDto> userDtos = Collections.singletonList(userDto);
+    User user = new UserBuilder().setRole(mockRole).createUser();
+    List<User> users = Collections.singletonList(user);
+    when(mockUserDao.findAllById(any())).thenReturn(users);
+    assertThrows(IllegalArgumentException.class, () -> spy.delete(userDtos));
   }
 
   @DisplayName("Given UserDto Then return new UserDto When positive scenario")
@@ -114,14 +125,6 @@ class UserServiceImplTest {
     UserDto userDto = new UserDto(user);
     UserDto result = spy.updateUser(userDto);
     assertEquals(id, result.getId());
-  }
-
-  @DisplayName("Given UserDto Then return new UserDto When negative scenario")
-  @Test
-  void updateUser1() {
-    Long id = 2L;
-    when(mockUserDao.findById(id)).thenReturn(Optional.empty());
-    assertThrows(IllegalArgumentException.class, () -> spy.delete(id));
   }
 
   @DisplayName("Given email Then return User When negative scenario")

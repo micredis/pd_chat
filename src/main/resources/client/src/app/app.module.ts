@@ -26,6 +26,7 @@ import {MatIconModule} from "@angular/material/icon";
 import { NewUserDialogComponent } from './component/new-user-dialog/new-user-dialog.component';
 import {NewUserDialogModule} from "./component/new-user-dialog/new-user-dialog.module";
 import {MatButtonModule} from "@angular/material/button";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import {MatButtonModule} from "@angular/material/button";
     ReactiveFormsModule,
     MatIconModule,
     NewUserDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCheckboxModule
   ],
   providers: [MatSnackBar,
     {provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true},
