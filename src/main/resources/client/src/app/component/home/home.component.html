@@ -2,7 +2,8 @@
   <span style="font: 25px bold">Messages</span>
   <mat-form-field>
     <label>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      <input #filter matInput (keyup)="applyFilter(filter.value)"
+             placeholder="Filter">
     </label>
   </mat-form-field>
   <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
