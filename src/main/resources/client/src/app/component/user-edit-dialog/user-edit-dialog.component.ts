@@ -6,6 +6,7 @@ import {FormControl, Validators} from "@angular/forms";
 import {first} from "rxjs/operators";
 import {AuthService} from "../../service/auth.service";
 import {Router} from "@angular/router";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-user-edit-dialog',
@@ -23,8 +24,8 @@ export class UserEditDialogComponent {
 
   constructor(private dialogRef: MatDialogRef<UserEditDialogComponent>,
               private userService: UserService,
-              private authService: AuthService,
               private router: Router,
+              private location: Location,
               @Optional() @Inject(MAT_DIALOG_DATA) private data: any
   ) {
     this.user = data.pageValue;
@@ -47,7 +48,8 @@ export class UserEditDialogComponent {
       return;
     }
 
-    this.user = {
+    const user = {
+      id: this.user.id,
       fullName: this.fullName.value,
       email: this.email.value,
       login: this.login.value,
@@ -55,11 +57,12 @@ export class UserEditDialogComponent {
       role: this.role.value,
       active: this.active.value
     };
-    this.authService.update(this.user)
+    this.userService.update(user)
     .pipe(first())
     .subscribe(
       data => {
         this.dialogRef.close();
+        this.refreshUsers();
       }
     );
   }
@@ -88,6 +91,18 @@ export class UserEditDialogComponent {
         '';
   }
 
+  getRoleErrorMessage() {
+    return this.email.hasError('required') ? 'You must enter a value' :
+      this.email.hasError('role') ? 'Not a valid role' :
+        '';
+  }
+
+  getActiveErrorMessage() {
+    return this.email.hasError('required') ? 'You must enter a value' :
+      this.email.hasError('active') ? 'Not a valid active' :
+        '';
+  }
+
   onCancel(): void {
     this.dialogRef.close();
   }
@@ -95,5 +110,12 @@ export class UserEditDialogComponent {
   delete() {
     this.userService.delete(this.user.id).subscribe();
     this.dialogRef.close();
+    this.refreshUsers();
+  }
+
+  refreshUsers() {
+    this.router.navigateByUrl('/UsersComponent', { skipLocationChange: true }).then(() => {
+      this.router.navigate([decodeURI(this.location.path())]).then();
+    });
   }
 }

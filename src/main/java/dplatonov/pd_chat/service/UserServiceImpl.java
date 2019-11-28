@@ -111,6 +111,7 @@ public class UserServiceImpl implements UserService {
             .setEmail(userDto.getEmail())
             .setPassword(userDto.getPassword())
             .setRole(existingUser.getRole())
+            .setIsActive(userDto.isActive())
             .createUser();
     User result = userDao.save(user);
     log.info("USER-SERVICE-007: Update user with id " + id + " is complete");

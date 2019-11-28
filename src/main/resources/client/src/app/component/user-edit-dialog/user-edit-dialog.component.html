@@ -9,34 +9,51 @@
            fxLayoutGap="10px">
         <mat-form-field>
           <label>
-            <input matInput placeholder="Enter you Full Name" [formControl]="fullName" required>
+            <input matInput placeholder="Enter you Full Name" [formControl]="fullName"
+                   [value]="user.fullName"
+                   required>
           </label>
           <mat-error *ngIf="fullName.invalid">{{getFullNameErrorMessage()}}</mat-error>
         </mat-form-field>
         <mat-form-field>
           <label>
-            <input matInput placeholder="Enter your email" [formControl]="email" required>
+            <input matInput placeholder="Enter your email" [formControl]="email"
+                   [value]="user.email"
+                   required>
           </label>
           <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
         </mat-form-field>
         <mat-form-field>
           <label>
-            <input matInput placeholder="Enter your login name" [formControl]="login" required>
+            <input matInput placeholder="Enter your login name" [formControl]="login"
+                   [value]="user.login"
+                   required>
           </label>
           <mat-error *ngIf="login.invalid">{{getLoginErrorMessage()}}</mat-error>
         </mat-form-field>
         <mat-form-field>
           <label>
-            <input matInput placeholder="Enter your password" [formControl]="password"
-                   [type]="'password'" required>
+            <input matInput placeholder="Enter your new password" [formControl]="password"
+                   [type]="'password'"
+                   required>
           </label>
           <mat-error *ngIf="email.invalid">{{getPasswordErrorMessage()}}</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <mat-select placeholder="Role" [formControl]="role">
+          <mat-label>Role</mat-label>
+          <mat-select [placeholder]="user.role" [formControl]="role" required>
             <mat-option value="ADMIN">ADMIN</mat-option>
             <mat-option value="PARTICIPANT">PARTICIPANT</mat-option>
           </mat-select>
+          <mat-error *ngIf="role.invalid">{{getRoleErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Active</mat-label>
+          <mat-select [formControl]="active" required>
+            <mat-option value="true">true</mat-option>
+            <mat-option value="false">false</mat-option>
+          </mat-select>
+          <mat-error *ngIf="role.invalid">{{getActiveErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
       <div class="modal-footer" fxLayout="row" fxLayoutAlign="end stretch" fxLayoutGap="10px">

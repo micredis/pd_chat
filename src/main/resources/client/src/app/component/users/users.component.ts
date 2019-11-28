@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
@@ -9,7 +9,7 @@ import {NewUserDialogComponent} from "../new-user-dialog/new-user-dialog.compone
 import {MatDialog} from "@angular/material/dialog";
 import {SelectionModel} from "@angular/cdk/collections";
 import {UserEditDialogComponent} from "../user-edit-dialog/user-edit-dialog.component";
-import {Router} from "@angular/router";
+import {NavigationEnd, Router} from "@angular/router";
 
 export interface PeriodicElement {
   position: number;
@@ -31,7 +31,6 @@ export class UsersComponent implements OnInit {
   private data: PeriodicElement[];
   dataSource = new MatTableDataSource<PeriodicElement>(this.data);
   private pageSize: number = 10;
-  private selection = new SelectionModel<PeriodicElement>(true, []);
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
