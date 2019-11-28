@@ -9,6 +9,7 @@ import javax.validation.constraints.Min;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -38,7 +39,7 @@ public class UserController {
   @Admin
   @ResponseStatus(HttpStatus.OK)
   @GetMapping("/{id}")
-  public UserDto getUser(@PathVariable("id") @Min(1) Long id) {
+  public UserDto getUser(@PathVariable("id") @Min(2) Long id) {
     return new UserDto(userService.getUserById(id));
   }
 
@@ -51,9 +52,9 @@ public class UserController {
 
   @Admin
   @ResponseStatus(HttpStatus.OK)
-  @PutMapping("/delete")
-  public void deleteUser(@Valid @RequestBody List<UserDto> userDtos) {
-    userService.delete(userDtos);
+  @DeleteMapping("/delete/{id}")
+  public void deleteUser(@PathVariable("id") @Min(2) Long id) {
+    userService.delete(id);
   }
 
   @Admin

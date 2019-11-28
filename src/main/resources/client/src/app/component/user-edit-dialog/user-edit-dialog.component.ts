@@ -1,27 +1,33 @@
-import {Component} from '@angular/core';
-import {MatDialogRef} from "@angular/material/dialog";
-import {HttpClient} from "@angular/common/http";
-import {FormControl, Validators} from "@angular/forms";
+import {Component, Inject, Optional} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {UserService} from "../../service/user.service";
 import {User} from "../../model/user.model";
+import {FormControl, Validators} from "@angular/forms";
 import {first} from "rxjs/operators";
 import {AuthService} from "../../service/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-new-user-dialog',
-  templateUrl: './new-user-dialog.component.html',
-  styleUrls: ['./new-user-dialog.component.css']
+  selector: 'app-user-edit-dialog',
+  templateUrl: './user-edit-dialog.component.html',
+  styleUrls: ['./user-edit-dialog.component.css']
 })
-export class NewUserDialogComponent {
+export class UserEditDialogComponent {
+  private user: User;
   private fullName = new FormControl();
   private email = new FormControl('', [Validators.required, Validators.email]);
   private login = new FormControl();
   private password = new FormControl();
   private role = new FormControl();
-  private url: string = '/user';
+  private active = new FormControl();
 
-  constructor(private http: HttpClient,
-              private dialogRef: MatDialogRef<NewUserDialogComponent>,
-              private authService: AuthService) {
+  constructor(private dialogRef: MatDialogRef<UserEditDialogComponent>,
+              private userService: UserService,
+              private authService: AuthService,
+              private router: Router,
+              @Optional() @Inject(MAT_DIALOG_DATA) private data: any
+  ) {
+    this.user = data.pageValue;
   }
 
   onSubmit() {
@@ -41,15 +47,15 @@ export class NewUserDialogComponent {
       return;
     }
 
-    let user: User = {
+    this.user = {
       fullName: this.fullName.value,
       email: this.email.value,
       login: this.login.value,
       password: this.password.value,
-      role: this.role.value
+      role: this.role.value,
+      active: this.active.value
     };
-    this.authService.registrationUrl = this.url;
-    this.authService.registration(user)
+    this.authService.update(this.user)
     .pipe(first())
     .subscribe(
       data => {
@@ -83,6 +89,11 @@ export class NewUserDialogComponent {
   }
 
   onCancel(): void {
+    this.dialogRef.close();
+  }
+
+  delete() {
+    this.userService.delete(this.user.id).subscribe();
     this.dialogRef.close();
   }
 }

@@ -27,6 +27,8 @@ import { NewUserDialogComponent } from './component/new-user-dialog/new-user-dia
 import {NewUserDialogModule} from "./component/new-user-dialog/new-user-dialog.module";
 import {MatButtonModule} from "@angular/material/button";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import { UserEditDialogComponent } from './component/user-edit-dialog/user-edit-dialog.component';
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -34,7 +36,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     HomeComponent,
     UsersComponent,
     RegistrationComponent,
-    // NewUserDialogComponent
+    UserEditDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,14 +58,15 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     MatIconModule,
     NewUserDialogModule,
     MatButtonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSelectModule
   ],
   providers: [MatSnackBar,
     {provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
   ],
   bootstrap: [AppComponent],
-  entryComponents: [NewUserDialogComponent],
+  entryComponents: [NewUserDialogComponent, UserEditDialogComponent],
 })
 export class AppModule {
 }

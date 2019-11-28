@@ -90,27 +90,19 @@ class UserServiceImplTest {
   @Test
   void delete(@Mock Role mockRole) {
     Long id = 2L;
-    UserDto userDto = new UserDto();
-    userDto.setId(id);
-    List<UserDto> userDtos = Collections.singletonList(userDto);
     User user = new UserBuilder().setId(id).setRole(mockRole).createUser();
-    List<User> users = Collections.singletonList(user);
-    when(mockUserDao.findAllById(any())).thenReturn(users);
-    spy.delete(userDtos);
-    verify(mockUserDao).saveAll(users);
+    when(mockUserDao.findById(any())).thenReturn(Optional.ofNullable(user));
+    spy.delete(id);
+    verify(mockUserDao).save(user);
   }
 
   @DisplayName("Given list of UserDto Then delete user When negative scenario")
   @Test
-  void delete1(@Mock Role mockRole) {
+  void delete1() {
     Long id = 2L;
     UserDto userDto = new UserDto();
     userDto.setId(id);
-    List<UserDto> userDtos = Collections.singletonList(userDto);
-    User user = new UserBuilder().setRole(mockRole).createUser();
-    List<User> users = Collections.singletonList(user);
-    when(mockUserDao.findAllById(any())).thenReturn(users);
-    assertThrows(IllegalArgumentException.class, () -> spy.delete(userDtos));
+    assertThrows(IllegalArgumentException.class, () -> spy.delete(id));
   }
 
   @DisplayName("Given UserDto Then return new UserDto When positive scenario")

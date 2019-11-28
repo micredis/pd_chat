@@ -6,12 +6,12 @@ import {User} from "../model/user.model";
   providedIn: 'root'
 })
 export class UserService {
-  private url: string = '/user/delete';
 
   constructor(private http: HttpClient) {
   }
 
-  delete(users) {
-    return this.http.put(this.url, users);
+  delete(id) {
+    const url: string = "/user/delete/" + id;
+    return this.http.delete(url);
   }
 }

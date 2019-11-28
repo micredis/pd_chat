@@ -11,6 +11,7 @@ export class AuthService {
   public registrationUrl: string = "/registration";
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
+  private updateUserUrl: string = "/user/update";
 
   constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
@@ -40,5 +41,9 @@ export class AuthService {
 
   registration(user) {
     return this.http.put<User>(this.registrationUrl, user);
+  }
+
+  update(user: User) {
+    return this.http.put<User>(this.updateUserUrl, user);
   }
 }

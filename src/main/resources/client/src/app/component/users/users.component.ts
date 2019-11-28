@@ -3,13 +3,13 @@ import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {HttpClient} from "@angular/common/http";
-import {AuthService} from "../../service/auth.service";
-import {first, map} from "rxjs/operators";
+import {map} from "rxjs/operators";
 import {User} from "../../model/user.model";
 import {NewUserDialogComponent} from "../new-user-dialog/new-user-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {SelectionModel} from "@angular/cdk/collections";
-import {UserService} from "../../service/user.service";
+import {UserEditDialogComponent} from "../user-edit-dialog/user-edit-dialog.component";
+import {Router} from "@angular/router";
 
 export interface PeriodicElement {
   position: number;
@@ -27,7 +27,7 @@ export interface PeriodicElement {
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-  displayedColumns: string[] = ['select', 'position', 'fullName', 'email', 'login', 'role', 'isActive'];
+  displayedColumns: string[] = ['position', 'fullName', 'email', 'login', 'role', 'isActive'];
   private data: PeriodicElement[];
   dataSource = new MatTableDataSource<PeriodicElement>(this.data);
   private pageSize: number = 10;
@@ -38,8 +38,7 @@ export class UsersComponent implements OnInit {
   private url: string = "/user/list";
 
   constructor(private http: HttpClient,
-              private dialog: MatDialog,
-              private userService: UserService) {
+              private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -77,40 +76,16 @@ export class UsersComponent implements OnInit {
     this.dialog.open(NewUserDialogComponent, {disableClose: false});
   }
 
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
-    return numSelected === numRows;
-  }
+  selected(row?: PeriodicElement) {
+    const user: User = {
+      id: row.id,
+      fullName: row.fullName,
+      email: row.email,
+      login: row.login,
+      role: row.role,
+      active: row.active
+    };
 
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
-  masterToggle() {
-    this.isAllSelected() ?
-      this.selection.clear() :
-      this.dataSource.data.forEach(row => this.selection.select(row));
+    this.dialog.open(UserEditDialogComponent, {disableClose: false, data: {pageValue: user}});
   }
-
-  /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: PeriodicElement): string {
-    if (!row) {
-      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
-    }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
-  }
-
-  delete() {
-    const users: User[] = [];
-    this.selection.selected.forEach((value) => {
-      users.push({
-        id: value.id,
-        fullName: value.fullName,
-        email: value.email,
-        login: value.login,
-        role: value.role,
-        password: "empty"
-      });
-    });
-    this.userService.delete(users).pipe(first()).subscribe();
-  }
-
 }

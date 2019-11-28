@@ -13,7 +13,6 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -90,30 +89,12 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public void delete(List<UserDto> userDtos) {
-    List<Long> ids = userDtos.stream().map(UserDto::getId).collect(Collectors.toList());
-    List<User> allById = userDao.findAllById(ids);
-    if (CollectionUtils.isEmpty(allById) || !Objects.equals(userDtos.size(), allById.size())) {
-      String errorMessage = "Som of selected users does not exist";
-      log.error("USER-SERVICE-011: " + errorMessage);
-      throw new IllegalArgumentException(errorMessage);
-    }
-    allById.forEach(
-        user -> {
-          Long id = user.getId();
-          isAdmin(id);
-          user.setActive(false);
-        });
-    String message =
-        allById
-            .stream()
-            .map(User::getId)
-            .map(String::valueOf)
-            .map(s -> ", ")
-            .collect(Collectors.joining());
-    log.info("USER-SERVICE-004: Start delete user with id's " + message);
-    userDao.saveAll(allById);
-    log.info("USER-SERVICE-005: Delete user with id's " + message + " is complete");
+  public void delete(Long id) {
+    User user = getUserById(id);
+    user.setActive(false);
+    log.info("USER-SERVICE-004: Start delete user with id " + id);
+    userDao.save(user);
+    log.info("USER-SERVICE-005: Delete user with id " + id + " is complete");
   }
 
   @Override
