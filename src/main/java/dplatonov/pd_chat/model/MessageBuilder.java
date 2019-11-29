@@ -10,6 +10,7 @@ public class MessageBuilder {
   private Date createDate;
   private String title;
   private String message;
+  private Boolean isDeleted;
 
   public MessageBuilder setId(Long id) {
     this.id = id;
@@ -41,7 +42,12 @@ public class MessageBuilder {
     return this;
   }
 
+  public MessageBuilder setIsDeleted(Boolean isDeleted) {
+    this.isDeleted = isDeleted;
+    return this;
+  }
+
   public Message createMessage() {
-    return new Message(id, to, from, createDate, title, message);
+    return new Message(id, to, from, createDate, title, message, isDeleted);
   }
 }

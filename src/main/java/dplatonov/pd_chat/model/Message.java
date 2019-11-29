@@ -33,13 +33,21 @@ public class Message {
 
   public Message() {}
 
-  public Message(Long id, User to, User from, Date createDate, String title, String message) {
+  public Message(
+      Long id,
+      User to,
+      User from,
+      Date createDate,
+      String title,
+      String message,
+      Boolean isDeleted) {
     this.id = id;
     this.to = to;
     this.from = from;
     this.createDate = createDate;
     this.title = title;
     this.message = message;
+    this.deleted = isDeleted;
   }
 
   @Id

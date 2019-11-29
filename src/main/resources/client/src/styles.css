@@ -9,12 +9,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   min-height: 20px;
   color: rgba(255, 255, 255, .87);
   background-color: #3f51b5;
-  margin-bottom: 0px !important;
+  margin-bottom: 0 !important;
 }
 
 .modal-content {
   padding: 15px;
-  margin: 0px !important;
+  margin: 0 !important;
 }
 
 .modal-footer {

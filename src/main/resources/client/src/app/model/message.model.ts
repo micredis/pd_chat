@@ -1,9 +1,9 @@
 export interface Message {
-    id: number;
+    id?: number;
     from: string;
     to: string;
-    createDate: string;
+    createDate?: string;
     title: string;
     message: string;
-    deleted: boolean;
+    deleted?: boolean;
 }

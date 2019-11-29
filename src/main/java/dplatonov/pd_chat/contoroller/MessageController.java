@@ -34,7 +34,7 @@ public class MessageController {
   @Participant
   @ResponseStatus(HttpStatus.OK)
   @GetMapping("/list")
-  public List getMessagesForAuthUser() {
+  public List<MessageDto> getMessagesForAuthUser() {
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     String email = auth.getName();
     return messageService.getMessages(email);
@@ -55,12 +55,11 @@ public class MessageController {
   }
 
   @ResponseStatus(HttpStatus.CREATED)
-  @PutMapping("/new")
-  public MessageDto newMessage(@RequestBody MessageDto messageDto) {
+  @PutMapping("/create")
+  public MessageDto createMessage(@RequestBody MessageDto messageDto) {
     return messageService.createNew(messageDto);
   }
 
-  @Admin
   @ResponseStatus(HttpStatus.OK)
   @DeleteMapping("/{id}")
   public void deleteMessage(@PathVariable("id") @Min(1) Long id) {

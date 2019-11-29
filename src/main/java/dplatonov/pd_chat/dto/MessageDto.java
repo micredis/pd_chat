@@ -18,7 +18,7 @@ public class MessageDto {
   private String title;
   private String message;
 
-  //  public MessageDto() {}
+  public MessageDto() {}
 
   public MessageDto(Message message) {
     this.id = message.getId();

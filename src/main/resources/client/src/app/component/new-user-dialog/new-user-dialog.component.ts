@@ -5,6 +5,8 @@ import {FormControl, Validators} from "@angular/forms";
 import {User} from "../../model/user.model";
 import {first} from "rxjs/operators";
 import {AuthService} from "../../service/auth.service";
+import {Router} from "@angular/router";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-new-user-dialog',
@@ -19,9 +21,10 @@ export class NewUserDialogComponent {
   private role = new FormControl();
   private url: string = '/user';
 
-  constructor(private http: HttpClient,
-              private dialogRef: MatDialogRef<NewUserDialogComponent>,
-              private authService: AuthService) {
+  constructor(private dialogRef: MatDialogRef<NewUserDialogComponent>,
+              private authService: AuthService,
+              private router: Router,
+              private location: Location) {
   }
 
   onSubmit() {
@@ -54,6 +57,7 @@ export class NewUserDialogComponent {
     .subscribe(
       data => {
         this.dialogRef.close();
+        this.refreshUsers();
       }
     );
   }
@@ -84,5 +88,11 @@ export class NewUserDialogComponent {
 
   onCancel(): void {
     this.dialogRef.close();
+  }
+
+  refreshUsers() {
+    this.router.navigateByUrl('/UsersComponent', { skipLocationChange: true }).then(() => {
+      this.router.navigate([decodeURI(this.location.path())]).then();
+    });
   }
 }

@@ -1,0 +1,42 @@
+<div fxLayoutGap="20px">
+  <div class="modal-header" fxLayout="column" fxLayoutAlign="center center">
+    <div>New Message</div>
+  </div>
+  <div class="modal-content" fxLayout="column" fxLayoutAlign="space-between stretch"
+       fxLayoutGap="10px">
+    <form (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutAlign="start stretch"
+          fxLayoutGap="10px">
+      <div fxLayout="column" fxLayoutAlign="start center" fxLayoutAlign.xs="start stretch"
+           fxLayoutGap="10px">
+        <mat-form-field>
+          <label>
+            <input matInput placeholder="Enter email for send to" [formControl]="emailTo" required>
+          </label>
+          <mat-error *ngIf="emailTo.invalid">{{getEmailToErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <label>
+            <input matInput placeholder="Enter message title" [formControl]="title" required>
+          </label>
+          <mat-error *ngIf="title.invalid">{{getTitleErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <label>
+            <textarea matInput placeholder="Enter your message" [formControl]="messageBody"
+                      required></textarea>
+          </label>
+          <mat-error *ngIf="messageBody.invalid">{{getMessageErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="modal-footer" fxLayout="row" fxLayoutAlign="end stretch" fxLayoutGap="10px">
+        <button mat-button fxFlex md-raised-button color="primary" type="submit">
+          <mat-icon>done</mat-icon>
+        </button>
+        <button mat-button md-raised-button type="button" color="primary" class="stretch-50-xs"
+                (click)="onCancel()">
+          <mat-icon (click)="onCancel()">cancel</mat-icon>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

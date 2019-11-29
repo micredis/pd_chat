@@ -43,6 +43,7 @@ public class MessageServiceImpl implements MessageService {
             .setFrom(owner)
             .setTitle(messageDto.getTitle())
             .setMessage(messageDto.getMessage())
+            .setIsDeleted(false)
             .createMessage();
     log.info("MESSAGE-SERVICE-001: Start save new message");
     Message result = dao.save(message);

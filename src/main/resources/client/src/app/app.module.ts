@@ -13,22 +13,25 @@ import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {BasicAuthInterceptor} from "./helper/basic-auth-interceptor";
 import {ErrorInterceptor} from "./helper/error-interceptor";
-import { HomeComponent } from './component/home/home.component';
+import {HomeComponent} from './component/home/home.component';
 import {MatTableModule} from "@angular/material/table";
 import {FlexModule} from "@angular/flex-layout";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from "@angular/material/sort";
 import {MatInputModule} from "@angular/material/input";
-import { UsersComponent } from './component/users/users.component';
-import { RegistrationComponent } from './component/registration/registration.component';
+import {UsersComponent} from './component/users/users.component';
+import {RegistrationComponent} from './component/registration/registration.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatIconModule} from "@angular/material/icon";
-import { NewUserDialogComponent } from './component/new-user-dialog/new-user-dialog.component';
+import {NewUserDialogComponent} from './component/new-user-dialog/new-user-dialog.component';
 import {NewUserDialogModule} from "./component/new-user-dialog/new-user-dialog.module";
 import {MatButtonModule} from "@angular/material/button";
 import {MatCheckboxModule} from "@angular/material/checkbox";
-import { UserEditDialogComponent } from './component/user-edit-dialog/user-edit-dialog.component';
+import {UserEditDialogComponent} from './component/user-edit-dialog/user-edit-dialog.component';
 import {MatSelectModule} from "@angular/material/select";
+import {MessageEditDialogComponent} from './component/message-edit-dialog/message-edit-dialog.component';
+import {NewMessageDialogComponent} from './component/new-message-dialog/new-message-dialog.component';
+import {MatListModule} from "@angular/material/list";
 
 @NgModule({
   declarations: [
@@ -37,6 +40,8 @@ import {MatSelectModule} from "@angular/material/select";
     UsersComponent,
     RegistrationComponent,
     UserEditDialogComponent,
+    MessageEditDialogComponent,
+    NewMessageDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,14 +64,19 @@ import {MatSelectModule} from "@angular/material/select";
     NewUserDialogModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatSelectModule
+    MatSelectModule,
+    MatListModule
   ],
   providers: [MatSnackBar,
     {provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
   ],
   bootstrap: [AppComponent],
-  entryComponents: [NewUserDialogComponent, UserEditDialogComponent],
+  entryComponents: [
+    NewUserDialogComponent,
+    UserEditDialogComponent,
+    NewMessageDialogComponent,
+    MessageEditDialogComponent],
 })
 export class AppModule {
 }
