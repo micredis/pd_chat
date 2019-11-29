@@ -8,8 +8,8 @@ import {map} from "rxjs/operators";
 import {AuthService} from "../../service/auth.service";
 import {MatDialog} from "@angular/material/dialog";
 import {NewMessageDialogComponent} from "../new-message-dialog/new-message-dialog.component";
-import {UserEditDialogComponent} from "../user-edit-dialog/user-edit-dialog.component";
 import {MessageEditDialogComponent} from "../message-edit-dialog/message-edit-dialog.component";
+import {MessageService} from "../../service/message.service";
 
 export interface PeriodicElement {
   position: number;
@@ -35,15 +35,15 @@ export class HomeComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
-  private url: string = "/message/list";
 
   constructor(private http: HttpClient,
               private authService: AuthService,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private messageService: MessageService) {
   }
 
   ngOnInit() {
-    this.getMessages().pipe(map((res: Message[]) => {
+    this.messageService.getMessages().pipe(map((res: Message[]) => {
       const periodicElements: PeriodicElement[] = [];
       res.forEach((value, index) => {
         periodicElements.push({
@@ -64,13 +64,6 @@ export class HomeComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
-  }
-
-  getMessages() {
-    if (this.isAdmin()) {
-      this.url = "/message/all";
-    }
-    return this.http.get<Message[]>(this.url);
   }
 
   applyFilter(filterValue: string) {
