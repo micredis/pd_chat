@@ -11,11 +11,11 @@ export class UserService {
   }
 
   update(user: User) {
-    return this.http.put<User>("/user/update", user);
+    return this.http.put<User>("/api/user/update", user);
   }
 
   delete(id) {
-    const url: string = "/user/delete/" + id;
+    const url: string = "/api/user/delete/" + id;
     return this.http.delete(url);
   }
 }

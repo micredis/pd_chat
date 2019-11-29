@@ -65,7 +65,7 @@ import {MatListModule} from "@angular/material/list";
     MatButtonModule,
     MatCheckboxModule,
     MatSelectModule,
-    MatListModule
+    MatListModule,
   ],
   providers: [MatSnackBar,
     {provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true},

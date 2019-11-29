@@ -7,8 +7,8 @@ import {map} from "rxjs/operators";
 @Injectable()
 export class AuthService {
 
-  private loginUrl: string = "/login";
-  public registrationUrl: string = "/registration";
+  private loginUrl: string = "/api/login";
+  public registrationUrl: string = "/api/registration";
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 

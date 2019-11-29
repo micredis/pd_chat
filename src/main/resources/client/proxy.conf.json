@@ -1,21 +1,13 @@
 {
+  "/api": {
+    "target": "http://localhost:8080",
+    "secure": false
+  },
   "/actuator": {
     "target": "http://localhost:8080",
     "secure": false
   },
   "/login": {
-    "target": "http://localhost:8080",
-    "secure": false
-  },
-  "/user": {
-    "target": "http://localhost:8080",
-    "secure": false
-  },
-  "/message": {
-    "target": "http://localhost:8080",
-    "secure": false
-  },
-  "/registration": {
     "target": "http://localhost:8080",
     "secure": false
   }

@@ -7,7 +7,7 @@
        fxLayoutGap.xs="0">
     <mat-form-field fxFlex="90%">
       <label>
-        <input #filter matInput (keyup)="applyFilter(filter.value)"
+        <input matInput (keyup)="applyFilter($event.target.value)"
                placeholder="Filter">
       </label>
     </mat-form-field>

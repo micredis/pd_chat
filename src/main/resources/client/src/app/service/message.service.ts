@@ -11,10 +11,10 @@ export class MessageService {
   constructor(private http: HttpClient) { }
 
   create(message: Message): Observable<Message> {
-    return this.http.put<Message>("/message/create", message);
+    return this.http.put<Message>("/api/message/create", message);
   }
 
   delete(id: number) {
-    return this.http.delete("/message/" + id);
+    return this.http.delete("/api/message/" + id);
   }
 }
