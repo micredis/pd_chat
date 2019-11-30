@@ -35,6 +35,8 @@ import {MatListModule} from "@angular/material/list";
 import {AddressBookComponent} from "./component/address-book/address-book.component";
 import {NewAddressBookComponent} from './component/new-address-book/new-address-book.component';
 import {AddressBookEditDialogComponent} from './component/address-book-edit-dialog/address-book-edit-dialog.component';
+import {Overlay} from "@angular/cdk/overlay";
+import {LiveAnnouncer} from "@angular/cdk/a11y";
 
 @NgModule({
   declarations: [
@@ -73,7 +75,8 @@ import {AddressBookEditDialogComponent} from './component/address-book-edit-dial
     MatSelectModule,
     MatListModule,
   ],
-  providers: [MatSnackBar,
+  providers: [
+    {provide: MatSnackBar, deps: [Overlay, LiveAnnouncer]},
     {provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
   ],

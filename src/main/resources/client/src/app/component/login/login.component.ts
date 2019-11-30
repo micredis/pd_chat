@@ -1,4 +1,3 @@
-import {User} from "../../model/user.model";
 import {AuthService} from "../../service/auth.service";
 import {first} from "rxjs/operators";
 import {Component, OnInit} from "@angular/core";
@@ -12,12 +11,9 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  private loading: boolean;
   private submitted: boolean;
-  private user: User;
   private email = new FormControl('', [Validators.required, Validators.email]);
   private password = new FormControl();
-  private error = '';
   private returnUrl: string;
   private registrationPage: string = '/registration';
 
@@ -59,16 +55,11 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.loading = true;
     this.authService.login(this.email.value, this.password.value)
     .pipe(first())
     .subscribe(
       data => {
         this.router.navigate([this.returnUrl]).then();
-      },
-      error => {
-        this.error = error;
-        this.loading = false;
       });
   }
 
