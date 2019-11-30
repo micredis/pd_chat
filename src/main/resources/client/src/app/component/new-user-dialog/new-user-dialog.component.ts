@@ -7,6 +7,7 @@ import {first} from "rxjs/operators";
 import {AuthService} from "../../service/auth.service";
 import {Router} from "@angular/router";
 import {Location} from "@angular/common";
+import {UserService} from "../../service/user.service";
 
 @Component({
   selector: 'app-new-user-dialog',
@@ -22,8 +23,8 @@ export class NewUserDialogComponent {
   private url: string = '/user';
 
   constructor(private dialogRef: MatDialogRef<NewUserDialogComponent>,
-              private authService: AuthService,
               private router: Router,
+              private userService: UserService,
               private location: Location) {
   }
 
@@ -44,15 +45,14 @@ export class NewUserDialogComponent {
       return;
     }
 
-    let user: User = {
+    const user: User = {
       fullName: this.fullName.value,
       email: this.email.value,
       login: this.login.value,
       password: this.password.value,
       role: this.role.value
     };
-    this.authService.registrationUrl = this.url;
-    this.authService.registration(user)
+    this.userService.create(user)
     .pipe(first())
     .subscribe(
       data => {

@@ -32,6 +32,9 @@ import {MatSelectModule} from "@angular/material/select";
 import {MessageEditDialogComponent} from './component/message-edit-dialog/message-edit-dialog.component';
 import {NewMessageDialogComponent} from './component/new-message-dialog/new-message-dialog.component';
 import {MatListModule} from "@angular/material/list";
+import {AddressBookComponent} from "./component/address-book/address-book.component";
+import {NewAddressBookComponent} from './component/new-address-book/new-address-book.component';
+import {AddressBookEditDialogComponent} from './component/address-book-edit-dialog/address-book-edit-dialog.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +45,9 @@ import {MatListModule} from "@angular/material/list";
     UserEditDialogComponent,
     MessageEditDialogComponent,
     NewMessageDialogComponent,
+    AddressBookComponent,
+    NewAddressBookComponent,
+    AddressBookEditDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +82,9 @@ import {MatListModule} from "@angular/material/list";
     NewUserDialogComponent,
     UserEditDialogComponent,
     NewMessageDialogComponent,
-    MessageEditDialogComponent],
+    MessageEditDialogComponent,
+    NewAddressBookComponent,
+    AddressBookEditDialogComponent],
 })
 export class AppModule {
 }

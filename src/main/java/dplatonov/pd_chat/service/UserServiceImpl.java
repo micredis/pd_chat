@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
   @Override
   public List<UserDto> getUsers() {
     List<User> users = userDao.findAll();
-    return users.stream().map(UserDto::new).collect(Collectors.toList());
+    return users.stream().skip(1).map(UserDto::new).collect(Collectors.toList());
   }
 
   @Override

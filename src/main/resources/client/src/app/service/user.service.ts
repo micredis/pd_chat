@@ -22,4 +22,8 @@ export class UserService {
   getUsers(){
     return this.http.get<User[]>("/api/user/list")
   }
+
+  create(user: User){
+    return this.http.put<User>("/api/user", user);
+  }
 }

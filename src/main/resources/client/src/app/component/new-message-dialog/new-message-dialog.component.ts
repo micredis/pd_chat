@@ -47,6 +47,7 @@ export class NewMessageDialogComponent {
 
     this.messageService.create(message).pipe(first()).subscribe(value => {
       this.dialogRef.close();
+      this.refresh();
     });
   }
 
@@ -72,7 +73,7 @@ export class NewMessageDialogComponent {
     this.dialogRef.close();
   }
 
-  refreshUsers() {
+  refresh() {
     this.router.navigateByUrl('/HomeComponent', { skipLocationChange: true }).then(() => {
       this.router.navigate([decodeURI(this.location.path())]).then();
     });

@@ -49,6 +49,32 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/component/address-book-edit-dialog/address-book-edit-dialog.component.html":
+/*!**********************************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/component/address-book-edit-dialog/address-book-edit-dialog.component.html ***!
+  \**********************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div fxLayoutGap=\"20px\">\n  <div class=\"modal-header\" fxLayout=\"column\" fxLayoutAlign=\"center center\">\n    <div>Delete Person</div>\n  </div>\n  <div class=\"modal-content\" fxLayout=\"column\" fxLayoutAlign=\"space-between stretch\"\n       fxLayoutGap=\"10px\">\n    <mat-list fxLayout=\"column\" fxLayoutAlign=\"start stretch\"\n              fxLayoutGap=\"10px\">\n      <div fxLayout=\"column\" fxLayoutAlign=\"start center\" fxLayoutAlign.xs=\"start stretch\"\n           fxLayoutGap=\"10px\">\n        <mat-list-item>Full name: {{fullName}}</mat-list-item>\n        <mat-list-item class=\"modal-footer\">Email: {{email}}</mat-list-item>\n      </div>\n      <div class=\"modal-footer\" fxLayout=\"row\" fxLayoutAlign=\"end stretch\" fxLayoutGap=\"10px\">\n        <button mat-button md-raised-button type=\"button\" color=\"warn\" class=\"stretch-50-xs\"\n                (click)=\"delete()\">\n          <mat-icon>delete</mat-icon>\n        </button>\n        <button mat-button md-raised-button type=\"button\" color=\"primary\" class=\"stretch-50-xs\"\n                (click)=\"onCancel()\">\n          <mat-icon>cancel</mat-icon>\n        </button>\n      </div>\n    </mat-list>\n  </div>\n</div>\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/component/address-book/address-book.component.html":
+/*!**********************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/component/address-book/address-book.component.html ***!
+  \**********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div fxLayout=\"column\">\r\n  <span style=\"font: 25px bold\">Address Book</span>\r\n  <div fxLayout\r\n       fxLayout.xs=\"column\"\r\n       fxLayoutAlign=\"start\"\r\n       fxLayoutGap=\"10px\"\r\n       fxLayoutGap.xs=\"0\">\r\n    <mat-form-field fxFlex=\"90%\">\r\n      <label>\r\n        <input matInput (keyup)=\"applyFilter($event.target.value)\"\r\n               placeholder=\"Filter\">\r\n      </label>\r\n    </mat-form-field>\r\n    <button mat-button color=\"primary\" fxFlex=\"10%\" value=\"bold\" (click)=\"createPerson()\">\r\n      <mat-icon>add</mat-icon>\r\n      New\r\n    </button>\r\n  </div>\r\n  <table mat-table [dataSource]=\"dataSource\" matSort class=\"mat-elevation-z8\">\r\n    <ng-container matColumnDef=\"position\">\r\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> No.</th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.position}} </td>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"fullName\">\r\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> Full Name</th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.fullName}} </td>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"email\">\r\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> Email</th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.email}} </td>\r\n    </ng-container>\r\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"\r\n        (click)=\"selected(row);\">\r\n  </table>\r\n  <mat-paginator [pageSizeOptions]=\"[10, 20, 30]\" showFirstLastButtons></mat-paginator>\r\n</div>\r\n");
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/component/home/home.component.html":
 /*!******************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/component/home/home.component.html ***!
@@ -58,7 +84,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div fxLayout=\"column\">\r\n  <span style=\"font: 25px bold\">Messages</span>\r\n  <mat-form-field>\r\n    <label>\r\n      <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filter\">\r\n    </label>\r\n  </mat-form-field>\r\n  <table mat-table [dataSource]=\"dataSource\" matSort class=\"mat-elevation-z8\">\r\n    <ng-container matColumnDef=\"position\">\r\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> No.</th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.position}} </td>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"author\">\r\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> Author</th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.author}} </td>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"recipient\" *ngIf=\"isAdmin()\" class=\"hide\">\r\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> Recipient</th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.recipient}} </td>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"date\">\r\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date</th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.date}} </td>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"title\">\r\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> Title</th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.title}} </td>\r\n    </ng-container>\r\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n  </table>\r\n  <mat-paginator [pageSizeOptions]=\"[10, 20, 30]\" showFirstLastButtons></mat-paginator>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div fxLayout=\"column\">\r\n  <span style=\"font: 25px bold\">Messages</span>\r\n  <div fxLayout\r\n       fxLayout.xs=\"column\"\r\n       fxLayoutAlign=\"start\"\r\n       fxLayoutGap=\"10px\"\r\n       fxLayoutGap.xs=\"0\">\r\n    <mat-form-field fxFlex=\"90%\">\r\n      <label>\r\n        <input matInput (keyup)=\"applyFilter($event.target.value)\"\r\n               placeholder=\"Filter\">\r\n      </label>\r\n    </mat-form-field>\r\n    <button mat-button color=\"primary\" fxFlex=\"10%\" value=\"bold\" (click)=\"createMessage()\">\r\n      <mat-icon>add</mat-icon>\r\n      New\r\n    </button>\r\n  </div>\r\n  <table mat-table [dataSource]=\"dataSource\" matSort class=\"mat-elevation-z8\">\r\n    <ng-container matColumnDef=\"position\">\r\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> No.</th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.position}} </td>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"author\">\r\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> Author</th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.author}} </td>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"recipient\" *ngIf=\"isAdmin()\" class=\"hide\">\r\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> Recipient</th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.recipient}} </td>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"date\">\r\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date</th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.date | date: 'medium'}} </td>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"title\">\r\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> Title</th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.title}} </td>\r\n    </ng-container>\r\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"\r\n        (click)=\"selected(row);\">\r\n  </table>\r\n  <mat-paginator [pageSizeOptions]=\"[10, 20, 30]\" showFirstLastButtons></mat-paginator>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -75,6 +101,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/component/message-edit-dialog/message-edit-dialog.component.html":
+/*!************************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/component/message-edit-dialog/message-edit-dialog.component.html ***!
+  \************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div fxLayoutGap=\"20px\">\r\n  <div class=\"modal-header\" fxLayout=\"column\" fxLayoutAlign=\"center center\">\r\n    <div>Delete Message</div>\r\n  </div>\r\n  <div class=\"modal-content\" fxLayout=\"column\" fxLayoutAlign=\"space-between stretch\"\r\n       fxLayoutGap=\"10px\">\r\n    <mat-list fxLayout=\"column\" fxLayoutAlign=\"start stretch\"\r\n          fxLayoutGap=\"10px\">\r\n      <div fxLayout=\"column\" fxLayoutAlign=\"start center\" fxLayoutAlign.xs=\"start stretch\"\r\n           fxLayoutGap=\"10px\">\r\n        <mat-list-item>Sent message to: {{message.to}}</mat-list-item>\r\n        <mat-list-item class=\"modal-footer\">{{message.title}}</mat-list-item>\r\n        <mat-list-item class=\"modal-footer\">{{message.message}}</mat-list-item>\r\n      </div>\r\n      <div class=\"modal-footer\" fxLayout=\"row\" fxLayoutAlign=\"end stretch\" fxLayoutGap=\"10px\">\r\n        <button mat-button md-raised-button type=\"button\" color=\"warn\" class=\"stretch-50-xs\"\r\n                (click)=\"delete()\">\r\n          <mat-icon>delete</mat-icon>\r\n        </button>\r\n        <button mat-button md-raised-button type=\"button\" color=\"primary\" class=\"stretch-50-xs\"\r\n                (click)=\"onCancel()\">\r\n          <mat-icon>cancel</mat-icon>\r\n        </button>\r\n      </div>\r\n    </mat-list>\r\n  </div>\r\n</div>\r\n");
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/component/navigation/navigation.component.html":
 /*!******************************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/component/navigation/navigation.component.html ***!
@@ -84,7 +123,33 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<mat-toolbar color=\"primary\">\r\n  <div class=\"flex-container\" fxLayout=\"row\" fxFlexFill fxLayoutAlign=\"center center\">\r\n    <div fxFlex>\r\n      <div fxLayout=\"row\" fxLayoutAlign=\"start center\">\r\n        <div *ngIf=\"isAuthenticated()\">\r\n          <button mat-mini-fab color=\"primary\" matTooltip=\"Menu\"\r\n                  (click)=\"toggleOverlay(drawer.toggle())\">\r\n            <mat-icon>apps</mat-icon>\r\n          </button>\r\n          <span style=\"margin-left: 10px\">pd_chat</span>\r\n        </div>\r\n        <div class=\"app-title\"></div>\r\n      </div>\r\n    </div>\r\n    <div fxFlex>\r\n      <div fxLayout=\"row\" fxLayoutAlign=\"end center\">\r\n        <div *ngIf=\"isAuthenticated()\" class=\"hide\">\r\n          <mat-icon class=\"userIcon\" style=\"margin-top: 5px\">perm_identity</mat-icon>\r\n        </div>\r\n        <span class=\"userText\">{{username}}</span>\r\n        <button *ngIf=\"isAuthenticated()\" class=\"nav_button\" mat-button=\"\" (click)=\"logout()\"\r\n                matTooltip=\"logout\">\r\n          <mat-icon>power_settings_new</mat-icon>\r\n        </button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</mat-toolbar>\r\n<mat-sidenav-container class=\"sidenav\">\r\n  <mat-sidenav #drawer class=\"sidenav\" fixedInViewport\r\n               [attr.role]=\"(isHandset$ | async) ? 'dialog' : 'navigation'\"\r\n               [mode]=\"(isHandset$ | async) ? 'over' : 'side'\"\r\n               [opened]=\"(isHandset$ | async) === true\">\r\n    <mat-toolbar (click)=\"toggleOverlay(drawer.toggle())\">Menu</mat-toolbar>\r\n    <mat-nav-list>\r\n      <a mat-list-item (click)=\"getUsers(); toggleOverlay(drawer.toggle());\"\r\n         *ngIf=\"isAuthenticated() && isAdmin()\"\r\n         class=\"hide\">Users</a>\r\n      <a mat-list-item (click)=\"openMessages(); toggleOverlay(drawer.toggle());\">Messages</a>\r\n      <a mat-list-item (click)=\"about(); toggleOverlay(drawer.toggle());\">About</a>\r\n      <a mat-list-item href=\"https://angular.io/\" target=\"_blank\"\r\n         (click)=\"toggleOverlay(drawer.toggle())\">Angular</a>\r\n      <a mat-list-item href=\"https://github.com/angular/flex-layout/\" target=\"_blank\"\r\n         (click)=\"toggleOverlay(drawer.toggle())\">Flex\r\n        Layout</a>\r\n      <a mat-list-item href=\"https://material.angular.io/\" target=\"_blank\"\r\n         (click)=\"toggleOverlay(drawer.toggle())\">Angular Material</a>\r\n    </mat-nav-list>\r\n  </mat-sidenav>\r\n</mat-sidenav-container>\r\n<div class=\"overlay\" *ngIf=\"visible\" (click)=\"toggleOverlay(drawer.toggle())\"></div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<mat-toolbar color=\"primary\">\r\n  <div class=\"flex-container\" fxLayout=\"row\" fxFlexFill fxLayoutAlign=\"center center\">\r\n    <div fxFlex>\r\n      <div fxLayout=\"row\" fxLayoutAlign=\"start center\">\r\n        <div *ngIf=\"isAuthenticated()\">\r\n          <button mat-mini-fab color=\"primary\" matTooltip=\"Menu\"\r\n                  (click)=\"toggleOverlay(drawer.toggle())\">\r\n            <mat-icon>apps</mat-icon>\r\n          </button>\r\n          <span style=\"margin-left: 10px\">pd_chat</span>\r\n        </div>\r\n        <div class=\"app-title\"></div>\r\n      </div>\r\n    </div>\r\n    <div fxFlex>\r\n      <div fxLayout=\"row\" fxLayoutAlign=\"end center\">\r\n        <div *ngIf=\"isAuthenticated()\" class=\"hide\">\r\n          <mat-icon class=\"userIcon\" style=\"margin-top: 5px\">perm_identity</mat-icon>\r\n        </div>\r\n        <span class=\"userText\">{{username}}</span>\r\n        <button *ngIf=\"isAuthenticated()\" class=\"nav_button\" mat-button=\"\" (click)=\"logout()\"\r\n                matTooltip=\"logout\">\r\n          <mat-icon>power_settings_new</mat-icon>\r\n        </button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</mat-toolbar>\r\n<mat-sidenav-container class=\"sidenav\">\r\n  <mat-sidenav #drawer class=\"sidenav\" fixedInViewport\r\n               [attr.role]=\"(isHandset$ | async) ? 'dialog' : 'navigation'\"\r\n               [mode]=\"(isHandset$ | async) ? 'over' : 'side'\"\r\n               [opened]=\"(isHandset$ | async) === true\">\r\n    <mat-toolbar (click)=\"toggleOverlay(drawer.toggle())\">Menu</mat-toolbar>\r\n    <mat-nav-list>\r\n      <a mat-list-item (click)=\"getUsers(); toggleOverlay(drawer.toggle());\"\r\n         *ngIf=\"isAuthenticated() && isAdmin()\"\r\n         class=\"hide\">Users</a>\r\n      <a mat-list-item (click)=\"openMessages(); toggleOverlay(drawer.toggle());\">Messages</a>\r\n      <a mat-list-item (click)=\"openAddressBook(); toggleOverlay(drawer.toggle());\">Address Book</a>\r\n      <a mat-list-item (click)=\"about(); toggleOverlay(drawer.toggle());\">About</a>\r\n      <a mat-list-item href=\"https://angular.io/\" target=\"_blank\"\r\n         (click)=\"toggleOverlay(drawer.toggle())\">Angular</a>\r\n      <a mat-list-item href=\"https://github.com/angular/flex-layout/\" target=\"_blank\"\r\n         (click)=\"toggleOverlay(drawer.toggle())\">Flex\r\n        Layout</a>\r\n      <a mat-list-item href=\"https://material.angular.io/\" target=\"_blank\"\r\n         (click)=\"toggleOverlay(drawer.toggle())\">Angular Material</a>\r\n    </mat-nav-list>\r\n  </mat-sidenav>\r\n</mat-sidenav-container>\r\n<div class=\"overlay\" *ngIf=\"visible\" (click)=\"toggleOverlay(drawer.toggle())\"></div>\r\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/component/new-address-book/new-address-book.component.html":
+/*!******************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/component/new-address-book/new-address-book.component.html ***!
+  \******************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div fxLayoutGap=\"20px\">\n  <div class=\"modal-header\" fxLayout=\"column\" fxLayoutAlign=\"center center\">\n    <div>New Person</div>\n  </div>\n  <div class=\"modal-content\" fxLayout=\"column\" fxLayoutAlign=\"space-between stretch\"\n       fxLayoutGap=\"10px\">\n    <form (ngSubmit)=\"onSubmit()\" fxLayout=\"column\" fxLayoutAlign=\"start stretch\"\n          fxLayoutGap=\"10px\">\n      <div fxLayout=\"column\" fxLayoutAlign=\"start center\" fxLayoutAlign.xs=\"start stretch\"\n           fxLayoutGap=\"10px\">\n        <mat-form-field>\n          <label>\n            <input matInput placeholder=\"Enter full name\" [formControl]=\"fullName\" required>\n          </label>\n          <mat-error *ngIf=\"fullName.invalid\">{{getFullNameErrorMessage()}}</mat-error>\n        </mat-form-field>\n        <mat-form-field>\n          <label>\n            <input matInput placeholder=\"Enter email\" [formControl]=\"email\" required>\n          </label>\n          <mat-error *ngIf=\"email.invalid\">{{getEmailErrorMessage()}}</mat-error>\n        </mat-form-field>\n      </div>\n      <div class=\"modal-footer\" fxLayout=\"row\" fxLayoutAlign=\"end stretch\" fxLayoutGap=\"10px\">\n        <button mat-button fxFlex md-raised-button color=\"primary\" type=\"submit\">\n          <mat-icon>done</mat-icon>\n        </button>\n        <button mat-button md-raised-button type=\"button\" color=\"primary\" class=\"stretch-50-xs\"\n                (click)=\"onCancel()\">\n          <mat-icon>cancel</mat-icon>\n        </button>\n      </div>\n    </form>\n  </div>\n</div>\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/component/new-message-dialog/new-message-dialog.component.html":
+/*!**********************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/component/new-message-dialog/new-message-dialog.component.html ***!
+  \**********************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div fxLayoutGap=\"20px\">\r\n  <div class=\"modal-header\" fxLayout=\"column\" fxLayoutAlign=\"center center\">\r\n    <div>New Message</div>\r\n  </div>\r\n  <div class=\"modal-content\" fxLayout=\"column\" fxLayoutAlign=\"space-between stretch\"\r\n       fxLayoutGap=\"10px\">\r\n    <form (ngSubmit)=\"onSubmit()\" fxLayout=\"column\" fxLayoutAlign=\"start stretch\"\r\n          fxLayoutGap=\"10px\">\r\n      <div fxLayout=\"column\" fxLayoutAlign=\"start center\" fxLayoutAlign.xs=\"start stretch\"\r\n           fxLayoutGap=\"10px\">\r\n        <mat-form-field>\r\n          <label>\r\n            <input matInput placeholder=\"Enter email for send to\" [formControl]=\"emailTo\" required>\r\n          </label>\r\n          <mat-error *ngIf=\"emailTo.invalid\">{{getEmailToErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n        <mat-form-field>\r\n          <label>\r\n            <input matInput placeholder=\"Enter message title\" [formControl]=\"title\" required>\r\n          </label>\r\n          <mat-error *ngIf=\"title.invalid\">{{getTitleErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n        <mat-form-field>\r\n          <label>\r\n            <textarea matInput placeholder=\"Enter your message\" [formControl]=\"messageBody\"\r\n                      required></textarea>\r\n          </label>\r\n          <mat-error *ngIf=\"messageBody.invalid\">{{getMessageErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n      <div class=\"modal-footer\" fxLayout=\"row\" fxLayoutAlign=\"end stretch\" fxLayoutGap=\"10px\">\r\n        <button mat-button fxFlex md-raised-button color=\"primary\" type=\"submit\">\r\n          <mat-icon>done</mat-icon>\r\n        </button>\r\n        <button mat-button md-raised-button type=\"button\" color=\"primary\" class=\"stretch-50-xs\"\r\n                (click)=\"onCancel()\">\r\n          <mat-icon (click)=\"onCancel()\">cancel</mat-icon>\r\n        </button>\r\n      </div>\r\n    </form>\r\n  </div>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -97,7 +162,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div fxLayoutGap=\"20px\">\r\n  <div class=\"modal-header\" fxLayout=\"column\" fxLayoutAlign=\"center center\" >\r\n    <div>New User</div>\r\n  </div>\r\n  <div class=\"modal-content\" fxLayout=\"column\" fxLayoutAlign=\"space-between stretch\" fxLayoutGap=\"10px\">\r\n    <form #regForm=\"ngForm\" (ngSubmit)=\"onSubmit()\" fxLayout=\"column\" fxLayoutAlign=\"start stretch\"\r\n          fxLayoutGap=\"10px\">\r\n      <div fxLayout=\"column\" fxLayoutAlign=\"start center\" fxLayoutAlign.xs=\"start stretch\"\r\n           fxLayoutGap=\"10px\">\r\n        <mat-form-field>\r\n          <label>\r\n            <input matInput placeholder=\"Enter you Full Name\" [formControl]=\"fullName\" required>\r\n          </label>\r\n          <mat-error *ngIf=\"fullName.invalid\">{{getFullNameErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n        <mat-form-field>\r\n          <label>\r\n            <input matInput placeholder=\"Enter your email\" [formControl]=\"email\" required>\r\n          </label>\r\n          <mat-error *ngIf=\"email.invalid\">{{getEmailErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n        <mat-form-field>\r\n          <label>\r\n            <input matInput placeholder=\"Enter your login name\" [formControl]=\"login\" required>\r\n          </label>\r\n          <mat-error *ngIf=\"login.invalid\">{{getLoginErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n        <mat-form-field>\r\n          <label>\r\n            <input matInput placeholder=\"Enter your password\" [formControl]=\"password\"\r\n                   [type]=\"'password'\" required>\r\n          </label>\r\n          <mat-error *ngIf=\"email.invalid\">{{getPasswordErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n        <mat-form-field>\r\n          <mat-select placeholder=\"Role\" [formControl]=\"role\">\r\n            <mat-option value=\"ADMIN\">ADMIN</mat-option>\r\n            <mat-option value=\"PARTICIPANT\">PARTICIPANT</mat-option>\r\n          </mat-select>\r\n        </mat-form-field>\r\n      </div>\r\n      <div class=\"modal-footer\" fxLayout=\"row\" fxLayoutAlign=\"end stretch\" fxLayoutGap=\"10px\">\r\n        <button mat-button fxFlex md-raised-button color=\"primary\" type=\"submit\">\r\n          <mat-icon>done</mat-icon>\r\n        </button>\r\n        <button mat-button md-raised-button type=\"button\" color=\"primary\" class=\"stretch-50-xs\"\r\n                (click)=\"onCancel()\">\r\n          <mat-icon (click)=\"onCancel()\">cancel</mat-icon>\r\n        </button>\r\n      </div>\r\n    </form>\r\n  </div>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div fxLayoutGap=\"20px\">\r\n  <div class=\"modal-header\" fxLayout=\"column\" fxLayoutAlign=\"center center\" >\r\n    <div>New User</div>\r\n  </div>\r\n  <div class=\"modal-content\" fxLayout=\"column\" fxLayoutAlign=\"space-between stretch\" fxLayoutGap=\"10px\">\r\n    <form (ngSubmit)=\"onSubmit()\" fxLayout=\"column\" fxLayoutAlign=\"start stretch\"\r\n          fxLayoutGap=\"10px\">\r\n      <div fxLayout=\"column\" fxLayoutAlign=\"start center\" fxLayoutAlign.xs=\"start stretch\"\r\n           fxLayoutGap=\"10px\">\r\n        <mat-form-field>\r\n          <label>\r\n            <input matInput placeholder=\"Enter you Full Name\" [formControl]=\"fullName\" required>\r\n          </label>\r\n          <mat-error *ngIf=\"fullName.invalid\">{{getFullNameErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n        <mat-form-field>\r\n          <label>\r\n            <input matInput placeholder=\"Enter your email\" [formControl]=\"email\" required>\r\n          </label>\r\n          <mat-error *ngIf=\"email.invalid\">{{getEmailErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n        <mat-form-field>\r\n          <label>\r\n            <input matInput placeholder=\"Enter your login name\" [formControl]=\"login\" required>\r\n          </label>\r\n          <mat-error *ngIf=\"login.invalid\">{{getLoginErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n        <mat-form-field>\r\n          <label>\r\n            <input matInput placeholder=\"Enter your password\" [formControl]=\"password\"\r\n                   [type]=\"'password'\" required>\r\n          </label>\r\n          <mat-error *ngIf=\"email.invalid\">{{getPasswordErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n        <mat-form-field>\r\n          <mat-select placeholder=\"Role\" [formControl]=\"role\">\r\n            <mat-option value=\"ADMIN\">ADMIN</mat-option>\r\n            <mat-option value=\"PARTICIPANT\">PARTICIPANT</mat-option>\r\n          </mat-select>\r\n        </mat-form-field>\r\n      </div>\r\n      <div class=\"modal-footer\" fxLayout=\"row\" fxLayoutAlign=\"end stretch\" fxLayoutGap=\"10px\">\r\n        <button mat-button fxFlex md-raised-button color=\"primary\" type=\"submit\">\r\n          <mat-icon>done</mat-icon>\r\n        </button>\r\n        <button mat-button md-raised-button type=\"button\" color=\"primary\" class=\"stretch-50-xs\"\r\n                (click)=\"onCancel()\">\r\n          <mat-icon (click)=\"onCancel()\">cancel</mat-icon>\r\n        </button>\r\n      </div>\r\n    </form>\r\n  </div>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -123,7 +188,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div fxLayoutGap=\"20px\">\r\n  <div class=\"modal-header\" fxLayout=\"column\" fxLayoutAlign=\"center center\" >\r\n    <div>New User</div>\r\n  </div>\r\n  <div class=\"modal-content\" fxLayout=\"column\" fxLayoutAlign=\"space-between stretch\" fxLayoutGap=\"10px\">\r\n    <form (ngSubmit)=\"onSubmit()\" fxLayout=\"column\" fxLayoutAlign=\"start stretch\"\r\n          fxLayoutGap=\"10px\">\r\n      <div fxLayout=\"column\" fxLayoutAlign=\"start center\" fxLayoutAlign.xs=\"start stretch\"\r\n           fxLayoutGap=\"10px\">\r\n        <mat-form-field>\r\n          <label>\r\n            <input matInput placeholder=\"Enter you Full Name\" [formControl]=\"fullName\"\r\n                   [value]=\"user.fullName\"\r\n                   required>\r\n          </label>\r\n          <mat-error *ngIf=\"fullName.invalid\">{{getFullNameErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n        <mat-form-field>\r\n          <label>\r\n            <input matInput placeholder=\"Enter your email\" [formControl]=\"email\"\r\n                   [value]=\"user.email\"\r\n                   required>\r\n          </label>\r\n          <mat-error *ngIf=\"email.invalid\">{{getEmailErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n        <mat-form-field>\r\n          <label>\r\n            <input matInput placeholder=\"Enter your login name\" [formControl]=\"login\"\r\n                   [value]=\"user.login\"\r\n                   required>\r\n          </label>\r\n          <mat-error *ngIf=\"login.invalid\">{{getLoginErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n        <mat-form-field>\r\n          <label>\r\n            <input matInput placeholder=\"Enter your new password\" [formControl]=\"password\"\r\n                   [type]=\"'password'\"\r\n                   required>\r\n          </label>\r\n          <mat-error *ngIf=\"email.invalid\">{{getPasswordErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n        <mat-form-field>\r\n          <mat-label>Role</mat-label>\r\n          <mat-select [placeholder]=\"user.role\" [formControl]=\"role\" required>\r\n            <mat-option value=\"ADMIN\">ADMIN</mat-option>\r\n            <mat-option value=\"PARTICIPANT\">PARTICIPANT</mat-option>\r\n          </mat-select>\r\n          <mat-error *ngIf=\"role.invalid\">{{getRoleErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n        <mat-form-field>\r\n          <mat-label>Active</mat-label>\r\n          <mat-select [formControl]=\"active\" required>\r\n            <mat-option value=\"true\">true</mat-option>\r\n            <mat-option value=\"false\">false</mat-option>\r\n          </mat-select>\r\n          <mat-error *ngIf=\"role.invalid\">{{getActiveErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n      <div class=\"modal-footer\" fxLayout=\"row\" fxLayoutAlign=\"end stretch\" fxLayoutGap=\"10px\">\r\n        <button mat-button fxFlex md-raised-button color=\"primary\" type=\"submit\">\r\n          <mat-icon>done</mat-icon>\r\n        </button>\r\n        <button mat-button md-raised-button type=\"button\" color=\"warn\" class=\"stretch-50-xs\"\r\n                (click)=\"delete()\">\r\n          <mat-icon>delete</mat-icon>\r\n        </button>\r\n        <button mat-button md-raised-button type=\"button\" color=\"primary\" class=\"stretch-50-xs\"\r\n                (click)=\"onCancel()\">\r\n          <mat-icon>cancel</mat-icon>\r\n        </button>\r\n      </div>\r\n    </form>\r\n  </div>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div fxLayoutGap=\"20px\">\r\n  <div class=\"modal-header\" fxLayout=\"column\" fxLayoutAlign=\"center center\" >\r\n    <div>Edit User</div>\r\n  </div>\r\n  <div class=\"modal-content\" fxLayout=\"column\" fxLayoutAlign=\"space-between stretch\" fxLayoutGap=\"10px\">\r\n    <form (ngSubmit)=\"onSubmit()\" fxLayout=\"column\" fxLayoutAlign=\"start stretch\"\r\n          fxLayoutGap=\"10px\">\r\n      <div fxLayout=\"column\" fxLayoutAlign=\"start center\" fxLayoutAlign.xs=\"start stretch\"\r\n           fxLayoutGap=\"10px\">\r\n        <mat-form-field>\r\n          <label>\r\n            <input matInput placeholder=\"Enter you Full Name\" [formControl]=\"fullName\"\r\n                   [value]=\"user.fullName\"\r\n                   required>\r\n          </label>\r\n          <mat-error *ngIf=\"fullName.invalid\">{{getFullNameErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n        <mat-form-field>\r\n          <label>\r\n            <input matInput placeholder=\"Enter your email\" [formControl]=\"email\"\r\n                   [value]=\"user.email\"\r\n                   required>\r\n          </label>\r\n          <mat-error *ngIf=\"email.invalid\">{{getEmailErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n        <mat-form-field>\r\n          <label>\r\n            <input matInput placeholder=\"Enter your login name\" [formControl]=\"login\"\r\n                   [value]=\"user.login\"\r\n                   required>\r\n          </label>\r\n          <mat-error *ngIf=\"login.invalid\">{{getLoginErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n        <mat-form-field>\r\n          <label>\r\n            <input matInput placeholder=\"Enter your new password\" [formControl]=\"password\"\r\n                   [type]=\"'password'\"\r\n                   required>\r\n          </label>\r\n          <mat-error *ngIf=\"email.invalid\">{{getPasswordErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n        <mat-form-field>\r\n          <mat-label>Role</mat-label>\r\n          <mat-select [placeholder]=\"user.role\" [formControl]=\"role\" required>\r\n            <mat-option value=\"ADMIN\">ADMIN</mat-option>\r\n            <mat-option value=\"PARTICIPANT\">PARTICIPANT</mat-option>\r\n          </mat-select>\r\n          <mat-error *ngIf=\"role.invalid\">{{getRoleErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n        <mat-form-field>\r\n          <mat-label>Active</mat-label>\r\n          <mat-select [formControl]=\"active\" required>\r\n            <mat-option value=\"true\">true</mat-option>\r\n            <mat-option value=\"false\">false</mat-option>\r\n          </mat-select>\r\n          <mat-error *ngIf=\"role.invalid\">{{getActiveErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n      <div class=\"modal-footer\" fxLayout=\"row\" fxLayoutAlign=\"end stretch\" fxLayoutGap=\"10px\">\r\n        <button mat-button fxFlex md-raised-button color=\"primary\" type=\"submit\">\r\n          <mat-icon>done</mat-icon>\r\n        </button>\r\n        <button mat-button md-raised-button type=\"button\" color=\"warn\" class=\"stretch-50-xs\"\r\n                (click)=\"delete()\">\r\n          <mat-icon>delete</mat-icon>\r\n        </button>\r\n        <button mat-button md-raised-button type=\"button\" color=\"primary\" class=\"stretch-50-xs\"\r\n                (click)=\"onCancel()\">\r\n          <mat-icon>cancel</mat-icon>\r\n        </button>\r\n      </div>\r\n    </form>\r\n  </div>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -136,7 +201,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div fxLayout=\"column\">\r\n  <span style=\"font: 25px bold\">Users</span>\r\n  <div fxLayout\r\n       fxLayout.xs=\"column\"\r\n       fxLayoutAlign=\"center\"\r\n       fxLayoutGap=\"10px\"\r\n       fxLayoutGap.xs=\"0\">\r\n    <mat-form-field fxFlex=\"80%\">\r\n      <label>\r\n        <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filter\">\r\n      </label>\r\n    </mat-form-field>\r\n    <button mat-button color=\"primary\" fxFlex=\"10%\" value=\"bold\" (click)=\"createUser()\">\r\n      <mat-icon>add</mat-icon>\r\n      New\r\n    </button>\r\n    <button mat-button color=\"warn\" fxFlex=\"10%\" value=\"bold\" (click)=\"delete()\">\r\n      <mat-icon>delete</mat-icon>\r\n      Delete\r\n    </button>\r\n  </div>\r\n  <table mat-table [dataSource]=\"dataSource\" matSort class=\"mat-elevation-z8\">\r\n    <ng-container matColumnDef=\"position\">\r\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> No.</th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.position}} </td>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"fullName\">\r\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> Full Name</th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.fullName}} </td>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"email\">\r\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> Email</th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.email}} </td>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"login\">\r\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> Login</th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.login}} </td>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"role\">\r\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> Role</th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.role}} </td>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"isActive\">\r\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> Active</th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.active}} </td>\r\n    </ng-container>\r\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"\r\n        (click)=\"selected(row);\">\r\n    </tr>\r\n  </table>\r\n  <mat-paginator [pageSizeOptions]=\"[10, 20, 30]\" showFirstLastButtons></mat-paginator>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div fxLayout=\"column\">\r\n  <span style=\"font: 25px bold\">Users</span>\r\n  <div fxLayout\r\n       fxLayout.xs=\"column\"\r\n       fxLayoutAlign=\"start\"\r\n       fxLayoutGap=\"10px\"\r\n       fxLayoutGap.xs=\"0\">\r\n    <mat-form-field fxFlex=\"90%\">\r\n      <label>\r\n        <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filter\">\r\n      </label>\r\n    </mat-form-field>\r\n    <button mat-button color=\"primary\" fxFlex=\"10%\" value=\"bold\" (click)=\"createUser()\">\r\n      <mat-icon>add</mat-icon>\r\n      New\r\n    </button>\r\n  </div>\r\n  <table mat-table [dataSource]=\"dataSource\" matSort class=\"mat-elevation-z8\">\r\n    <ng-container matColumnDef=\"position\">\r\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> No.</th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.position}} </td>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"fullName\">\r\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> Full Name</th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.fullName}} </td>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"email\">\r\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> Email</th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.email}} </td>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"login\">\r\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> Login</th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.login}} </td>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"role\">\r\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> Role</th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.role}} </td>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"isActive\">\r\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> Active</th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.active}} </td>\r\n    </ng-container>\r\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"\r\n        (click)=\"selected(row);\">\r\n    </tr>\r\n  </table>\r\n  <mat-paginator [pageSizeOptions]=\"[10, 20, 30]\" showFirstLastButtons></mat-paginator>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -387,6 +452,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _component_home_home_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./component/home/home.component */ "./src/app/component/home/home.component.ts");
 /* harmony import */ var _component_users_users_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./component/users/users.component */ "./src/app/component/users/users.component.ts");
 /* harmony import */ var _component_registration_registration_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./component/registration/registration.component */ "./src/app/component/registration/registration.component.ts");
+/* harmony import */ var _component_address_book_address_book_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./component/address-book/address-book.component */ "./src/app/component/address-book/address-book.component.ts");
+
 
 
 
@@ -396,11 +463,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const routes = [
-    { path: 'login', component: _component_login_login_component__WEBPACK_IMPORTED_MODULE_3__["LoginComponent"] },
-    { path: 'registration', component: _component_registration_registration_component__WEBPACK_IMPORTED_MODULE_7__["RegistrationComponent"] },
     { path: '', component: _component_home_home_component__WEBPACK_IMPORTED_MODULE_5__["HomeComponent"], canActivate: [_helper_auth_guard_service__WEBPACK_IMPORTED_MODULE_4__["AuthGuard"]] },
-    { path: 'home', component: _component_home_home_component__WEBPACK_IMPORTED_MODULE_5__["HomeComponent"], canActivate: [_helper_auth_guard_service__WEBPACK_IMPORTED_MODULE_4__["AuthGuard"]] },
+    { path: 'login', component: _component_login_login_component__WEBPACK_IMPORTED_MODULE_3__["LoginComponent"] },
+    { path: 'address-book', component: _component_address_book_address_book_component__WEBPACK_IMPORTED_MODULE_8__["AddressBookComponent"], canActivate: [_helper_auth_guard_service__WEBPACK_IMPORTED_MODULE_4__["AuthGuard"]] },
     { path: 'users', component: _component_users_users_component__WEBPACK_IMPORTED_MODULE_6__["UsersComponent"], canActivate: [_helper_auth_guard_service__WEBPACK_IMPORTED_MODULE_4__["AuthGuard"]] },
+    { path: 'home', component: _component_home_home_component__WEBPACK_IMPORTED_MODULE_5__["HomeComponent"], canActivate: [_helper_auth_guard_service__WEBPACK_IMPORTED_MODULE_4__["AuthGuard"]] },
+    { path: 'registration', component: _component_registration_registration_component__WEBPACK_IMPORTED_MODULE_7__["RegistrationComponent"] },
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
 ];
@@ -513,6 +581,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @angular/material/checkbox */ "./node_modules/@angular/material/esm2015/checkbox.js");
 /* harmony import */ var _component_user_edit_dialog_user_edit_dialog_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./component/user-edit-dialog/user-edit-dialog.component */ "./src/app/component/user-edit-dialog/user-edit-dialog.component.ts");
 /* harmony import */ var _angular_material_select__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! @angular/material/select */ "./node_modules/@angular/material/esm2015/select.js");
+/* harmony import */ var _component_message_edit_dialog_message_edit_dialog_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./component/message-edit-dialog/message-edit-dialog.component */ "./src/app/component/message-edit-dialog/message-edit-dialog.component.ts");
+/* harmony import */ var _component_new_message_dialog_new_message_dialog_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./component/new-message-dialog/new-message-dialog.component */ "./src/app/component/new-message-dialog/new-message-dialog.component.ts");
+/* harmony import */ var _angular_material_list__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! @angular/material/list */ "./node_modules/@angular/material/esm2015/list.js");
+/* harmony import */ var _component_address_book_address_book_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./component/address-book/address-book.component */ "./src/app/component/address-book/address-book.component.ts");
+/* harmony import */ var _component_new_address_book_new_address_book_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./component/new-address-book/new-address-book.component */ "./src/app/component/new-address-book/new-address-book.component.ts");
+/* harmony import */ var _component_address_book_edit_dialog_address_book_edit_dialog_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./component/address-book-edit-dialog/address-book-edit-dialog.component */ "./src/app/component/address-book-edit-dialog/address-book-edit-dialog.component.ts");
+
+
+
+
+
+
 
 
 
@@ -554,6 +634,11 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _component_users_users_component__WEBPACK_IMPORTED_MODULE_21__["UsersComponent"],
             _component_registration_registration_component__WEBPACK_IMPORTED_MODULE_22__["RegistrationComponent"],
             _component_user_edit_dialog_user_edit_dialog_component__WEBPACK_IMPORTED_MODULE_29__["UserEditDialogComponent"],
+            _component_message_edit_dialog_message_edit_dialog_component__WEBPACK_IMPORTED_MODULE_31__["MessageEditDialogComponent"],
+            _component_new_message_dialog_new_message_dialog_component__WEBPACK_IMPORTED_MODULE_32__["NewMessageDialogComponent"],
+            _component_address_book_address_book_component__WEBPACK_IMPORTED_MODULE_34__["AddressBookComponent"],
+            _component_new_address_book_new_address_book_component__WEBPACK_IMPORTED_MODULE_35__["NewAddressBookComponent"],
+            _component_address_book_edit_dialog_address_book_edit_dialog_component__WEBPACK_IMPORTED_MODULE_36__["AddressBookEditDialogComponent"]
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -576,14 +661,22 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _component_new_user_dialog_new_user_dialog_module__WEBPACK_IMPORTED_MODULE_26__["NewUserDialogModule"],
             _angular_material_button__WEBPACK_IMPORTED_MODULE_27__["MatButtonModule"],
             _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_28__["MatCheckboxModule"],
-            _angular_material_select__WEBPACK_IMPORTED_MODULE_30__["MatSelectModule"]
+            _angular_material_select__WEBPACK_IMPORTED_MODULE_30__["MatSelectModule"],
+            _angular_material_list__WEBPACK_IMPORTED_MODULE_33__["MatListModule"],
         ],
         providers: [_angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_11__["MatSnackBar"],
             { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_12__["HTTP_INTERCEPTORS"], useClass: _helper_basic_auth_interceptor__WEBPACK_IMPORTED_MODULE_13__["BasicAuthInterceptor"], multi: true },
             { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_12__["HTTP_INTERCEPTORS"], useClass: _helper_error_interceptor__WEBPACK_IMPORTED_MODULE_14__["ErrorInterceptor"], multi: true },
         ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]],
-        entryComponents: [_component_new_user_dialog_new_user_dialog_component__WEBPACK_IMPORTED_MODULE_25__["NewUserDialogComponent"], _component_user_edit_dialog_user_edit_dialog_component__WEBPACK_IMPORTED_MODULE_29__["UserEditDialogComponent"]],
+        entryComponents: [
+            _component_new_user_dialog_new_user_dialog_component__WEBPACK_IMPORTED_MODULE_25__["NewUserDialogComponent"],
+            _component_user_edit_dialog_user_edit_dialog_component__WEBPACK_IMPORTED_MODULE_29__["UserEditDialogComponent"],
+            _component_new_message_dialog_new_message_dialog_component__WEBPACK_IMPORTED_MODULE_32__["NewMessageDialogComponent"],
+            _component_message_edit_dialog_message_edit_dialog_component__WEBPACK_IMPORTED_MODULE_31__["MessageEditDialogComponent"],
+            _component_new_address_book_new_address_book_component__WEBPACK_IMPORTED_MODULE_35__["NewAddressBookComponent"],
+            _component_address_book_edit_dialog_address_book_edit_dialog_component__WEBPACK_IMPORTED_MODULE_36__["AddressBookEditDialogComponent"]
+        ],
     })
 ], AppModule);
 
@@ -707,6 +800,208 @@ AboutModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./src/app/component/address-book-edit-dialog/address-book-edit-dialog.component.css":
+/*!*******************************************************************************************!*\
+  !*** ./src/app/component/address-book-edit-dialog/address-book-edit-dialog.component.css ***!
+  \*******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudC9hZGRyZXNzLWJvb2stZWRpdC1kaWFsb2cvYWRkcmVzcy1ib29rLWVkaXQtZGlhbG9nLmNvbXBvbmVudC5jc3MifQ== */");
+
+/***/ }),
+
+/***/ "./src/app/component/address-book-edit-dialog/address-book-edit-dialog.component.ts":
+/*!******************************************************************************************!*\
+  !*** ./src/app/component/address-book-edit-dialog/address-book-edit-dialog.component.ts ***!
+  \******************************************************************************************/
+/*! exports provided: AddressBookEditDialogComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddressBookEditDialogComponent", function() { return AddressBookEditDialogComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm2015/dialog.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+/* harmony import */ var _service_address_book_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../service/address-book.service */ "./src/app/service/address-book.service.ts");
+
+
+
+
+
+
+
+let AddressBookEditDialogComponent = class AddressBookEditDialogComponent {
+    constructor(dialogRef, addressBookService, router, location, data) {
+        this.dialogRef = dialogRef;
+        this.addressBookService = addressBookService;
+        this.router = router;
+        this.location = location;
+        this.data = data;
+        this.addressBook = data.pageValue;
+        this.fullName = this.addressBook.fullName;
+        this.email = this.addressBook.email;
+    }
+    delete() {
+        this.addressBookService.delete(this.addressBook.id).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["first"])()).subscribe(value => {
+            this.dialogRef.close();
+            this.refresh();
+        });
+    }
+    onCancel() {
+        this.dialogRef.close();
+    }
+    refresh() {
+        this.router.navigateByUrl('/AddressBookComponent', { skipLocationChange: true }).then(() => {
+            this.router.navigate([decodeURI(this.location.path())]).then();
+        });
+    }
+};
+AddressBookEditDialogComponent.ctorParameters = () => [
+    { type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"] },
+    { type: _service_address_book_service__WEBPACK_IMPORTED_MODULE_6__["AddressBookService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] },
+    { type: _angular_common__WEBPACK_IMPORTED_MODULE_4__["Location"] },
+    { type: undefined, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Optional"] }, { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"], args: [_angular_material_dialog__WEBPACK_IMPORTED_MODULE_2__["MAT_DIALOG_DATA"],] }] }
+];
+AddressBookEditDialogComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-address-book-edit-dialog',
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./address-book-edit-dialog.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/component/address-book-edit-dialog/address-book-edit-dialog.component.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./address-book-edit-dialog.component.css */ "./src/app/component/address-book-edit-dialog/address-book-edit-dialog.component.css")).default]
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](4, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Optional"])()), tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](4, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material_dialog__WEBPACK_IMPORTED_MODULE_2__["MAT_DIALOG_DATA"]))
+], AddressBookEditDialogComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/component/address-book/address-book.component.css":
+/*!*******************************************************************!*\
+  !*** ./src/app/component/address-book/address-book.component.css ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudC9hZGRyZXNzLWJvb2svYWRkcmVzcy1ib29rLmNvbXBvbmVudC5jc3MifQ== */");
+
+/***/ }),
+
+/***/ "./src/app/component/address-book/address-book.component.ts":
+/*!******************************************************************!*\
+  !*** ./src/app/component/address-book/address-book.component.ts ***!
+  \******************************************************************/
+/*! exports provided: AddressBookComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddressBookComponent", function() { return AddressBookComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_material_table__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material/table */ "./node_modules/@angular/material/esm2015/table.js");
+/* harmony import */ var _angular_material_paginator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material/paginator */ "./node_modules/@angular/material/esm2015/paginator.js");
+/* harmony import */ var _angular_material_sort__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material/sort */ "./node_modules/@angular/material/esm2015/sort.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+/* harmony import */ var _service_auth_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../service/auth.service */ "./src/app/service/auth.service.ts");
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm2015/dialog.js");
+/* harmony import */ var _service_address_book_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../service/address-book.service */ "./src/app/service/address-book.service.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+/* harmony import */ var _new_address_book_new_address_book_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../new-address-book/new-address-book.component */ "./src/app/component/new-address-book/new-address-book.component.ts");
+/* harmony import */ var _address_book_edit_dialog_address_book_edit_dialog_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../address-book-edit-dialog/address-book-edit-dialog.component */ "./src/app/component/address-book-edit-dialog/address-book-edit-dialog.component.ts");
+
+
+
+
+
+
+
+
+
+
+
+
+let AddressBookComponent = class AddressBookComponent {
+    constructor(http, authService, dialog, addressBookService) {
+        this.http = http;
+        this.authService = authService;
+        this.dialog = dialog;
+        this.addressBookService = addressBookService;
+        this.displayedColumns = ['position', 'fullName', 'email'];
+        this.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"](this.data);
+        this.pageSize = 10;
+    }
+    ngOnInit() {
+        this.addressBookService.getBooks().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["map"])(res => {
+            const periodicElements = [];
+            res.forEach((value, index) => {
+                periodicElements.push({
+                    position: index,
+                    id: value.id,
+                    fullName: value.fullName,
+                    email: value.email,
+                    deleted: value.deleted
+                });
+            });
+            return periodicElements;
+        })).subscribe(value => {
+            this.paginator._changePageSize(this.pageSize);
+            this.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"](value);
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+        });
+    }
+    applyFilter(filterValue) {
+        this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
+    createPerson() {
+        this.dialog.open(_new_address_book_new_address_book_component__WEBPACK_IMPORTED_MODULE_10__["NewAddressBookComponent"], { disableClose: false });
+    }
+    selected(row) {
+        const addressBook = {
+            id: row.id,
+            fullName: row.fullName,
+            email: row.email,
+        };
+        this.dialog.open(_address_book_edit_dialog_address_book_edit_dialog_component__WEBPACK_IMPORTED_MODULE_11__["AddressBookEditDialogComponent"], {
+            disableClose: false,
+            data: { pageValue: addressBook }
+        });
+    }
+};
+AddressBookComponent.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClient"] },
+    { type: _service_auth_service__WEBPACK_IMPORTED_MODULE_6__["AuthService"] },
+    { type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_7__["MatDialog"] },
+    { type: _service_address_book_service__WEBPACK_IMPORTED_MODULE_8__["AddressBookService"] }
+];
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(_angular_material_paginator__WEBPACK_IMPORTED_MODULE_3__["MatPaginator"], { static: true })
+], AddressBookComponent.prototype, "paginator", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(_angular_material_sort__WEBPACK_IMPORTED_MODULE_4__["MatSort"], { static: true })
+], AddressBookComponent.prototype, "sort", void 0);
+AddressBookComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-address-book',
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./address-book.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/component/address-book/address-book.component.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./address-book.component.css */ "./src/app/component/address-book/address-book.component.css")).default]
+    })
+], AddressBookComponent);
+
+
+
+/***/ }),
+
 /***/ "./src/app/component/home/home.component.css":
 /*!***************************************************!*\
   !*** ./src/app/component/home/home.component.css ***!
@@ -738,6 +1033,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
 /* harmony import */ var _service_auth_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../service/auth.service */ "./src/app/service/auth.service.ts");
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm2015/dialog.js");
+/* harmony import */ var _new_message_dialog_new_message_dialog_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../new-message-dialog/new-message-dialog.component */ "./src/app/component/new-message-dialog/new-message-dialog.component.ts");
+/* harmony import */ var _message_edit_dialog_message_edit_dialog_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../message-edit-dialog/message-edit-dialog.component */ "./src/app/component/message-edit-dialog/message-edit-dialog.component.ts");
+/* harmony import */ var _service_message_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../service/message.service */ "./src/app/service/message.service.ts");
+
+
+
+
 
 
 
@@ -747,24 +1050,28 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let HomeComponent = class HomeComponent {
-    constructor(http, authService) {
+    constructor(http, authService, dialog, messageService) {
         this.http = http;
         this.authService = authService;
+        this.dialog = dialog;
+        this.messageService = messageService;
         this.displayedColumns = this.isAdmin() ? ['position', 'author', 'recipient', 'date', 'title'] : ['position', 'author', 'date', 'title'];
         this.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"](this.data);
         this.pageSize = 10;
-        this.url = "/message/list";
     }
     ngOnInit() {
-        this.getMessages().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])((res) => {
+        this.messageService.getMessages().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])((res) => {
             const periodicElements = [];
             res.forEach((value, index) => {
                 periodicElements.push({
                     position: index,
+                    id: value.id,
                     author: value.from,
                     recipient: this.isAdmin() ? value.to : null,
                     date: value.createDate,
-                    title: value.title
+                    title: value.title,
+                    message: value.message,
+                    deleted: value.deleted
                 });
             });
             return periodicElements;
@@ -775,22 +1082,33 @@ let HomeComponent = class HomeComponent {
             this.dataSource.sort = this.sort;
         });
     }
-    getMessages() {
-        if (this.isAdmin()) {
-            this.url = "/message/all";
-        }
-        return this.http.get(this.url);
-    }
     applyFilter(filterValue) {
         this.dataSource.filter = filterValue.trim().toLowerCase();
     }
     isAdmin() {
         return this.authService.currentUserValue.role === "ADMIN";
     }
+    createMessage() {
+        this.dialog.open(_new_message_dialog_new_message_dialog_component__WEBPACK_IMPORTED_MODULE_9__["NewMessageDialogComponent"], { disableClose: false });
+    }
+    selected(row) {
+        const message = {
+            id: row.id,
+            from: row.author,
+            to: row.recipient,
+            createDate: row.date,
+            title: row.title,
+            message: row.message,
+            deleted: row.deleted
+        };
+        this.dialog.open(_message_edit_dialog_message_edit_dialog_component__WEBPACK_IMPORTED_MODULE_10__["MessageEditDialogComponent"], { disableClose: false, data: { pageValue: message } });
+    }
 };
 HomeComponent.ctorParameters = () => [
     { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClient"] },
-    { type: _service_auth_service__WEBPACK_IMPORTED_MODULE_7__["AuthService"] }
+    { type: _service_auth_service__WEBPACK_IMPORTED_MODULE_7__["AuthService"] },
+    { type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_8__["MatDialog"] },
+    { type: _service_message_service__WEBPACK_IMPORTED_MODULE_11__["MessageService"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(_angular_material_paginator__WEBPACK_IMPORTED_MODULE_3__["MatPaginator"], { static: true })
@@ -977,6 +1295,93 @@ LoginModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./src/app/component/message-edit-dialog/message-edit-dialog.component.css":
+/*!*********************************************************************************!*\
+  !*** ./src/app/component/message-edit-dialog/message-edit-dialog.component.css ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudC9tZXNzYWdlLWVkaXQtZGlhbG9nL21lc3NhZ2UtZWRpdC1kaWFsb2cuY29tcG9uZW50LmNzcyJ9 */");
+
+/***/ }),
+
+/***/ "./src/app/component/message-edit-dialog/message-edit-dialog.component.ts":
+/*!********************************************************************************!*\
+  !*** ./src/app/component/message-edit-dialog/message-edit-dialog.component.ts ***!
+  \********************************************************************************/
+/*! exports provided: MessageEditDialogComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MessageEditDialogComponent", function() { return MessageEditDialogComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm2015/dialog.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
+/* harmony import */ var _service_message_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../service/message.service */ "./src/app/service/message.service.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+
+
+
+
+
+
+
+
+let MessageEditDialogComponent = class MessageEditDialogComponent {
+    constructor(dialogRef, messageService, router, location, data) {
+        this.dialogRef = dialogRef;
+        this.messageService = messageService;
+        this.router = router;
+        this.location = location;
+        this.data = data;
+        this.emailTo = new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"]();
+        this.title = new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"]();
+        this.message = data.pageValue;
+    }
+    onSubmit() {
+    }
+    delete() {
+        this.messageService.delete(this.message.id).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["first"])()).subscribe(value => {
+            this.dialogRef.close();
+            this.refreshUsers();
+        });
+    }
+    onCancel() {
+        this.dialogRef.close();
+    }
+    refreshUsers() {
+        this.router.navigateByUrl('/UsersComponent', { skipLocationChange: true }).then(() => {
+            this.router.navigate([decodeURI(this.location.path())]).then();
+        });
+    }
+};
+MessageEditDialogComponent.ctorParameters = () => [
+    { type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"] },
+    { type: _service_message_service__WEBPACK_IMPORTED_MODULE_5__["MessageService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] },
+    { type: _angular_common__WEBPACK_IMPORTED_MODULE_4__["Location"] },
+    { type: undefined, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Optional"] }, { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"], args: [_angular_material_dialog__WEBPACK_IMPORTED_MODULE_2__["MAT_DIALOG_DATA"],] }] }
+];
+MessageEditDialogComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-message-edit-dialog',
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./message-edit-dialog.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/component/message-edit-dialog/message-edit-dialog.component.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./message-edit-dialog.component.css */ "./src/app/component/message-edit-dialog/message-edit-dialog.component.css")).default]
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](4, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Optional"])()), tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](4, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material_dialog__WEBPACK_IMPORTED_MODULE_2__["MAT_DIALOG_DATA"]))
+], MessageEditDialogComponent);
+
+
+
+/***/ }),
+
 /***/ "./src/app/component/navigation/navigation.component.css":
 /*!***************************************************************!*\
   !*** ./src/app/component/navigation/navigation.component.css ***!
@@ -1055,6 +1460,9 @@ let NavigationComponent = class NavigationComponent {
     }
     isAdmin() {
         return this.authService.currentUserValue.role === "ADMIN";
+    }
+    openAddressBook() {
+        this.router.navigate(["/address-book"]).then();
     }
 };
 NavigationComponent.ctorParameters = () => [
@@ -1144,6 +1552,223 @@ NavigationModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./src/app/component/new-address-book/new-address-book.component.css":
+/*!***************************************************************************!*\
+  !*** ./src/app/component/new-address-book/new-address-book.component.css ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudC9uZXctYWRkcmVzcy1ib29rL25ldy1hZGRyZXNzLWJvb2suY29tcG9uZW50LmNzcyJ9 */");
+
+/***/ }),
+
+/***/ "./src/app/component/new-address-book/new-address-book.component.ts":
+/*!**************************************************************************!*\
+  !*** ./src/app/component/new-address-book/new-address-book.component.ts ***!
+  \**************************************************************************/
+/*! exports provided: NewAddressBookComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NewAddressBookComponent", function() { return NewAddressBookComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm2015/dialog.js");
+/* harmony import */ var _service_address_book_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../service/address-book.service */ "./src/app/service/address-book.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
+
+
+
+
+
+
+
+
+let NewAddressBookComponent = class NewAddressBookComponent {
+    constructor(dialogRef, addressBookService, router, location) {
+        this.dialogRef = dialogRef;
+        this.addressBookService = addressBookService;
+        this.router = router;
+        this.location = location;
+        this.fullName = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]();
+        this.email = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]();
+    }
+    onSubmit() {
+        if (!this.fullName.value) {
+            return;
+        }
+        if (!this.email.value) {
+            return;
+        }
+        const addressBook = {
+            fullName: this.fullName.value,
+            email: this.email.value
+        };
+        this.addressBookService.create(addressBook).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["first"])()).subscribe(value => {
+            this.dialogRef.close();
+            this.refresh();
+        });
+    }
+    getFullNameErrorMessage() {
+        return this.fullName.hasError('required') ? 'You must enter a value' :
+            this.fullName.hasError('fullName') ? 'Not a valid full name' :
+                '';
+    }
+    getEmailErrorMessage() {
+        return this.email.hasError('required') ? 'You must enter a value' :
+            this.email.hasError('email') ? 'Not a valid email' :
+                '';
+    }
+    onCancel() {
+        this.dialogRef.close();
+    }
+    refresh() {
+        this.router.navigateByUrl('/AddressBookComponent', { skipLocationChange: true }).then(() => {
+            this.router.navigate([decodeURI(this.location.path())]).then();
+        });
+    }
+};
+NewAddressBookComponent.ctorParameters = () => [
+    { type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_3__["MatDialogRef"] },
+    { type: _service_address_book_service__WEBPACK_IMPORTED_MODULE_4__["AddressBookService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
+    { type: _angular_common__WEBPACK_IMPORTED_MODULE_7__["Location"] }
+];
+NewAddressBookComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-new-address-book',
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./new-address-book.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/component/new-address-book/new-address-book.component.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./new-address-book.component.css */ "./src/app/component/new-address-book/new-address-book.component.css")).default]
+    })
+], NewAddressBookComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/component/new-message-dialog/new-message-dialog.component.css":
+/*!*******************************************************************************!*\
+  !*** ./src/app/component/new-message-dialog/new-message-dialog.component.css ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudC9uZXctbWVzc2FnZS1kaWFsb2cvbmV3LW1lc3NhZ2UtZGlhbG9nLmNvbXBvbmVudC5jc3MifQ== */");
+
+/***/ }),
+
+/***/ "./src/app/component/new-message-dialog/new-message-dialog.component.ts":
+/*!******************************************************************************!*\
+  !*** ./src/app/component/new-message-dialog/new-message-dialog.component.ts ***!
+  \******************************************************************************/
+/*! exports provided: NewMessageDialogComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NewMessageDialogComponent", function() { return NewMessageDialogComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm2015/dialog.js");
+/* harmony import */ var _service_message_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../service/message.service */ "./src/app/service/message.service.ts");
+/* harmony import */ var _service_auth_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../service/auth.service */ "./src/app/service/auth.service.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
+
+
+
+
+
+
+
+
+
+let NewMessageDialogComponent = class NewMessageDialogComponent {
+    constructor(dialogRef, messageService, authService, router, location) {
+        this.dialogRef = dialogRef;
+        this.messageService = messageService;
+        this.authService = authService;
+        this.router = router;
+        this.location = location;
+        this.emailTo = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]();
+        this.title = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]();
+        this.messageBody = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]();
+    }
+    onSubmit() {
+        if (!this.emailTo.value) {
+            return;
+        }
+        if (!this.title.value) {
+            return;
+        }
+        if (!this.messageBody.value) {
+            return;
+        }
+        const message = {
+            from: this.authService.currentUserValue.email,
+            to: this.emailTo.value,
+            title: this.title.value,
+            message: this.messageBody.value,
+        };
+        this.messageService.create(message).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["first"])()).subscribe(value => {
+            this.dialogRef.close();
+            this.refresh();
+        });
+    }
+    getEmailToErrorMessage() {
+        return this.emailTo.hasError('required') ? 'You must enter a value' :
+            this.emailTo.hasError('emailTo') ? 'Not a valid email' :
+                '';
+    }
+    getTitleErrorMessage() {
+        return this.emailTo.hasError('required') ? 'You must enter a value' :
+            this.title.hasError('title') ? 'Not a valid title' :
+                '';
+    }
+    getMessageErrorMessage() {
+        return this.messageBody.hasError('required') ? 'You must enter a value' :
+            this.messageBody.hasError('message') ? 'Not a valid message' :
+                '';
+    }
+    onCancel() {
+        this.dialogRef.close();
+    }
+    refresh() {
+        this.router.navigateByUrl('/HomeComponent', { skipLocationChange: true }).then(() => {
+            this.router.navigate([decodeURI(this.location.path())]).then();
+        });
+    }
+};
+NewMessageDialogComponent.ctorParameters = () => [
+    { type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_3__["MatDialogRef"] },
+    { type: _service_message_service__WEBPACK_IMPORTED_MODULE_4__["MessageService"] },
+    { type: _service_auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"] },
+    { type: _angular_common__WEBPACK_IMPORTED_MODULE_8__["Location"] }
+];
+NewMessageDialogComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-new-message-dialog',
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./new-message-dialog.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/component/new-message-dialog/new-message-dialog.component.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./new-message-dialog.component.css */ "./src/app/component/new-message-dialog/new-message-dialog.component.css")).default]
+    })
+], NewMessageDialogComponent);
+
+
+
+/***/ }),
+
 /***/ "./src/app/component/new-user-dialog/new-user-dialog.component.css":
 /*!*************************************************************************!*\
   !*** ./src/app/component/new-user-dialog/new-user-dialog.component.css ***!
@@ -1170,10 +1795,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm2015/dialog.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
-/* harmony import */ var _service_auth_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../service/auth.service */ "./src/app/service/auth.service.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
+/* harmony import */ var _service_user_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../service/user.service */ "./src/app/service/user.service.ts");
+
 
 
 
@@ -1182,15 +1809,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let NewUserDialogComponent = class NewUserDialogComponent {
-    constructor(http, dialogRef, authService) {
-        this.http = http;
+    constructor(dialogRef, router, userService, location) {
         this.dialogRef = dialogRef;
-        this.authService = authService;
-        this.fullName = new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"]();
-        this.email = new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].email]);
-        this.login = new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"]();
-        this.password = new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"]();
-        this.role = new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"]();
+        this.router = router;
+        this.userService = userService;
+        this.location = location;
+        this.fullName = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]();
+        this.email = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].email]);
+        this.login = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]();
+        this.password = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]();
+        this.role = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]();
         this.url = '/user';
     }
     onSubmit() {
@@ -1206,18 +1834,18 @@ let NewUserDialogComponent = class NewUserDialogComponent {
         if (!this.password.value) {
             return;
         }
-        let user = {
+        const user = {
             fullName: this.fullName.value,
             email: this.email.value,
             login: this.login.value,
             password: this.password.value,
             role: this.role.value
         };
-        this.authService.registrationUrl = this.url;
-        this.authService.registration(user)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["first"])())
+        this.userService.create(user)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["first"])())
             .subscribe(data => {
             this.dialogRef.close();
+            this.refreshUsers();
         });
     }
     getFullNameErrorMessage() {
@@ -1243,11 +1871,17 @@ let NewUserDialogComponent = class NewUserDialogComponent {
     onCancel() {
         this.dialogRef.close();
     }
+    refreshUsers() {
+        this.router.navigateByUrl('/UsersComponent', { skipLocationChange: true }).then(() => {
+            this.router.navigate([decodeURI(this.location.path())]).then();
+        });
+    }
 };
 NewUserDialogComponent.ctorParameters = () => [
-    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"] },
     { type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"] },
-    { type: _service_auth_service__WEBPACK_IMPORTED_MODULE_6__["AuthService"] }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
+    { type: _service_user_service__WEBPACK_IMPORTED_MODULE_7__["UserService"] },
+    { type: _angular_common__WEBPACK_IMPORTED_MODULE_6__["Location"] }
 ];
 NewUserDialogComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1613,6 +2247,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _new_user_dialog_new_user_dialog_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../new-user-dialog/new-user-dialog.component */ "./src/app/component/new-user-dialog/new-user-dialog.component.ts");
 /* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm2015/dialog.js");
 /* harmony import */ var _user_edit_dialog_user_edit_dialog_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../user-edit-dialog/user-edit-dialog.component */ "./src/app/component/user-edit-dialog/user-edit-dialog.component.ts");
+/* harmony import */ var _service_user_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../service/user.service */ "./src/app/service/user.service.ts");
+
 
 
 
@@ -1624,16 +2260,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let UsersComponent = class UsersComponent {
-    constructor(http, dialog) {
+    constructor(http, dialog, userService) {
         this.http = http;
         this.dialog = dialog;
+        this.userService = userService;
         this.displayedColumns = ['position', 'fullName', 'email', 'login', 'role', 'isActive'];
         this.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"](this.data);
         this.pageSize = 10;
-        this.url = "/user/list";
     }
     ngOnInit() {
-        this.getUsers().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])((res) => {
+        this.userService.getUsers().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])((res) => {
             const periodicElements = [];
             res.forEach((value, index) => {
                 periodicElements.push({
@@ -1653,9 +2289,6 @@ let UsersComponent = class UsersComponent {
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
         });
-    }
-    getUsers() {
-        return this.http.get(this.url);
     }
     applyFilter(filterValue) {
         this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -1677,7 +2310,8 @@ let UsersComponent = class UsersComponent {
 };
 UsersComponent.ctorParameters = () => [
     { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClient"] },
-    { type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_8__["MatDialog"] }
+    { type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_8__["MatDialog"] },
+    { type: _service_user_service__WEBPACK_IMPORTED_MODULE_10__["UserService"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(_angular_material_paginator__WEBPACK_IMPORTED_MODULE_3__["MatPaginator"], { static: true })
@@ -1840,6 +2474,49 @@ ErrorInterceptor = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./src/app/service/address-book.service.ts":
+/*!*************************************************!*\
+  !*** ./src/app/service/address-book.service.ts ***!
+  \*************************************************/
+/*! exports provided: AddressBookService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddressBookService", function() { return AddressBookService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+
+
+
+let AddressBookService = class AddressBookService {
+    constructor(http) {
+        this.http = http;
+    }
+    getBooks() {
+        return this.http.get("/api/address-book/list");
+    }
+    create(addressBook) {
+        return this.http.put("/api/address-book", addressBook);
+    }
+    delete(id) {
+        return this.http.delete("/api/address-book/" + id);
+    }
+};
+AddressBookService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }
+];
+AddressBookService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    })
+], AddressBookService);
+
+
+
+/***/ }),
+
 /***/ "./src/app/service/auth.service.ts":
 /*!*****************************************!*\
   !*** ./src/app/service/auth.service.ts ***!
@@ -1863,8 +2540,8 @@ __webpack_require__.r(__webpack_exports__);
 let AuthService = class AuthService {
     constructor(http) {
         this.http = http;
-        this.loginUrl = "/login";
-        this.registrationUrl = "/registration";
+        this.loginUrl = "/api/login";
+        this.registrationUrl = "/api/registration";
         this.currentUserSubject = new rxjs__WEBPACK_IMPORTED_MODULE_3__["BehaviorSubject"](JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
     }
@@ -1901,6 +2578,60 @@ AuthService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./src/app/service/message.service.ts":
+/*!********************************************!*\
+  !*** ./src/app/service/message.service.ts ***!
+  \********************************************/
+/*! exports provided: MessageService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MessageService", function() { return MessageService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./auth.service */ "./src/app/service/auth.service.ts");
+
+
+
+
+let MessageService = class MessageService {
+    constructor(http, authService) {
+        this.http = http;
+        this.authService = authService;
+    }
+    getMessages() {
+        let url = "/api/message/list";
+        if (this.isAdmin()) {
+            url = "/api/message/all";
+        }
+        return this.http.get(url);
+    }
+    create(message) {
+        return this.http.put("/api/message/create", message);
+    }
+    delete(id) {
+        return this.http.delete("/api/message/" + id);
+    }
+    isAdmin() {
+        return this.authService.currentUserValue.role === "ADMIN";
+    }
+};
+MessageService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },
+    { type: _auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"] }
+];
+MessageService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    })
+], MessageService);
+
+
+
+/***/ }),
+
 /***/ "./src/app/service/user.service.ts":
 /*!*****************************************!*\
   !*** ./src/app/service/user.service.ts ***!
@@ -1922,11 +2653,17 @@ let UserService = class UserService {
         this.http = http;
     }
     update(user) {
-        return this.http.put("/user/update", user);
+        return this.http.put("/api/user/update", user);
     }
     delete(id) {
-        const url = "/user/delete/" + id;
+        const url = "/api/user/delete/" + id;
         return this.http.delete(url);
+    }
+    getUsers() {
+        return this.http.get("/api/user/list");
+    }
+    create(user) {
+        return this.http.put("/api/user", user);
     }
 };
 UserService.ctorParameters = () => [

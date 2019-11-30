@@ -66,4 +66,8 @@ export class NavigationComponent implements OnInit {
   isAdmin() {
     return this.authService.currentUserValue.role === "ADMIN";
   }
+
+  openAddressBook() {
+    this.router.navigate(["/address-book"]).then();
+  }
 }
