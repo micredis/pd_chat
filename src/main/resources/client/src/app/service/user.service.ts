@@ -18,4 +18,8 @@ export class UserService {
     const url: string = "/api/user/delete/" + id;
     return this.http.delete(url);
   }
+
+  getUsers(){
+    return this.http.get<User[]>("/api/user/list")
+  }
 }

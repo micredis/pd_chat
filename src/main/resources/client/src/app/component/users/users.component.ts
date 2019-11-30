@@ -10,6 +10,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {SelectionModel} from "@angular/cdk/collections";
 import {UserEditDialogComponent} from "../user-edit-dialog/user-edit-dialog.component";
 import {NavigationEnd, Router} from "@angular/router";
+import {UserService} from "../../service/user.service";
 
 export interface PeriodicElement {
   position: number;
@@ -34,14 +35,14 @@ export class UsersComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
-  private url: string = "/user/list";
 
   constructor(private http: HttpClient,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private userService: UserService) {
   }
 
   ngOnInit() {
-    this.getUsers().pipe(map((res: User[]) => {
+    this.userService.getUsers().pipe(map((res: User[]) => {
       const periodicElements: PeriodicElement[] = [];
       res.forEach((value, index) => {
         periodicElements.push({
@@ -61,10 +62,6 @@ export class UsersComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
-  }
-
-  getUsers() {
-    return this.http.get<User[]>(this.url);
   }
 
   applyFilter(filterValue: string) {
