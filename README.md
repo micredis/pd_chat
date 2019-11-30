@@ -48,3 +48,11 @@ Then start application
 ```
 docker-compose up -d pd_chat
 ```
+
+## Login to application
+
+DB contains only one base user with admin role.
+So, for login to application you need to
+
+login: admin@test.com
+password: test123
