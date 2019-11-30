@@ -40,7 +40,7 @@ mvn package liquibase:update -P liquibase local dev
 Then start build .jar file
 
 ```
-clean package dockerfile:build -P client docker
+mvn clean package dockerfile:build -P client docker
 ```
 
 Then start application
