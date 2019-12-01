@@ -4,6 +4,7 @@ import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-login',
@@ -33,6 +34,7 @@ export class LoginComponent implements OnInit {
               private router: Router,
               private snackBar: MatSnackBar,
               private formBuilder: FormBuilder,
+              private location: Location,
               private route: ActivatedRoute) {
     if (this.authService.currentUser) {
       this.router.navigate(['/']).then();
@@ -40,6 +42,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.authService.logout();
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home'
   }
@@ -59,11 +62,18 @@ export class LoginComponent implements OnInit {
     .pipe(first())
     .subscribe(
       data => {
+        this.refreshNavMenu();
         this.router.navigate([this.returnUrl]).then();
       });
   }
 
   toRegistration() {
     this.router.navigate([this.registrationPage]).then();
+  }
+
+  private refreshNavMenu() {
+    this.router.navigateByUrl('/NavigationComponent', {skipLocationChange: true}).then(() => {
+      this.router.navigate([decodeURI(this.location.path())]).then();
+    });
   }
 }
