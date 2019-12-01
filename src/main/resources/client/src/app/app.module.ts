@@ -9,7 +9,7 @@ import {NavigationModule} from "./component/navigation/navigation.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatCardModule} from "@angular/material/card";
-import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {BasicAuthInterceptor} from "./helper/basic-auth-interceptor";
 import {ErrorInterceptor} from "./helper/error-interceptor";
@@ -35,8 +35,6 @@ import {MatListModule} from "@angular/material/list";
 import {AddressBookComponent} from "./component/address-book/address-book.component";
 import {NewAddressBookComponent} from './component/new-address-book/new-address-book.component';
 import {AddressBookEditDialogComponent} from './component/address-book-edit-dialog/address-book-edit-dialog.component';
-import {Overlay} from "@angular/cdk/overlay";
-import {LiveAnnouncer} from "@angular/cdk/a11y";
 
 @NgModule({
   declarations: [
@@ -76,7 +74,7 @@ import {LiveAnnouncer} from "@angular/cdk/a11y";
     MatListModule,
   ],
   providers: [
-    {provide: MatSnackBar, deps: [Overlay, LiveAnnouncer]},
+    // {provide: MatSnackBar, deps: [Overlay, LiveAnnouncer]},
     {provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
   ],

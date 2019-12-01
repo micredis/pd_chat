@@ -8,6 +8,7 @@ import {AuthService} from "../../service/auth.service";
 import {Router} from "@angular/router";
 import {Location} from "@angular/common";
 import {UserService} from "../../service/user.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-new-user-dialog',
@@ -25,6 +26,7 @@ export class NewUserDialogComponent {
   constructor(private dialogRef: MatDialogRef<NewUserDialogComponent>,
               private router: Router,
               private userService: UserService,
+              private snackBar: MatSnackBar,
               private location: Location) {
   }
 
@@ -58,6 +60,10 @@ export class NewUserDialogComponent {
       data => {
         this.dialogRef.close();
         this.refreshUsers();
+      }, error => {
+        this.snackBar.open('Creation is failed by: ', error, {
+          duration: 2000,
+        });
       }
     );
   }

@@ -4,6 +4,7 @@ import {FormControl, Validators} from "@angular/forms";
 import {first} from "rxjs/operators";
 import {AuthService} from "../../service/auth.service";
 import {Router} from "@angular/router";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-registration',
@@ -11,16 +12,16 @@ import {Router} from "@angular/router";
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-  private loading: boolean;
   private submitted: boolean;
   private fullName = new FormControl();
   private email = new FormControl('', [Validators.required, Validators.email]);
   private login = new FormControl();
   private password = new FormControl();
-  private error = '';
   private loginUrl: string = '/login';
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService,
+              private router: Router,
+              private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -45,8 +46,7 @@ export class RegistrationComponent implements OnInit {
       return;
     }
 
-    this.loading = true;
-    let user: User = {
+    const user: User = {
       fullName: this.fullName.value,
       email: this.email.value,
       login: this.login.value,
@@ -59,8 +59,9 @@ export class RegistrationComponent implements OnInit {
       data => {
         this.router.navigate([this.loginUrl]).then();
       }, error => {
-        this.error = error;
-        this.loading = false;
+        this.snackBar.open('Registration failed by: ', error, {
+          duration: 2000,
+        });
       }
     );
   }

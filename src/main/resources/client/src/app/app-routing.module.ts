@@ -9,7 +9,7 @@ import {AddressBookComponent} from "./component/address-book/address-book.compon
 
 
 const routes: Routes = [
-  {path: '', component: HomeComponent, canActivate: [AuthGuard]},
+  {path: '', component: LoginComponent},
   {path: 'login', component: LoginComponent},
   {path: 'address-book', component: AddressBookComponent, canActivate: [AuthGuard]},
   {path: 'users', component: UsersComponent, canActivate: [AuthGuard]},

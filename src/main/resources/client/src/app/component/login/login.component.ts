@@ -64,6 +64,10 @@ export class LoginComponent implements OnInit {
       data => {
         this.refreshNavMenu();
         this.router.navigate([this.returnUrl]).then();
+      }, error => {
+        this.snackBar.open('Login failed by: ', error, {
+          duration: 2000,
+        });
       });
   }
 
